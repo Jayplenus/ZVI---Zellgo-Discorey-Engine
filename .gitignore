@@ -1,0 +1,28 @@
+# OS Junk Files
+.DS_Store
+Thumbs.db
+
+# Environment variables & secrets (API Keys)
+.env
+.env.local
+.env.production
+.env.development
+
+# Node dependencies (para quando adicionarmos o back-end Vercel Serverless)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+pnpm-lock.yaml
+
+# Vercel & AI build caches
+.vercel/
+.next/
+dist/
+build/
+.gemini/
+
+# Logs e rascunhos temporários
+*.log
+scratch/
