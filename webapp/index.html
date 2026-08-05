@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zellgo Visual Intelligence (ZVI) — Discovery Engine (ZDE v2.1)</title>
+  <title>Zellgo Visual Intelligence (ZVI) — Discovery Engine (ZDE v2.2)</title>
   <meta name="description" content="Módulo de Inteligência Diagnóstica e Briefing Modular da Zellgo. Projeção de estratégias avançadas para marcas de alto padrão e empresas orientadas ao crescimento.">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="https://zellgo.com.br/favicon.ico">
@@ -35,14 +35,14 @@
       <button class="tab-btn active" id="btnTabBriefing" onclick="switchTab('briefing')" title="Módulo de Briefing">
         <span class="tab-icon">📝</span> <span class="tab-label">Briefing</span>
       </button>
-      <button class="tab-btn" id="btnTabDashboard" onclick="switchTab('dashboard')" title="Painel do Arquiteto (Preview Demonstrativo)">
-        <span class="tab-icon">📊</span> <span class="tab-label">Painel ZVI (IA Ao Vivo)</span>
+      <button class="tab-btn" id="btnTabDashboard" onclick="switchTab('dashboard')" title="Painel do Arquiteto">
+        <span class="tab-icon">📊</span> <span class="tab-label">Painel ZVI (Estratégia)</span>
       </button>
     </div>
 
     <div class="header-status">
       <div class="pulse-dot"></div>
-      <span class="status-text">MOTOR ON-LINE — ZDE v2.1</span>
+      <span class="status-text">MOTOR ON-LINE — ZDE v2.2</span>
     </div>
   </header>
 
@@ -51,17 +51,17 @@
 
     <!-- HERO BANNER -->
     <section class="hero-banner">
-      <span class="hero-tag">⚡ Zellgo Discovery Engine • v2.1 Cloud AI</span>
+      <span class="hero-tag">⚡ Zellgo Discovery Engine • v2.2 Modular</span>
       <h1 class="hero-title">
         <span class="title-white">DIAGNÓSTICO DE</span> <span class="title-rose">ALTA PRECISÃO E ESCOPO</span>
       </h1>
       <p class="hero-desc">
-        Preencha o briefing modular de forma intuitiva. Nosso motor de inteligência artificial processará ao vivo a maturidade da marca, posicionamento, tração digital e o escopo exato de alavancagem para o seu negócio.
+        Preencha o briefing modular de forma intuitiva. Nosso motor de inteligência artificial processará ao vivo a maturidade da marca, posicionamento, tração digital e o escopo exato de alavancagem adaptado à escala do seu negócio.
       </p>
     </section>
 
     <!-- ======================================================================
-         VIEW 1: MÓDULO DE BRIEFING UNIVERSAL (ABERTO POR PADRÃO PARA O TESTE)
+         VIEW 1: MÓDULO DE BRIEFING UNIVERSAL
          ====================================================================== -->
     <section id="viewBriefing" class="view-section active">
       <div class="form-container">
@@ -94,15 +94,15 @@
               </header>
               <div class="form-group">
                 <label class="form-label" for="emp_nome">Nome da Empresa ou Marca <span class="form-sublabel">*(Obrigatório)*</span></label>
-                <input type="text" id="emp_nome" class="form-control" placeholder="Ex: Sakura Gastronomia / Zellgo Tech / Studio Alpha / E-commerce Moda">
+                <input type="text" id="emp_nome" class="form-control" placeholder="Ex: GF Riototal / Rio Zen Sushi / Zellgo Tech / Studio Alpha">
               </div>
               <div class="form-group">
                 <label class="form-label" for="emp_segmento">Segmento de Atuação</label>
-                <input type="text" id="emp_segmento" class="form-control" placeholder="Ex: Gastronomia Japonesa, Tecnologia SaaS, Saúde e Estética, Varejo B2B">
+                <input type="text" id="emp_segmento" class="form-control" placeholder="Ex: Gastronomia Japonesa, Comércio de Baterias, Saúde e Estética, Varejo">
               </div>
               <div class="form-group">
-                <label class="form-label" for="emp_core">O que vocês vendem? (Core Business)</label>
-                <textarea id="emp_core" class="form-control" placeholder="Descreva de forma concisa seus produtos ou serviços principais de maior retorno..."></textarea>
+                <label class="form-label" for="emp_core">O que vocês vendem? (Core Business & Porte da Operação)</label>
+                <textarea id="emp_core" class="form-control" placeholder="Descreva de forma concisa seus produtos pricipais, tamanho da equipe e volume aproximado de vendas..."></textarea>
               </div>
             </div>
 
@@ -126,7 +126,7 @@
                   </div>
                   <div class="option-card">
                     <input type="radio" name="mer_pos" id="pos2" value="Intermediário / Competitivo" checked>
-                    <label class="option-label" for="pos2">⚖️ Intermediário / Custo-Benefício Equilíbrio</label>
+                    <label class="option-label" for="pos2">⚖️ Intermediário / Custo-Benefício Equacionado</label>
                   </div>
                   <div class="option-card">
                     <input type="radio" name="mer_pos" id="pos3" value="Premium / High-End">
@@ -145,11 +145,11 @@
               </header>
               <div class="form-group">
                 <label class="form-label" for="pub_persona">Quem é o Cliente Ideal?</label>
-                <input type="text" id="pub_persona" class="form-control" placeholder="Ex: Famílias de alto padrão e executivos que buscam gastronomia contemporânea">
+                <input type="text" id="pub_persona" class="form-control" placeholder="Ex: Clientes locais que buscam atendimento rápido e produtos de confiança">
               </div>
               <div class="form-group">
                 <label class="form-label" for="pub_dor">Qual é o maior desejo, exigência ou dor do seu cliente?</label>
-                <textarea id="pub_dor" class="form-control" placeholder="Ex: Experiência sensorial única, pontualidade no delivery, atendimento impecável sem atrasos..."></textarea>
+                <textarea id="pub_dor" class="form-control" placeholder="Ex: Rapidez na resposta pelo WhatsApp, garantia de qualidade sem pagar excessivo..."></textarea>
               </div>
             </div>
 
@@ -162,7 +162,7 @@
               </header>
               <div class="form-group">
                 <label class="form-label" for="mar_dif">Diferencial Exclusivo <span class="form-sublabel">*(O que torna sua marca única?)*</span></label>
-                <input type="text" id="mar_dif" class="form-control" placeholder="Ex: Ingredientes importados com chef premiado / Tecnologia exclusiva / Atendimento 24h">
+                <input type="text" id="mar_dif" class="form-control" placeholder="Ex: Atendimento humanizado / Agilidade na entrega / Tradição e confiança local">
               </div>
               <div class="form-group">
                 <label class="form-label">Situação atual do Branding e Identidade Visual:</label>
@@ -209,7 +209,7 @@
               </div>
               <div class="form-group">
                 <label class="form-label" for="tra_canais">Canais Digitais Utilizados no momento</label>
-                <input type="text" id="tra_canais" class="form-control" placeholder="Ex: Instagram e iFood, ou Website e Google Ads">
+                <input type="text" id="tra_canais" class="form-control" placeholder="Ex: WhatsApp e Instagram / Balcão da loja e Google Meu Negócio">
               </div>
             </div>
 
@@ -226,7 +226,7 @@
               </div>
               <div class="form-group">
                 <label class="form-label" for="tec_stack">Ferramentas, Sistemas e Automações Atuais</label>
-                <input type="text" id="tec_stack" class="form-control" placeholder="Ex: WhatsApp Business, ERP de pedidos, RD Station, Meta Ads...">
+                <input type="text" id="tec_stack" class="form-control" placeholder="Ex: WhatsApp Business, sistema de caixa simples, Instagram...">
               </div>
               <div class="form-group">
                 <label class="form-label">Sobre Infraestrutura de Sistemas Internos (ERP/Banco de Dados):</label>
@@ -241,7 +241,7 @@
                   </div>
                   <div class="option-card">
                     <input type="radio" name="tec_erp" id="erp3" value="Buscam tecnologia integral da Zellgo">
-                    <label class="option-label" for="erp3">⚡ Buscamos automação total e IA aplicadas à operação via Zellgo</label>
+                    <label class="option-label" for="erp3">⚡ Buscamos automação ágil e IA aplicadas à operação via Zellgo</label>
                   </div>
                 </div>
               </div>
@@ -256,11 +256,11 @@
               </header>
               <div class="form-group">
                 <label class="form-label" for="ope_gargalo">Qual é o principal desafio, reclamação ou gargalo operacional atual?</label>
-                <textarea id="ope_gargalo" class="form-control" placeholder="Ex: Lentidão para responder mensagens no horário de pico, baixa conversão nas reservas, fotos desatualizadas nos pratos..."></textarea>
+                <textarea id="ope_gargalo" class="form-control" placeholder="Ex: Equipe pequena dividida entre atender balcão e WhatsApp, demora no retorno, concorrência com preços abusivos..."></textarea>
               </div>
               <div class="form-group">
                 <label class="form-label" for="ope_atendimento">Como é realizado o atendimento ao cliente / reservas / vendas?</label>
-                <input type="text" id="ope_atendimento" class="form-control" placeholder="Ex: Atendimento manual 100% humanizado no WhatsApp e telefone">
+                <input type="text" id="ope_atendimento" class="form-control" placeholder="Ex: Atendimento manual e direto pela equipe enxuta no WhatsApp">
               </div>
             </div>
 
@@ -273,15 +273,15 @@
               </header>
               <div class="form-group">
                 <label class="form-label" for="obj_90">Qual o objetivo central do negócio para os próximos 90 dias?</label>
-                <textarea id="obj_90" class="form-control" placeholder="Ex: Reformular a identidade visual e o cardápio digital, implementar automação para reservas via IA no WhatsApp e alavancar o faturamento com tráfego..."></textarea>
+                <textarea id="obj_90" class="form-control" placeholder="Ex: Automatizar o atendimento inicial no WhatsApp para não perder vendas, profissionalizar o visual da marca e aumentar a base de clientes recorrentes..."></textarea>
               </div>
               <div class="form-group">
-                <label class="form-label" for="obj_orcamento">Estimativa de Investimento Prevista <span class="form-sublabel">*(Opcional / Referência de Projeto)*</span></label>
-                <input type="text" id="obj_orcamento" class="form-control" placeholder="Ex: Investimento aberto para avaliação de ROI / Orçamento previsto de R$ X mil">
+                <label class="form-label" for="obj_orcamento">Estimativa de Investimento / Porte da Operação <span class="form-sublabel">*(Ex: Faturamento atual ou orçamento disponível)*</span></label>
+                <input type="text" id="obj_orcamento" class="form-control" placeholder="Ex: Faturamento de R$ 15k a 25k/mês / Buscando plano acessível com alto ROI">
               </div>
             </div>
 
-            <!-- BOTÕES DE NAVEGAÇÃO E ENVIO (SOMENTE BOTÃO ROSA E ANTERIOR!) -->
+            <!-- BOTÕES DE NAVEGAÇÃO E ENVIO -->
             <footer class="form-actions">
               <button class="btn btn-secondary" id="btnPrev" onclick="changeBlock(-1)" disabled>
                 <span>&larr;</span> Anterior
@@ -301,14 +301,14 @@
     </section>
 
     <!-- ======================================================================
-         VIEW 2: PAINEL DO ARQUITETO (CASE DE ESTUDO & PREVIEW PARA TESTE)
+         VIEW 2: PAINEL DO ARQUITETO (ANALISADO SOB MEDIDA)
          ====================================================================== -->
     <section id="viewDashboard" class="view-section">
       
       <div id="dashBannerNotice" style="background:rgba(244, 63, 94, 0.12); border:1px solid var(--accent-rose); padding:1rem 1.4rem; border-radius:var(--radius-md); margin-bottom:1.8rem; display:flex; align-items:center; gap:1rem; font-size:0.9rem;">
-        <span style="font-size:1.5rem;">💡</span>
+        <span style="font-size:1.5rem;">⚡</span>
         <div style="color:var(--text-branco);">
-          <strong>Motor ZDE v2.1 Ativo:</strong> Ao enviar o briefing na aba anterior, nosso servidor Vercel Serverless processará ao vivo no Google Gemini a maturidade do negócio, calculará o Índice de Complexidade (IC) e apresentará abaixo a estratégia sob medida para a sua operação.
+          <strong>Motor ZDE v2.2 Modular:</strong> Nossa arquitetura de inteligência processa a maturidade do seu negócio, calcula o Índice de Complexidade (IC) e gera uma estratégia sob medida — adaptando o investimento exatamente ao porte e realidade de lucro de cada empresa.
         </div>
       </div>
 
@@ -316,14 +316,14 @@
       <div class="dashboard-card" style="margin-bottom:1.8rem; background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,20,40,0.9)); border-color:var(--accent-rose);">
         <div class="dashboard-head-flex">
           <div>
-            <span id="dashAiTag" class="badge-tag badge-rose">Case de Referência • ZDE v2.1</span>
-            <span id="dashClientSegment" class="badge-tag badge-neutral" style="margin-top:0.3rem; display:inline-block;">Segmento: Gastronomia & Varejo High-End</span>
-            <h2 id="dashClientName" style="font-size:1.8rem; font-weight:700; margin-top:0.5rem; color:var(--text-branco);">Empresa de Exemplo (Case Estudo ZVI)</h2>
-            <p id="dashClientSub" style="color:var(--text-muted); font-size:0.9rem;">Operação Digital Premium • Expansão Rápida de Vendas 24/7 com IA & Vídeo</p>
+            <span id="dashAiTag" class="badge-tag badge-rose">Estratégia Customizada • ZDE v2.2</span>
+            <span id="dashClientSegment" class="badge-tag badge-neutral" style="margin-top:0.3rem; display:inline-block;">Segmento: Varejo & Operações Locais</span>
+            <h2 id="dashClientName" style="font-size:1.8rem; font-weight:700; margin-top:0.5rem; color:var(--text-branco);">GF Riototal (Case ZVI)</h2>
+            <p id="dashClientSub" style="color:var(--text-muted); font-size:0.9rem;">Operação Enxuta & Ágil • Automação Inteligente de Atendimento e Destrave de Conversão</p>
           </div>
           <div class="score-card-right">
             <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Índice de Complexidade</div>
-            <div id="dashComplexityScore" style="font-size:2rem; font-weight:800; color:var(--accent-rose);">18 PONTOS <div style="font-size:0.9rem; font-weight:400; color:var(--text-branco);">(Média Complexidade ➔ Tier 2)</div></div>
+            <div id="dashComplexityScore" style="font-size:2rem; font-weight:800; color:var(--accent-rose);">12 PONTOS <div style="font-size:0.9rem; font-weight:400; color:var(--text-branco);">(Alta Eficiência ➔ Tier 1 Impulso)</div></div>
           </div>
         </div>
       </div>
@@ -342,58 +342,42 @@
             <canvas id="radarChart" width="380" height="320"></canvas>
           </div>
           <p id="dashRadarSummary" style="font-size:0.8rem; color:var(--text-muted); text-align:center; margin-top:0.6rem;">
-            *O gráfico identifica excelência de Marca e Legado, apontando necessidade imediata de Tração Digital e Atendimento IA (24/7).*
+            *O gráfico identifica excelência no Atendimento Direto e Reputação Local, apontando oportunidade de automação para liberar o tempo da equipe.*
           </p>
         </div>
 
         <div class="dashboard-card">
           <header class="card-header">
             <div class="card-title-group">
-              <h3>💎 Escopo de Soluções (Amostra ZDE)</h3>
-              <span>Estratégias de automação e posicionamento High-End</span>
+              <h3>💎 Escopo de Soluções Recomendadas</h3>
+              <span>Ações prioritárias para otimização operacionais e ROI rápido</span>
             </div>
-            <span id="dashScopeCount" class="badge-tag badge-rose">5 Módulos</span>
+            <span id="dashScopeCount" class="badge-tag badge-rose">3 Módulos</span>
           </header>
 
           <ul id="dashScopeList" class="scope-list" style="max-height:380px; overflow-y:auto; padding-right:0.4rem;">
             <li class="scope-item">
               <div class="scope-item-header">
-                <span class="scope-name">1. Agente IA de Conversão (Zellgo Bot 24/7)</span>
-                <span class="badge-tag badge-rose">Alta (IC: 3)</span>
+                <span class="scope-name">1. Agente de Conversão no WhatsApp (Zellgo Bot)</span>
+                <span class="badge-tag badge-rose">Prioridade Máxima</span>
               </div>
-              <p class="scope-desc">Robô inteligente no WhatsApp e canais digitais. Responde instantaneamente no horário de pico, apresenta ofertas exclusivas e fecha vendas sem falhas.</p>
+              <p class="scope-desc">Automação de respostas instantâneas para atender cotações e dúvidas frequentes em segundos, liberando a equipe física para focar nas vendas e fechamento.</p>
             </li>
 
             <li class="scope-item">
               <div class="scope-item-header">
-                <span class="scope-name">2. Filmmaking IA (Quebra de Objeção e Valor)</span>
-                <span class="badge-tag badge-rose">Alta (IC: 4)</span>
+                <span class="scope-name">2. Otimização do Perfil & Reposição Visual</span>
+                <span class="badge-tag badge-rose">Alta</span>
               </div>
-              <p class="scope-desc">Produção contínua de vídeos cinematográficos e sensoriais criados com Inteligência Artificial para elevar o status da marca e aniquilar a concorrência de menor preço.</p>
+              <p class="scope-desc">Padronização profissional dos canais de contato e Google Meu Negócio para projetar autoridade imediata sobre a concorrência local.</p>
             </li>
 
             <li class="scope-item">
               <div class="scope-item-header">
-                <span class="scope-name">3. SEO Local & Domínio de Busca</span>
-                <span class="badge-tag badge-rose">Alta (IC: 3)</span>
+                <span class="scope-name">3. Campanhas de Ativação Local (Tráfego Cirúrgico)</span>
+                <span class="badge-tag badge-neutral">Média</span>
               </div>
-              <p class="scope-desc">Otimização técnica do ecossistema para liderança absoluta nas buscas orgânicas e Google Meu Negócio da região do cliente.</p>
-            </li>
-
-            <li class="scope-item">
-              <div class="scope-item-header">
-                <span class="scope-name">4. Gestão de Tráfego & Remarketing Inteligente</span>
-                <span class="badge-tag badge-neutral">Média (IC: 3)</span>
-              </div>
-              <p class="scope-desc">Campanhas diárias cirúrgicas orientadas a ROI para aquisição de novos leads qualificados e reativação de clientes antigos.</p>
-            </li>
-
-            <li class="scope-item">
-              <div class="scope-item-header">
-                <span class="scope-name">5. Ecossistema Web Proprietário</span>
-                <span class="badge-tag badge-neutral">Baixa (IC: 2)</span>
-              </div>
-              <p class="scope-desc">Plataforma web ágil e veloz em Dark Mode Premium focada em conversão mobile sem intermediação de terceiros.</p>
+              <p class="scope-desc">Estratégia enxuta de anúncios no raio de atuação da empresa para atrair novos clientes qualificados direto para o WhatsApp automatizado.</p>
             </li>
           </ul>
         </div>
@@ -403,47 +387,47 @@
       <div class="dashboard-card">
         <header class="card-header">
           <div class="card-title-group">
-            <h3>🗺️ Roadmap de Crescimento (Os 90 Dias)</h3>
-            <span>Cronograma orquestrado de execução contínua com tecnologia e Inteligência Artificial</span>
+            <h3>🗺️ Roadmap de Execução & Crescimento</h3>
+            <span>Cronograma orquestrado com precisão para gerar resultados no trimestre sem sobrecarregar o time</span>
           </div>
         </header>
         
         <div id="dashRoadmapTimeline" class="roadmap-timeline">
           <div class="timeline-step">
             <div class="step-phase">⚡ Dias 01 ao 15</div>
-            <div class="step-title">Otimização & Setup IA</div>
-            <div class="step-info">Mapeamento da operação, adjustments na infraestrutura digital e treinamento em homologação do Agente IA exclusivo.</div>
+            <div class="step-title">Setup & Automação</div>
+            <div class="step-info">Configuração do Agente Inteligente no WhatsApp e alinhamento da comunicação de vendas da empresa.</div>
           </div>
           
           <div class="timeline-step">
             <div class="step-phase">📅 Dias 16 ao 30</div>
-            <div class="step-title">Destrave de Vendas</div>
-            <div class="step-info">Lançamento oficial da automação no WhatsApp e início das campanhas de reativação de base.</div>
+            <div class="step-title">Destrave & Tempo Livre</div>
+            <div class="step-info">Ativação do bot 24/7. O sistema assume o atendimento inicial e cotações básicas, zero atrasos nas respostas.</div>
           </div>
 
           <div class="timeline-step">
             <div class="step-phase">🔥 Dias 31 ao 60</div>
-            <div class="step-title">Tração & Filmmaking IA</div>
-            <div class="step-info">Publicação quinzenal de produções em vídeo de cinema e IA para dobrar a autoridade digital e conversão.</div>
+            <div class="step-title">Tração & Autoridade</div>
+            <div class="step-info">Refinamento visual da marca nos pontos de contato digital e ativação da aquisição contínua de clientes.</div>
           </div>
 
           <div class="timeline-step">
             <div class="step-phase">🔭 Dias 61 ao 90+</div>
-            <div class="step-title">Escala & LTV</div>
-            <div class="step-info">Consolidação do ecossistema, métricas contínuas de ROI e expansão sustentável de market share.</div>
+            <div class="step-title">Expansão de Margem</div>
+            <div class="step-info">Avaliação dos lucros adicionais conquistados pela eficiência do sistema e planejamento de novas metas de crescimento.</div>
           </div>
         </div>
 
-        <!-- BÚSSOLA DE PRECIFICAÇÃO E ANCORAGEM POR VALOR (v2.1) -->
+        <!-- BÚSSOLA DE PRECIFICAÇÃO E ANCORAGEM POR VALOR (v2.2) -->
         <div class="pricing-banner">
           <div class="pricing-info">
-            <h4>💡 Ancoragem por Valor & Retainer Evolutivo (ZDE v2.1)</h4>
-            <p id="dashRoiText">Demonstração financeira: Eliminar perdas operacionais no WhatsApp e capturar +15 conversões de alto valor mensais injeta mais de <strong>+R$ 45.000 de novo faturamento no mês</strong>. O retorno sobre o investimento supera 300% já no trimestre inicial.</p>
+            <h4>💡 Ancoragem por Valor & Modelo Proporcional (ZDE v2.2)</h4>
+            <p id="dashRoiText">Demonstração de Alavancagem: Para operações enxutas ou em crescimento, eliminar o trabalho manual de atendimento e capturar leads sem atrasos no WhatsApp multiplica a eficiência operacional sem inchar a folha de pagamento. Nosso plano é desenhado para se pagar inteiramente com o próprio lucro gerado no trimestre.</p>
           </div>
           <div class="pricing-values">
-            <div id="dashSetupLabel" class="val-label">Setup Tier 2 (Expansão Estratégica)</div>
-            <div id="dashSetupVal" class="val-tier">R$ 15.000 <span style="font-size:0.95rem; font-weight:300; color:var(--text-muted);">(Projeto Base)</span></div>
-            <div id="dashRetainerVal" style="margin-top:0.5rem; color:var(--accent-rose); font-weight:600; font-size:0.9rem;">+ Retainer Growth: R$ 3.500 / mês</div>
+            <div id="dashSetupLabel" class="val-label">Setup Tier 1 (Impulso & Automação Essencial)</div>
+            <div id="dashSetupVal" class="val-tier" style="font-size:1.5rem;">Investimento Flexível <div style="font-size:0.85rem; font-weight:400; color:var(--text-muted); margin-top:0.2rem;">(Ancorado à margem e ROI do negócio)</div></div>
+            <div id="dashRetainerVal" style="margin-top:0.7rem; color:var(--accent-rose); font-weight:600; font-size:0.88rem;">+ Fee Operacional: Proporcional ao Retorno</div>
           </div>
         </div>
 
