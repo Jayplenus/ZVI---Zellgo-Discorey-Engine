@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ZELLGO DISCOVERY ENGINE (ZDE v2.2) — VERCEL SERVERLESS AI BACK-END
+   ZELLGO DISCOVERY ENGINE (ZDE v2.3) — VERCEL SERVERLESS AI BACK-END
    Conectando o Briefing Web ao cérebro do Google AI (Gemini 1.5 Flash / Pro)
    ========================================================================== */
 
@@ -35,7 +35,7 @@ export default async function handler(req, res) {
     }
 
     const promptInstructs = `
-Você é o Motor de Inteligência Zellgo Discovery Engine (ZDE v2.2), o cérebro clínico, analítico e comercial da Zellgo (zellgo.com.br).
+Você é o Motor de Inteligência Zellgo Discovery Engine (ZDE v2.3), o cérebro clínico, analítico e comercial da Zellgo (zellgo.com.br).
 A Filosofia Soberana da nossa marca é: "A Zellgo não vende serviços, resolve problemas de negócio".
 Nós operamos ajudando marcas de todos os portes a destravarem vendas com excelência visual, tecnologia avançada (Agentes de IA) e estratégia operacional.
 
@@ -64,8 +64,8 @@ Sua tarefa é realizar uma auditoria clínica e de alta precisão neste negócio
   "ancoragem_roi": "Demonstração financeira contundente mostrando como a automação de atendimento ou otimização eliminará a perda atual e trará um retorno superior ao investimento sem inchar custos operacionais.",
   "valores_proposta": {
     "setup_label": "Setup Tier 1 (Impulso & Automação Essencial)",
-    "setup_val": "Investimento Flexível (Sob Consulta de ROI)",
-    "retainer_label": "+ Fee Operacional: Adaptado ao Retorno do Cliente"
+    "setup_val": "R$ 3.500 a R$ 6.500",
+    "retainer_label": "+ Fee Operacional: a partir de R$ 1.600 / mês"
   },
   "escopo_recomendado": [
     {
@@ -87,22 +87,29 @@ Sua tarefa é realizar uma auditoria clínica e de alta precisão neste negócio
   ]
 }
 
-REGRAS RÍGIDAS DE PRECIFICAÇÃO PROPORCIONAL E ÍNDICE DE COMPLEXIDADE (IC):
-- Avalie o porte, faturamento reportado (se houver) e número de colaboradores da empresa. NUNCA aplique valores engessados fora da realidade de lucro do cliente!
-- SE A EMPRESA FOR PEQUENA (ex: 1 a 6 funcionários, faturamento até R$ 35k/mês, como lojas locais ou pequenas prestadoras de serviço):
-  * Calcule de 8 a 13 pontos = Tier 1 (Impulso & Automação Essencial).
-  * No `setup_label`: "Setup Tier 1 (Impulso & Automação Essencial)".
-  * No `setup_val`: "Investimento Flexível (Sob Projeção de ROI)" ou "A partir de R$ 2.800 a R$ 4.500".
-  * No `retainer_label`: "+ Fee Operacional: Adaptado ao Lucro Gerado (Ex: R$ 850 a R$ 1.200/mês ou comissionamento)".
-- SE A EMPRESA FOR MÉDIA (ex: estrutura intermediária, em expansão, faturamento entre R$ 40k a R$ 150k/mês):
-  * Calcule de 14 a 20 pontos = Tier 2 (Expansão Estratégica).
-  * No `setup_label`: "Setup Tier 2 (Expansão Estratégica & Growth)".
-  * No `setup_val`: "R$ 8.000 a R$ 15.000 (Projeto de Expansão)".
-  * No `retainer_label`: "+ Retainer Growth: R$ 2.500 / mês".
-- SE A EMPRESA FOR GRANDE/CORPORATIVA (alta complexidade, integrações pesadas, faturamento elevado):
+REGRAS RÍGIDAS DE PRECIFICAÇÃO OBJETIVA E MODULAR (ZDE v2.3):
+- É OBRIGATÓRIO SER OBJETIVO COM VALORES (RANGE DE ORÇAMENTO REAL) para facilitar a tomada de decisão comercial! NUNCA responda "Investimento Flexível", "A combinar", ou textos sem números objetivos em \`setup_val\` e \`retainer_label\`.
+- SE A EMPRESA FOR PEQUENA OU OPERAÇÃO ENXUTA (ex: lojas locais, 1 a 6 funcionários, faturamento até R$ 35k/mês ou demanda pontual rápida):
+  * Calcule Índice de Complexidade entre 8 a 13 pontos = Tier 1 (Impulso & Automação Essencial).
+  * No \`setup_label\`: "Setup Tier 1 (Impulso & Automação Essencial)".
+  * No \`setup_val\`: Exiba um range objetivo e palpável de acordo com os módulos (ex: "R$ 3.500 a R$ 5.500", "R$ 3.500 a R$ 6.500" ou "R$ 4.500 a R$ 7.000"). Use como referência real dos nossos serviços modulares:
+    - Agente IA de Conversão no WhatsApp / Atendimentos 24/7: R$ 3.500 a R$ 6.000.
+    - Site Institucional (Foco em Autoridade): R$ 3.500 a R$ 5.500.
+    - Identidade Visual Premium (se defasada ou inexistente): R$ 2.500 a R$ 4.000.
+    - Landing Page de Captação High-End (Front-stage / Vitrine): R$ 3.500 a R$ 4.500.
+    - Design do Sistema / Plataforma Web (UI/UX Back-stage): R$ 4.500 a R$ 7.000+ (deixe claro no escopo se o back-stage for complexo que ele pode ser expandido num segundo momento).
+  * No \`retainer_label\`: OBRIGATÓRIO SER "+ Fee Operacional: a partir de R$ 1.600 / mês" (ou ranges entre R$ 1.600 a R$ 2.200 / mês). NUNCA coloque valor inferior a R$ 1.600/mês para o Retainer Tier 1!
+- SE A EMPRESA FOR MÉDIA OU EM FRANCA EXPANSÃO (ex: estrutura consolidada, faturamento R$ 40k a R$ 150k/mês, múltiplos canais):
+  * Calcule de 14 a 20 pontos = Tier 2 (Expansão Estratégica & Growth).
+  * No \`setup_label\`: "Setup Tier 2 (Expansão Estratégica & Growth)".
+  * No \`setup_val\`: Range objetivo entre "R$ 8.000 a R$ 15.000" (combinação modular de Site/LP + Agente IA + Branding).
+  * No \`retainer_label\`: "+ Retainer Growth: R$ 2.500 a R$ 3.500 / mês".
+- SE A EMPRESA FOR GRANDE / CORPORATIVE OU PROJETO AAA (alta complexidade, ecossistemas complexos, alto orçamento):
   * Calcule 21+ pontos = Tier 3 (Transformação Integral High-End).
-  * No `setup_val`: "A partir de R$ 25.000+".
-- Adapte SEMPRE as notas do Radar (1 a 5) e os textos do roadmap à realidade reportada no briefing.
+  * No \`setup_label\`: "Setup Tier 3 (Transformação Integral AAA)".
+  * No \`setup_val\`: Range objetivo "R$ 18.000 a R$ 35.000+".
+  * No \`retainer_label\`: "+ Retainer Strategic: a partir de R$ 4.500 / mês".
+- Adapte SEMPRE as notas do Radar (1 a 5) e os textos do roadmap à realidade reportada no briefing, explicando os módulos recomendados como alavancas de ROI para justificar o range objetivo proposto.
 - RETORNE APENAS O JSON PURAMENTE. Zero texto de introdução ou conclusão fora da estrutura.
 `;
 

@@ -278,7 +278,7 @@ function updateDashboardWithAi(ai, payload) {
   if (roiText && ai.ancoragem_roi) roiText.innerHTML = ai.ancoragem_roi;
   if (ai.valores_proposta) {
     if (setupLabel && ai.valores_proposta.setup_label) setupLabel.textContent = ai.valores_proposta.setup_label;
-    if (setupVal && ai.valores_proposta.setup_val) setupVal.innerHTML = `${ai.valores_proposta.setup_val} <div style="font-size:0.85rem; font-weight:400; color:var(--text-muted); margin-top:0.2rem;">(Ancorado ao porte do negócio)</div>`;
+    if (setupVal && ai.valores_proposta.setup_val) setupVal.innerHTML = `${ai.valores_proposta.setup_val} <div style="font-size:0.85rem; font-weight:400; color:var(--text-muted); margin-top:0.2rem;">(Projeto Modular Sob Medida)</div>`;
     if (retainerVal && ai.valores_proposta.retainer_label) retainerVal.textContent = ai.valores_proposta.retainer_label;
   }
 }
@@ -296,14 +296,14 @@ function applyFallbackDashboard(payload) {
   if (nameEl) nameEl.textContent = clientName;
   if (segEl) segEl.textContent = "Segmento: " + segmentName;
   if (aiTag) {
-    aiTag.textContent = "⚡ Estratégia Customizada • ZDE v2.2";
+    aiTag.textContent = "⚡ Estratégia Customizada • ZDE v2.3";
     aiTag.style.backgroundColor = "var(--accent-rose)";
     aiTag.style.color = "#ffffff";
   }
   if (banner) {
     banner.style.borderColor = "var(--accent-rose)";
     banner.style.background = "rgba(244, 63, 94, 0.12)";
-    banner.innerHTML = `<span style="font-size:1.5rem;">⚡</span><div style="color:var(--text-branco);"><strong>Auditoria Estratégica ZDE v2.2:</strong> Apresentamos o mapeamento estrutural e as soluções recomendadas sob medida para <strong>${clientName}</strong>, com plano de investimento modular adaptado à realidade e rentabilidade da operação.</div>`;
+    banner.innerHTML = `<span style="font-size:1.5rem;">⚡</span><div style="color:var(--text-branco);"><strong>Auditoria Estratégica ZDE v2.3:</strong> Apresentamos o mapeamento estrutural e as soluções recomendadas sob medida para <strong>${clientName}</strong>, com plano de investimento modular e objetivo adaptado à realidade da operação.</div>`;
   }
 }
 
