@@ -14,8 +14,8 @@
   <header class="zvi-header">
     <div class="logo-container">
       <!-- SÍMBOLO OFICIAL ZELLGO EM SVG FIEL (BRANCO & PONTO ROSA VIBRANTE) -->
-      <div class="z-logo-symbol" title="Zellgo Visual Intelligence" style="display: flex; align-items: center; height: 46px;">
-        <svg style="height: 46px; width: auto;" viewBox="0 0 1207 747" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+      <div class="z-logo-symbol" title="Zellgo Visual Intelligence">
+        <svg class="logo-svg-symbol" viewBox="0 0 1207 747" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/">
             <g transform="matrix(1,0,0,1,-1848.88,-348.735)">
                 <circle cx="2683.71" cy="685.402" r="67.53" style="fill:rgb(245,72,127);"/>
                 <path d="M2344.42,698.47C2336.738,698.136 2329.527,694.675 2324.461,688.89C2319.395,683.105 2316.916,675.5 2317.6,667.841C2321.405,628.683 2329.377,580.674 2342.232,552.223C2360.678,511.402 2386.341,475.941 2419.221,445.84C2452.102,415.74 2491.198,392.031 2536.509,374.712C2581.82,357.394 2631.341,348.735 2685.073,348.735C2738.003,348.735 2787.123,357.188 2832.434,374.094C2877.746,391 2917.042,414.503 2950.324,444.603C2983.605,474.704 3009.469,510.577 3027.914,552.223C3046.359,593.869 3055.582,639.845 3055.582,690.15C3055.582,740.455 3046.159,786.431 3027.312,828.077C3008.466,869.723 2982.603,905.596 2949.722,935.696C2916.841,965.797 2877.345,989.094 2831.232,1005.588C2785.118,1022.081 2735.196,1030.328 2681.464,1030.328C2650.477,1030.328 2620.864,1027.501 2592.627,1021.848C2578.675,1018.93 2568.876,1006.354 2569.458,992.111C2571.333,944.708 2575.613,840.055 2577.468,794.695C2577.548,792.75 2578.787,791.043 2580.611,790.362C2582.436,789.682 2584.49,790.162 2585.824,791.58C2585.826,791.581 2585.828,791.583 2585.83,791.585C2598.26,804.78 2613.097,815.088 2630.339,822.51C2647.581,829.932 2665.826,833.643 2685.073,833.643C2704.32,833.643 2722.565,829.932 2739.807,822.51C2757.05,815.088 2771.886,804.78 2784.316,791.585C2796.747,778.39 2806.772,762.927 2814.39,745.197C2822.009,727.466 2825.818,708.293 2825.818,687.676C2825.818,667.884 2822.009,649.122 2814.39,631.392C2806.772,613.662 2796.747,598.199 2784.316,585.004C2771.886,571.809 2757.05,561.501 2739.807,554.079C2722.565,546.657 2704.32,542.946 2685.073,542.946C2665.826,542.946 2647.581,546.657 2630.339,554.079C2613.097,561.501 2598.26,571.809 2585.83,585.004C2573.399,598.199 2563.375,613.455 2555.756,630.773C2551.97,639.378 2545.465,663.199 2541.045,682.66C2538.299,696.481 2525.879,706.232 2511.802,705.619C2470.62,703.959 2388.186,700.374 2344.42,698.47Z" style="fill:white;fill-rule:nonzero;"/>
@@ -26,22 +26,22 @@
       </div>
       <div class="brand-text">
         <span class="brand-title">Zellgo <span style="font-weight:300;">Visual Intelligence</span></span>
-        <span class="brand-subtitle">Discovery Engine • https://zellgo.com.br</span>
+        <span class="brand-subtitle">Discovery Engine • zellgo.com.br</span>
       </div>
     </div>
     
     <div class="view-tabs">
-      <button class="tab-btn" id="btnTabBriefing" onclick="switchTab('briefing')">
-        <span class="tab-icon">📝</span> Módulo de Briefing
+      <button class="tab-btn" id="btnTabBriefing" onclick="switchTab('briefing')" title="Módulo de Briefing">
+        <span class="tab-icon">📝</span> <span class="tab-label">Briefing</span>
       </button>
-      <button class="tab-btn active" id="btnTabDashboard" onclick="switchTab('dashboard')">
-        <span class="tab-icon">📊</span> Painel do Arquiteto (Ao Vivo)
+      <button class="tab-btn active" id="btnTabDashboard" onclick="switchTab('dashboard')" title="Painel do Arquiteto (Ao Vivo)">
+        <span class="tab-icon">📊</span> <span class="tab-label">Painel ZVI</span>
       </button>
     </div>
 
     <div class="header-status">
       <div class="pulse-dot"></div>
-      <span>MOTOR ON-LINE — ZDE v2.1 CLOUD</span>
+      <span class="status-text">MOTOR ON-LINE — ZDE v2.1</span>
     </div>
   </header>
 
@@ -50,7 +50,7 @@
 
     <!-- HERO BANNER -->
     <section class="hero-banner">
-      <span class="hero-tag">⚡ Zellgo Discovery Engine (ZDE v2.1) • Inteligência Aplicada</span>
+      <span class="hero-tag">⚡ Zellgo Discovery Engine • v2.1 Cloud</span>
       <h1 class="hero-title">
         <span class="title-white">DIAGNÓSTICO DE</span> <span class="title-rose">ALTA PRECISÃO E ESCOPO</span>
       </h1>
@@ -65,18 +65,18 @@
     <section id="viewBriefing" class="view-section">
       <div class="form-container">
         
-        <!-- SIDEBAR DE NAVEGAÇÃO DOS BLOCOS -->
+        <!-- SIDEBAR DE NAVEGAÇÃO DOS BLOCOS (RESPONSIVO: 4 EM CIMA / 4 EM BAIXO NO MOBILE) -->
         <aside class="sidebar-nav">
           <h2 class="sidebar-title">Blocos de Estratégia</h2>
           <ul class="block-nav-list">
-            <li class="block-nav-item"><button class="active" id="btnBlock0" onclick="goToBlock(0)"><span>Bloco A: Empresa</span><span class="block-badge">3 perg</span></button></li>
-            <li class="block-nav-item"><button id="btnBlock1" onclick="goToBlock(1)"><span>Bloco B: Mercado</span><span class="block-badge">2 perg</span></button></li>
-            <li class="block-nav-item"><button id="btnBlock2" onclick="goToBlock(2)"><span>Bloco C: Público</span><span class="block-badge">2 perg</span></button></li>
-            <li class="block-nav-item"><button id="btnBlock3" onclick="goToBlock(3)"><span>Bloco D: Marca</span><span class="block-badge">2 perg</span></button></li>
-            <li class="block-nav-item"><button id="btnBlock4" onclick="goToBlock(4)"><span>Bloco E: Tração</span><span class="block-badge">2 perg</span></button></li>
-            <li class="block-nav-item"><button id="btnBlock5" onclick="goToBlock(5)"><span>Bloco F: Tecnologia</span><span class="block-badge">3 perg</span></button></li>
-            <li class="block-nav-item"><button id="btnBlock6" onclick="goToBlock(6)"><span>Bloco G: Operação</span><span class="block-badge">2 perg</span></button></li>
-            <li class="block-nav-item"><button id="btnBlock7" onclick="goToBlock(7)"><span>Bloco H: Objetivos</span><span class="block-badge">3 perg</span></button></li>
+            <li class="block-nav-item"><button class="active" id="btnBlock0" onclick="goToBlock(0)"><span class="blk-txt"><b class="blk-id">A:</b> Empresa</span><span class="block-badge">3 perg</span></button></li>
+            <li class="block-nav-item"><button id="btnBlock1" onclick="goToBlock(1)"><span class="blk-txt"><b class="blk-id">B:</b> Mercado</span><span class="block-badge">2 perg</span></button></li>
+            <li class="block-nav-item"><button id="btnBlock2" onclick="goToBlock(2)"><span class="blk-txt"><b class="blk-id">C:</b> Público</span><span class="block-badge">2 perg</span></button></li>
+            <li class="block-nav-item"><button id="btnBlock3" onclick="goToBlock(3)"><span class="blk-txt"><b class="blk-id">D:</b> Marca</span><span class="block-badge">2 perg</span></button></li>
+            <li class="block-nav-item"><button id="btnBlock4" onclick="goToBlock(4)"><span class="blk-txt"><b class="blk-id">E:</b> Tração</span><span class="block-badge">2 perg</span></button></li>
+            <li class="block-nav-item"><button id="btnBlock5" onclick="goToBlock(5)"><span class="blk-txt"><b class="blk-id">F:</b> Tecnol.</span><span class="block-badge">3 perg</span></button></li>
+            <li class="block-nav-item"><button id="btnBlock6" onclick="goToBlock(6)"><span class="blk-txt"><b class="blk-id">G:</b> Operação</span><span class="block-badge">2 perg</span></button></li>
+            <li class="block-nav-item"><button id="btnBlock7" onclick="goToBlock(7)"><span class="blk-txt"><b class="blk-id">H:</b> Objetivos</span><span class="block-badge">3 perg</span></button></li>
           </ul>
         </aside>
 
@@ -92,7 +92,7 @@
                 <p class="block-subtitle">O ponto de partida para compreendermos o negócio, seu segmento de mercado e solidez atual.</p>
               </header>
               <div class="form-group">
-                <label class="form-label" for="emp_nome">Nome da Empresa ou Marca <span class="form-sublabel">*(Obrigatorio)*</span></label>
+                <label class="form-label" for="emp_nome">Nome da Empresa ou Marca <span class="form-sublabel">*(Obrigaotorio)*</span></label>
                 <input type="text" id="emp_nome" class="form-control" placeholder="Ex: Sakura Gastronomia / Zellgo Tech / Studio Alpha / E-commerce Moda">
               </div>
               <div class="form-group">
@@ -286,13 +286,13 @@
                 <span>&larr;</span> Anterior
               </button>
               
-              <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+              <div class="action-buttons-group">
                 <button class="btn btn-success" id="btnExport" onclick="sendToZellgoEngine()" title="Envia o briefing para o ecossistema Zellgo e processa o diagnóstico">
-                  <span>🚀 Enviar Briefing e Processar com IA Zellgo</span>
+                  <span>🚀 Enviar e Processar com IA</span>
                 </button>
 
                 <button class="btn btn-primary" id="btnNext" onclick="changeBlock(1)">
-                  Próximo Bloco <span>&rarr;</span>
+                  Próximo <span>&rarr;</span>
                 </button>
               </div>
             </footer>
@@ -308,25 +308,25 @@
          ====================================================================== -->
     <section id="viewDashboard" class="view-section active">
       
-      <div style="background:rgba(244, 63, 94, 0.12); border:1px solid var(--accent-rose); padding:0.9rem 1.5rem; border-radius:var(--radius-md); margin-bottom:1.5rem; display:flex; align-items:center; gap:1rem;">
-        <span style="font-size:1.5rem;">🔥</span>
-        <div style="font-size:0.88rem; color:var(--text-branco);">
-          <strong>Diagnóstico ZDE v2.1 (Em Tempo Real):</strong> Radiografia profunda de <strong>Rio Zen Sushi</strong> processada sob a nova Política Comercial. Cálculo de Índice de Complexidade (IC) aplicado para vencer concorrentes de volume (Sushi Rão) e desconstruir a objeção de preço com IA e Vídeo Cinematográfico.
+      <div style="background:rgba(244, 63, 94, 0.12); border:1px solid var(--accent-rose); padding:0.9rem 1.2rem; border-radius:var(--radius-md); margin-bottom:1.5rem; display:flex; align-items:center; gap:0.8rem; font-size:0.85rem;">
+        <span style="font-size:1.4rem;">🔥</span>
+        <div style="color:var(--text-branco);">
+          <strong>Diagnóstico ZDE v2.1 (Em Tempo Real):</strong> Radiografia de <strong>Rio Zen Sushi</strong> processada sob a nova Política Comercial (IC: 18 pt ➔ Tier 2).
         </div>
       </div>
 
       <!-- HEADER DO CLIENTE ANALISADO -->
-      <div class="dashboard-card" style="margin-bottom:2rem; background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,20,40,0.9)); border-color:var(--accent-rose);">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <div class="dashboard-card" style="margin-bottom:1.8rem; background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,20,40,0.9)); border-color:var(--accent-rose);">
+        <div class="dashboard-head-flex">
           <div>
-            <span class="badge-tag badge-rose">Análise Gastronomia Tech • Concluída (v2.1)</span>
-            <span class="badge-tag badge-neutral" style="margin-left:0.5rem;">Rivais Mapeados: Sushi Rão, Mariah & Beishu</span>
-            <h2 style="font-size:2.2rem; font-weight:700; margin-top:0.6rem; color:var(--text-branco);">Restaurante Rio Zen Sushi</h2>
-            <p style="color:var(--text-muted); font-size:0.95rem;">Culinária Japonesa Premium • Foco na Expansão Rápida de Delivery 24/7</p>
+            <span class="badge-tag badge-rose">Gastronomia Tech • v2.1</span>
+            <span class="badge-tag badge-neutral" style="margin-top:0.3rem; display:inline-block;">Rivais: Sushi Rão, Mariah & Beishu</span>
+            <h2 style="font-size:1.8rem; font-weight:700; margin-top:0.5rem; color:var(--text-branco);">Restaurante Rio Zen Sushi</h2>
+            <p style="color:var(--text-muted); font-size:0.9rem;">Culinária Japonesa Premium • Expansão Rápida de Delivery 24/7</p>
           </div>
-          <div style="text-align:right;">
-            <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase;">Índice de Complexidade (IC)</div>
-            <div style="font-size:2.4rem; font-weight:800; color:var(--accent-rose);">18 PONTOS <span style="font-size:1.1rem; font-weight:300; color:var(--text-branco);">(Média Complexidade ➔ Tier 2)</span></div>
+          <div class="score-card-right">
+            <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Índice de Complexidade</div>
+            <div style="font-size:2rem; font-weight:800; color:var(--accent-rose);">18 PONTOS <div style="font-size:0.9rem; font-weight:400; color:var(--text-branco);">(Média Complexidade ➔ Tier 2)</div></div>
           </div>
         </div>
       </div>
@@ -338,15 +338,15 @@
         <div class="dashboard-card">
           <header class="card-header">
             <div class="card-title-group">
-              <h3>🕸️ Gráfico de Radar (Maturidade Digital)</h3>
-              <span>Escala de 1 (Caótico) a 5 (State of Art)</span>
+              <h3>🕸️ Maturidade Digital (Radar)</h3>
+              <span>Escala de 1 a 5</span>
             </div>
           </header>
           <div class="chart-wrapper">
-            <canvas id="radarChart" width="450" height="380"></canvas>
+            <canvas id="radarChart" width="380" height="320"></canvas>
           </div>
-          <p style="font-size:0.82rem; color:var(--text-muted); text-align:center; margin-top:0.8rem;">
-            *O gráfico demonstra excelência em Marca (4/5) e Legado, revelando que a falha atual se encontra exclusivamente na Tração Digital e Atendimento (IA).*
+          <p style="font-size:0.8rem; color:var(--text-muted); text-align:center; margin-top:0.6rem;">
+            *Excelente em Marca (4/5). Falha atual na Tração Digital e Atendimento IA (24/7).*
           </p>
         </div>
 
@@ -354,51 +354,51 @@
         <div class="dashboard-card">
           <header class="card-header">
             <div class="card-title-group">
-              <h3>💎 Escopo Recomendado (Gastronomia Tech)</h3>
-              <span>Soluções Zellgo para quebra de objeção de preço e automação no WhatsApp</span>
+              <h3>💎 Escopo Recomendado</h3>
+              <span>Soluções Zellgo contra objeção de preço e automação</span>
             </div>
-            <span class="badge-tag badge-rose">5 Módulos Mapeados</span>
+            <span class="badge-tag badge-rose">5 Módulos</span>
           </header>
 
-          <ul class="scope-list" style="max-height:420px; overflow-y:auto; padding-right:0.5rem;">
+          <ul class="scope-list" style="max-height:380px; overflow-y:auto; padding-right:0.4rem;">
             <li class="scope-item">
               <div class="scope-item-header">
-                <span class="scope-name">1. Agente IA de Pedidos (Zellgo Delivery Bot)</span>
-                <span class="badge-tag badge-rose">Prioridade Alta (IC: 3)</span>
+                <span class="scope-name">1. Agente IA de Pedidos (Delivery Bot)</span>
+                <span class="badge-tag badge-rose">Alta (IC: 3)</span>
               </div>
-              <p class="scope-desc">Robô inteligente no WhatsApp e Direct 24/7. Responde instantaneamente no pico noturno, apresenta pratos, calcula taxas de entrega por bairro e fecha pedidos sem erro manual.</p>
+              <p class="scope-desc">Robô inteligente no WhatsApp 24/7. Responde instantaneamente no pico noturno, apresenta pratos, calcula taxas de entrega e fecha pedidos.</p>
             </li>
 
             <li class="scope-item">
               <div class="scope-item-header">
-                <span class="scope-name">2. Filmmaking IA (Quebra de Objeção de Preço)</span>
-                <span class="badge-tag badge-rose">Prioridade Alta (IC: 4)</span>
+                <span class="scope-name">2. Filmmaking IA (Quebra de Objeção)</span>
+                <span class="badge-tag badge-rose">Alta (IC: 4)</span>
               </div>
-              <p class="scope-desc">Criação de Reels sensoriais de alto desejo. Mostrar a qualidade e textura do salmão em vídeo cinematográfico desativa a sensibilidade ao preço do público Classe B/C frente ao Sushi Rão.</p>
+              <p class="scope-desc">Criação de Reels sensoriais de alto desejo. Mostrar a textura do salmão em vídeo cinematográfico desativa a sensibilidade ao preço frente ao Sushi Rão.</p>
             </li>
 
             <li class="scope-item">
               <div class="scope-item-header">
-                <span class="scope-name">3. SEO Local & Google Business Otimizado</span>
-                <span class="badge-tag badge-rose">Prioridade Alta (IC: 3)</span>
+                <span class="scope-name">3. SEO Local & Google Business</span>
+                <span class="badge-tag badge-rose">Alta (IC: 3)</span>
               </div>
-              <p class="scope-desc">Otimização máxima do Google Maps e ficha de busca local para liderar quando o cliente pesquisar "sushi perto de mim" ou "delivery japonês".</p>
+              <p class="scope-desc">Otimização máxima do Google Maps para liderar na busca por "sushi perto de mim".</p>
             </li>
 
             <li class="scope-item">
               <div class="scope-item-header">
-                <span class="scope-name">4. Gestão de Tráfego & Remarketing Geo-localizado</span>
-                <span class="badge-tag badge-neutral">Prioridade Média (IC: 3)</span>
+                <span class="scope-name">4. Gestão de Tráfego & Remarketing</span>
+                <span class="badge-tag badge-neutral">Média (IC: 3)</span>
               </div>
-              <p class="scope-desc">Campanhas diárias direcionadas ao raio de entrega das 17h às 23h e reativação da base adormecida no Instagram.</p>
+              <p class="scope-desc">Campanhas diárias direcionadas ao raio de entrega das 17h às 23h.</p>
             </li>
 
             <li class="scope-item">
               <div class="scope-item-header">
-                <span class="scope-name">5. Cardápio Web Proprietário (Zero iFood)</span>
-                <span class="badge-tag badge-neutral">Prioridade Baixa (IC: 2)</span>
+                <span class="scope-name">5. Cardápio Web Proprietário</span>
+                <span class="badge-tag badge-neutral">Baixa (IC: 2)</span>
               </div>
-              <p class="scope-desc">Página leve em Dark Mode Premium para exibição do menu interativo por celular, livrando o cliente das altas comissões das plataformas tradicionais.</p>
+              <p class="scope-desc">Página leve em Dark Mode para menu interativo mobile sem taxas de iFood.</p>
             </li>
           </ul>
         </div>
@@ -408,8 +408,8 @@
       <div class="dashboard-card">
         <header class="card-header">
           <div class="card-title-group">
-            <h3>🗺️ Roadmap de Expansão Delivery (Os 90 Dias)</h3>
-            <span>Cronograma orquestrado para destravar as vendas em tempo recorde com automação e vídeo</span>
+            <h3>🗺️ Roadmap (Os 90 Dias)</h3>
+            <span>Cronograma orquestrado para destravar as vendas com automação e vídeo</span>
           </div>
         </header>
         
@@ -417,38 +417,38 @@
           <div class="timeline-step">
             <div class="step-phase">⚡ Dias 01 ao 15</div>
             <div class="step-title">Otimização & Setup IA</div>
-            <div class="step-info">Otimização da ficha no Google Meu Negócio e treinamento em homologação do Agente IA no cardápio de sushis e combos.</div>
+            <div class="step-info">Google Meu Negócio e treinamento em homologação do Agente IA no cardápio de sushis e combos.</div>
           </div>
           
           <div class="timeline-step">
             <div class="step-phase">📅 Dias 16 ao 30</div>
             <div class="step-title">Destrave do Delivery</div>
-            <div class="step-info">Lançamento do Agente IA oficial no WhatsApp e início de anúncios de reativação para a base de clientes exaustiva.</div>
+            <div class="step-info">Lançamento do Agente IA oficial no WhatsApp e anúncios de reativação para a base de clientes.</div>
           </div>
 
           <div class="timeline-step">
             <div class="step-phase">🔥 Dias 31 ao 60</div>
             <div class="step-title">Tração & Filmmaking IA</div>
-            <div class="step-info">Publicação diária de Reels gastronômicos de alto desejo criados com IA para desbancar rivais e dobrar conversão.</div>
+            <div class="step-info">Publicação diária de Reels gastronômicos sensoriais criados com IA para dobrar a conversão.</div>
           </div>
 
           <div class="timeline-step">
             <div class="step-phase">🔭 Dias 61 ao 90+</div>
             <div class="step-title">Cardápio Web e Domínio</div>
-            <div class="step-info">Lançamento da Landing Page própria de pedidos da Zellgo e otimização contínua de ROI e Custo de Aquisição (CAC).</div>
+            <div class="step-info">Lançamento da Landing Page própria de pedidos da Zellgo e otimização contínua de ROI.</div>
           </div>
         </div>
 
         <!-- BÚSSOLA DE PRECIFICAÇÃO E ANCORAGEM POR VALOR (v2.1) -->
         <div class="pricing-banner">
           <div class="pricing-info">
-            <h4>💡 Ancoragem por Valor & Retainer Evolutivo (ZDE v2.1)</h4>
+            <h4>💡 Ancoragem por Valor & Retainer (ZDE v2.1)</h4>
             <p>Perder 5 pedidos numa sexta à noite para o <em>Sushi Rão</em> por lentidão no WhatsApp custa <strong>R$ 3.000/mês</strong>. Destravar 15 pedidos extras diários com nosso <strong>Agente IA & Filmmaking IA</strong> traciona <strong>+R$ 45.000 de novo faturamento mensal!</strong></p>
           </div>
           <div class="pricing-values">
             <div class="val-label">Setup Tier 2 (Expansão Estratégica)</div>
-            <div class="val-tier">R$ 15.000 <span style="font-size:1.05rem; font-weight:300; color:var(--text-muted);">(ou Exceção Estratégica de Portfólio)</span></div>
-            <div style="margin-top:0.5rem; color:var(--accent-rose); font-weight:600; font-size:0.9rem;">+ Retainer Growth (Evolução & Filmmaking IA): R$ 3.500 / mês</div>
+            <div class="val-tier">R$ 15.000 <span style="font-size:0.95rem; font-weight:300; color:var(--text-muted);">(ou Exceção Estratégica)</span></div>
+            <div style="margin-top:0.5rem; color:var(--accent-rose); font-weight:600; font-size:0.9rem;">+ Retainer Growth: R$ 3.500 / mês</div>
           </div>
         </div>
 
