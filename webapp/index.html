@@ -30,12 +30,13 @@
       </div>
     </div>
     
+    <!-- ABA ATIVA POR PADRÃO AGORA É O BRIEFING PARA RECEBER O PARCEIRO/LEAD -->
     <div class="view-tabs">
-      <button class="tab-btn" id="btnTabBriefing" onclick="switchTab('briefing')" title="Módulo de Briefing">
+      <button class="tab-btn active" id="btnTabBriefing" onclick="switchTab('briefing')" title="Módulo de Briefing">
         <span class="tab-icon">📝</span> <span class="tab-label">Briefing</span>
       </button>
-      <button class="tab-btn active" id="btnTabDashboard" onclick="switchTab('dashboard')" title="Painel do Arquiteto (Ao Vivo)">
-        <span class="tab-icon">📊</span> <span class="tab-label">Painel ZVI</span>
+      <button class="tab-btn" id="btnTabDashboard" onclick="switchTab('dashboard')" title="Painel do Arquiteto (Preview Demonstrativo)">
+        <span class="tab-icon">📊</span> <span class="tab-label">Painel ZVI (Preview)</span>
       </button>
     </div>
 
@@ -60,9 +61,9 @@
     </section>
 
     <!-- ======================================================================
-         VIEW 1: MÓDULO DE BRIEFING UNIVERSAL (8 BLOCOS)
+         VIEW 1: MÓDULO DE BRIEFING UNIVERSAL (ABERTO POR PADRÃO PARA O TESTE)
          ====================================================================== -->
-    <section id="viewBriefing" class="view-section">
+    <section id="viewBriefing" class="view-section active">
       <div class="form-container">
         
         <!-- SIDEBAR DE NAVEGAÇÃO DOS BLOCOS (RESPONSIVO: 4 EM CIMA / 4 EM BAIXO NO MOBILE) -->
@@ -92,7 +93,7 @@
                 <p class="block-subtitle">O ponto de partida para compreendermos o negócio, seu segmento de mercado e solidez atual.</p>
               </header>
               <div class="form-group">
-                <label class="form-label" for="emp_nome">Nome da Empresa ou Marca <span class="form-sublabel">*(Obrigaotorio)*</span></label>
+                <label class="form-label" for="emp_nome">Nome da Empresa ou Marca <span class="form-sublabel">*(Obrigatorio)*</span></label>
                 <input type="text" id="emp_nome" class="form-control" placeholder="Ex: Sakura Gastronomia / Zellgo Tech / Studio Alpha / E-commerce Moda">
               </div>
               <div class="form-group">
@@ -304,25 +305,26 @@
     </section>
 
     <!-- ======================================================================
-         VIEW 2: PAINEL DO ARQUITETO (ANÁLISE ZDE v2.1 ATIVADA: RIO ZEN SUSHI)
+         VIEW 2: PAINEL DO ARQUITETO (CASE DE ESTUDO & PREVIEW PARA TESTE)
          ====================================================================== -->
-    <section id="viewDashboard" class="view-section active">
+    <section id="viewDashboard" class="view-section">
       
-      <div style="background:rgba(244, 63, 94, 0.12); border:1px solid var(--accent-rose); padding:0.9rem 1.2rem; border-radius:var(--radius-md); margin-bottom:1.5rem; display:flex; align-items:center; gap:0.8rem; font-size:0.85rem;">
-        <span style="font-size:1.4rem;">🔥</span>
+      <!-- ALERTA DE PREVIEW PARA O PARCEIRO/TESTADOR -->
+      <div style="background:rgba(244, 63, 94, 0.12); border:1px solid var(--accent-rose); padding:1rem 1.4rem; border-radius:var(--radius-md); margin-bottom:1.8rem; display:flex; align-items:center; gap:1rem; font-size:0.9rem;">
+        <span style="font-size:1.5rem;">💡</span>
         <div style="color:var(--text-branco);">
-          <strong>Diagnóstico ZDE v2.1 (Em Tempo Real):</strong> Radiografia de <strong>Rio Zen Sushi</strong> processada sob a nova Política Comercial (IC: 18 pt ➔ Tier 2).
+          <strong>Preview Demonstrativo do Ecossistema (Case ZVI):</strong> Abaixo apresentamos um <em>exemplo de diagnóstico ao vivo</em> gerado pelo Motor ZDE v2.1. Após o envio do briefing, nossa IA processa a maturidade do negócio, calcula o Índice de Complexidade (IC) e gera o plano de alavancagem de 90 dias sob medida para a sua operação.
         </div>
       </div>
 
-      <!-- HEADER DO CLIENTE ANALISADO -->
+      <!-- HEADER DO CASE ANALISADO -->
       <div class="dashboard-card" style="margin-bottom:1.8rem; background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,20,40,0.9)); border-color:var(--accent-rose);">
         <div class="dashboard-head-flex">
           <div>
-            <span class="badge-tag badge-rose">Gastronomia Tech • v2.1</span>
-            <span class="badge-tag badge-neutral" style="margin-top:0.3rem; display:inline-block;">Rivais: Sushi Rão, Mariah & Beishu</span>
-            <h2 style="font-size:1.8rem; font-weight:700; margin-top:0.5rem; color:var(--text-branco);">Restaurante Rio Zen Sushi</h2>
-            <p style="color:var(--text-muted); font-size:0.9rem;">Culinária Japonesa Premium • Expansão Rápida de Delivery 24/7</p>
+            <span class="badge-tag badge-rose">Case de Referência • ZDE v2.1</span>
+            <span class="badge-tag badge-neutral" style="margin-top:0.3rem; display:inline-block;">Segmento: Gastronomia & Varejo High-End</span>
+            <h2 style="font-size:1.8rem; font-weight:700; margin-top:0.5rem; color:var(--text-branco);">Empresa de Exemplo (Case Estudo ZVI)</h2>
+            <p style="color:var(--text-muted); font-size:0.9rem;">Operação Digital Premium • Expansão Rápida de Vendas 24/7 com IA & Vídeo</p>
           </div>
           <div class="score-card-right">
             <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Índice de Complexidade</div>
@@ -346,7 +348,7 @@
             <canvas id="radarChart" width="380" height="320"></canvas>
           </div>
           <p style="font-size:0.8rem; color:var(--text-muted); text-align:center; margin-top:0.6rem;">
-            *Excelente em Marca (4/5). Falha atual na Tração Digital e Atendimento IA (24/7).*
+            *O gráfico identifica excelência de Marca e Legado, apontando necessidade imediata de Tração Digital e Atendimento IA (24/7).*
           </p>
         </div>
 
@@ -354,8 +356,8 @@
         <div class="dashboard-card">
           <header class="card-header">
             <div class="card-title-group">
-              <h3>💎 Escopo Recomendado</h3>
-              <span>Soluções Zellgo contra objeção de preço e automação</span>
+              <h3>💎 Escopo de Soluções (Amostra ZDE)</h3>
+              <span>Estratégias de automação e posicionamento High-End</span>
             </div>
             <span class="badge-tag badge-rose">5 Módulos</span>
           </header>
@@ -363,42 +365,42 @@
           <ul class="scope-list" style="max-height:380px; overflow-y:auto; padding-right:0.4rem;">
             <li class="scope-item">
               <div class="scope-item-header">
-                <span class="scope-name">1. Agente IA de Pedidos (Delivery Bot)</span>
+                <span class="scope-name">1. Agente IA de Conversão (Zellgo Bot 24/7)</span>
                 <span class="badge-tag badge-rose">Alta (IC: 3)</span>
               </div>
-              <p class="scope-desc">Robô inteligente no WhatsApp 24/7. Responde instantaneamente no pico noturno, apresenta pratos, calcula taxas de entrega e fecha pedidos.</p>
+              <p class="scope-desc">Robô inteligente no WhatsApp e canais digitais. Responde instantaneamente no horário de pico, apresenta ofertas exclusivas e fecha vendas sem falhas.</p>
             </li>
 
             <li class="scope-item">
               <div class="scope-item-header">
-                <span class="scope-name">2. Filmmaking IA (Quebra de Objeção)</span>
+                <span class="scope-name">2. Filmmaking IA (Quebra de Objeção e Valor)</span>
                 <span class="badge-tag badge-rose">Alta (IC: 4)</span>
               </div>
-              <p class="scope-desc">Criação de Reels sensoriais de alto desejo. Mostrar a textura do salmão em vídeo cinematográfico desativa a sensibilidade ao preço frente ao Sushi Rão.</p>
+              <p class="scope-desc">Produção contínua de vídeos cinematográficos e sensoriais criados com Inteligência Artificial para elevar o status da marca e aniquilar a concorrência de menor preço.</p>
             </li>
 
             <li class="scope-item">
               <div class="scope-item-header">
-                <span class="scope-name">3. SEO Local & Google Business</span>
+                <span class="scope-name">3. SEO Local & Domínio de Busca</span>
                 <span class="badge-tag badge-rose">Alta (IC: 3)</span>
               </div>
-              <p class="scope-desc">Otimização máxima do Google Maps para liderar na busca por "sushi perto de mim".</p>
+              <p class="scope-desc">Otimização técnica do ecossistema para liderança absoluta nas buscas orgânicas e Google Meu Negócio da região do cliente.</p>
             </li>
 
             <li class="scope-item">
               <div class="scope-item-header">
-                <span class="scope-name">4. Gestão de Tráfego & Remarketing</span>
+                <span class="scope-name">4. Gestão de Tráfego & Remarketing Inteligente</span>
                 <span class="badge-tag badge-neutral">Média (IC: 3)</span>
               </div>
-              <p class="scope-desc">Campanhas diárias direcionadas ao raio de entrega das 17h às 23h.</p>
+              <p class="scope-desc">Campanhas diárias cirúrgicas orientadas a ROI para aquisição de novos leads qualificados e reativação de clientes antigos.</p>
             </li>
 
             <li class="scope-item">
               <div class="scope-item-header">
-                <span class="scope-name">5. Cardápio Web Proprietário</span>
+                <span class="scope-name">5. Ecossistema Web Proprietário</span>
                 <span class="badge-tag badge-neutral">Baixa (IC: 2)</span>
               </div>
-              <p class="scope-desc">Página leve em Dark Mode para menu interativo mobile sem taxas de iFood.</p>
+              <p class="scope-desc">Plataforma web ágil e veloz em Dark Mode Premium focada em conversão mobile sem intermediação de terceiros.</p>
             </li>
           </ul>
         </div>
@@ -408,8 +410,8 @@
       <div class="dashboard-card">
         <header class="card-header">
           <div class="card-title-group">
-            <h3>🗺️ Roadmap (Os 90 Dias)</h3>
-            <span>Cronograma orquestrado para destravar as vendas com automação e vídeo</span>
+            <h3>🗺️ Roadmap de Crescimento (Os 90 Dias)</h3>
+            <span>Cronograma orquestrado de execução contínua com tecnologia e Inteligência Artificial</span>
           </div>
         </header>
         
@@ -417,37 +419,37 @@
           <div class="timeline-step">
             <div class="step-phase">⚡ Dias 01 ao 15</div>
             <div class="step-title">Otimização & Setup IA</div>
-            <div class="step-info">Google Meu Negócio e treinamento em homologação do Agente IA no cardápio de sushis e combos.</div>
+            <div class="step-info">Mapeamento da operação, ajustes na infraestrutura digital e treinamento em homologação do Agente IA exclusivo.</div>
           </div>
           
           <div class="timeline-step">
             <div class="step-phase">📅 Dias 16 ao 30</div>
-            <div class="step-title">Destrave do Delivery</div>
-            <div class="step-info">Lançamento do Agente IA oficial no WhatsApp e anúncios de reativação para a base de clientes.</div>
+            <div class="step-title">Destrave de Vendas</div>
+            <div class="step-info">Lançamento oficial da automação no WhatsApp e início das campanhas de reativação de base.</div>
           </div>
 
           <div class="timeline-step">
             <div class="step-phase">🔥 Dias 31 ao 60</div>
             <div class="step-title">Tração & Filmmaking IA</div>
-            <div class="step-info">Publicação diária de Reels gastronômicos sensoriais criados com IA para dobrar a conversão.</div>
+            <div class="step-info">Publicação quinzenal de produções em vídeo de cinema e IA para dobrar a autoridade digital e conversão.</div>
           </div>
 
           <div class="timeline-step">
             <div class="step-phase">🔭 Dias 61 ao 90+</div>
-            <div class="step-title">Cardápio Web e Domínio</div>
-            <div class="step-info">Lançamento da Landing Page própria de pedidos da Zellgo e otimização contínua de ROI.</div>
+            <div class="step-title">Escala & LTV</div>
+            <div class="step-info">Consolidação do ecossistema, métricas contínuas de ROI e expansão sustentável de market share.</div>
           </div>
         </div>
 
         <!-- BÚSSOLA DE PRECIFICAÇÃO E ANCORAGEM POR VALOR (v2.1) -->
         <div class="pricing-banner">
           <div class="pricing-info">
-            <h4>💡 Ancoragem por Valor & Retainer (ZDE v2.1)</h4>
-            <p>Perder 5 pedidos numa sexta à noite para o <em>Sushi Rão</em> por lentidão no WhatsApp custa <strong>R$ 3.000/mês</strong>. Destravar 15 pedidos extras diários com nosso <strong>Agente IA & Filmmaking IA</strong> traciona <strong>+R$ 45.000 de novo faturamento mensal!</strong></p>
+            <h4>💡 Ancoragem por Valor & Retainer Evolutivo (ZDE v2.1)</h4>
+            <p>Demonstração financeira: Eliminar perdas operacionais no WhatsApp e capturar +15 conversões de alto valor mensais injeta mais de <strong>+R$ 45.000 de novo faturamento no mês</strong>. O retorno sobre o investimento supera 300% já no trimestre inicial.</p>
           </div>
           <div class="pricing-values">
             <div class="val-label">Setup Tier 2 (Expansão Estratégica)</div>
-            <div class="val-tier">R$ 15.000 <span style="font-size:0.95rem; font-weight:300; color:var(--text-muted);">(ou Exceção Estratégica)</span></div>
+            <div class="val-tier">R$ 15.000 <span style="font-size:0.95rem; font-weight:300; color:var(--text-muted);">(Projeto Base)</span></div>
             <div style="margin-top:0.5rem; color:var(--accent-rose); font-weight:600; font-size:0.9rem;">+ Retainer Growth: R$ 3.500 / mês</div>
           </div>
         </div>
