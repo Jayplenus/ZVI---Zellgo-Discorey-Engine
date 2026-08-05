@@ -1,15 +1,16 @@
 /* ==========================================================================
-   ZELLGO VISUAL INTELLIGENCE (ZVI) — ENGINE LOGIC & RADAR CHART RENDERER
+   ZELLGO VISUAL INTELLIGENCE (ZVI) — ENGINE LOGIC & AI CONNECTOR
    Compatível com zellgo.com.br / ZDE v2.1 - Paleta Rosa Vibrante / Noite
    ========================================================================== */
 
 let currentBlock = 0;
 const totalBlocks = 8;
 let radarChartRendered = false;
+let currentRadarData = null; // Guarda os dados do radar (IA ou Fallback)
 
 document.addEventListener('DOMContentLoaded', () => {
   updateNavState();
-  setTimeout(renderRadarChart, 350);
+  setTimeout(() => renderRadarChart(), 350);
 });
 
 // ==========================================================================
@@ -33,7 +34,7 @@ function switchTab(viewName) {
     viewBriefing.classList.remove('active');
     
     if (!radarChartRendered) {
-      renderRadarChart();
+      renderRadarChart(currentRadarData);
     }
   }
 }
@@ -66,7 +67,6 @@ function changeBlock(direction) {
   }
 }
 
-// O Próprio Botão Rosa assume o papel de Enviar quando o lead chega à última página!
 function updateNavState() {
   const btnPrev = document.getElementById('btnPrev');
   const btnNext = document.getElementById('btnNext');
@@ -77,28 +77,26 @@ function updateNavState() {
   
   if (btnNext) {
     if (currentBlock === totalBlocks - 1) {
-      // Bloco 08: o botão Rosa ganha superpoderes de conclusão e análise IA!
       btnNext.innerHTML = '🚀 Concluir e Analisar com IA';
     } else {
-      // Blocos 01 ao 07
       btnNext.innerHTML = 'Próximo <span>&rarr;</span>';
     }
   }
 }
 
-// ==========================================================================
-// TRANSMISSÃO PARA O MOTOR ZDE E GOOGLE AI (SEM DOWNLOAD ARCAICO!)
-// ==========================================================================
 function getRadioVal(name) {
   const el = document.querySelector(`input[name="${name}"]:checked`);
   return el ? el.value : "Não especificado";
 }
 
-function sendToZellgoEngine() {
+// ==========================================================================
+// TRANSMISSÃO E PROCESSAMENTO VIA GOOGLE GEMINI AI (VERCEL SERVERLESS)
+// ==========================================================================
+async function sendToZellgoEngine() {
   const btnNext = document.getElementById('btnNext');
   if (btnNext) {
     btnNext.disabled = true;
-    btnNext.innerHTML = '⏳ Processando com Inteligência Zellgo...';
+    btnNext.innerHTML = '🧠 IA Google Gemini analisando o negócio...';
   }
 
   const payload = {
@@ -108,25 +106,25 @@ function sendToZellgoEngine() {
       timestamp: new Date().toISOString()
     },
     client_identity: {
-      nome: document.getElementById('emp_nome').value.trim() || "[Cliente sem nome]",
-      segmento: document.getElementById('emp_segmento').value.trim() || "[Segmento em Aberto]",
-      core_business: document.getElementById('emp_core').value.trim() || "[Em Aberto]"
+      nome: document.getElementById('emp_nome').value.trim() || "Cliente em Análise",
+      segmento: document.getElementById('emp_segmento').value.trim() || "Segmento Especializado",
+      core_business: document.getElementById('emp_core').value.trim() || "Em Aberto"
     },
     market: {
-      concorrentes: document.getElementById('mer_concorrentes').value.trim() || "[Não informado]",
+      concorrentes: document.getElementById('mer_concorrentes').value.trim() || "Não informado",
       posicionamento: getRadioVal('mer_pos')
     },
     target_audience: {
-      persona: document.getElementById('pub_persona').value.trim() || "[Não informado]",
-      dor_principal: document.getElementById('pub_dor').value.trim() || "[Não informado]"
+      persona: document.getElementById('pub_persona').value.trim() || "Não informado",
+      dor_principal: document.getElementById('pub_dor').value.trim() || "Não informado"
     },
     branding: {
-      diferencial_exclusivo: document.getElementById('mar_dif').value.trim() || "[Não informado]",
+      diferencial_exclusivo: document.getElementById('mar_dif').value.trim() || "Não informado",
       status_marca: getRadioVal('mar_status')
     },
     traction: {
       origem_clientes: getRadioVal('tra_origem'),
-      canais_ativos: document.getElementById('tra_canais').value.trim() || "[Não informado]"
+      canais_ativos: document.getElementById('tra_canais').value.trim() || "Não informado"
     },
     technology: {
       site_url: document.getElementById('tec_site').value.trim() || "Não informado",
@@ -134,59 +132,190 @@ function sendToZellgoEngine() {
       infra_erp: getRadioVal('tec_erp')
     },
     operations: {
-      gargalos_operacionais: document.getElementById('ope_gargalo').value.trim() || "[Nenhum gargalo reportado]",
+      gargalos_operacionais: document.getElementById('ope_gargalo').value.trim() || "Nenhum gargalo reportado",
       atendimento: document.getElementById('ope_atendimento').value.trim() || "Não especificado"
     },
     objectives: {
-      meta_90_dias: document.getElementById('obj_90').value.trim() || "[Objetivos por alinhar]",
+      meta_90_dias: document.getElementById('obj_90').value.trim() || "Objetivos por alinhar",
       investimento_estimado: document.getElementById('obj_orcamento').value.trim() || "Ancoragem por ROI"
     }
   };
 
+  // Guarda no Clipboard em segundo plano
   const jsonString = JSON.stringify(payload, null, 2);
-
-  // Guarda no Clipboard em segundo plano (útil para consultores que quiserem colar no CRM, WhatsApp ou IA)
   if (navigator.clipboard) {
     navigator.clipboard.writeText(jsonString).catch(() => {});
   }
 
-  // Notificação elegante de sucesso
-  showToast(
-    '✅ Briefing Transmitido!',
-    'Os dados do seu negócio foram processados pelo motor Zellgo. Encaminhando para a visualização...'
-  );
+  try {
+    // Tenta conectar à Função Serverless da Vercel (/api/engine)
+    const res = await fetch('/api/engine', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: jsonString
+    });
 
-  // Transição suave para o painel
+    if (res.ok) {
+      const responseData = await res.json();
+      if (responseData.success && responseData.data) {
+        // Sucesso Total! IA do Google gerou o diagnóstico ao vivo
+        updateDashboardWithAi(responseData.data, payload);
+        
+        showToast(
+          '🧠 Diagnóstico IA Concluído!',
+          'O Motor ZDE v2.1 processou a radiografia ao vivo com o Google Gemini. Encaminhando para o painel...'
+        );
+
+        finalizeSubmission();
+        return;
+      }
+    }
+    
+    // Se a API não estiver configurada ainda, lança para fallback elegante
+    throw new Error('Servidor API não retornou resposta OK ou API Key ausente na Vercel.');
+
+  } catch (error) {
+    console.warn('⚠️ Modo Demonstrativo de Fallback Ativo:', error.message);
+    
+    // Fallback inteligente que ao menos atualiza o nome e segmento reais da empresa que o usuário digitou!
+    applyFallbackDashboard(payload);
+
+    showToast(
+      '✨ Briefing Transmitido!',
+      'Encaminhando para a visualização do painel (Modo de Demonstração).'
+    );
+
+    finalizeSubmission();
+  }
+}
+
+function finalizeSubmission() {
   setTimeout(() => {
     switchTab('dashboard');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    const btnNext = document.getElementById('btnNext');
     if (btnNext) {
       btnNext.disabled = false;
       btnNext.innerHTML = '🚀 Concluir e Analisar com IA';
     }
-  }, 1500);
+  }, 1400);
 }
 
-function showToast(title, desc) {
-  const toast = document.getElementById('toast');
-  const tTitle = document.getElementById('toastTitle');
-  const tDesc = document.getElementById('toastDesc');
-  
-  if (tTitle) tTitle.textContent = title;
-  if (tDesc) tDesc.textContent = desc;
-  
-  if (toast) {
-    toast.classList.add('show');
-    setTimeout(() => {
-      toast.classList.remove('show');
-    }, 6000);
+// ==========================================================================
+// ATUALIZAÇÃO DO DOM COM RESPOSTAS REAIS DA INTELIGÊNCIA ARTIFICIAL (GEMINI)
+// ==========================================================================
+function updateDashboardWithAi(ai, payload) {
+  // 1. Cabeçalho e Identidade do Cliente
+  const nameEl = document.getElementById('dashClientName');
+  const segEl = document.getElementById('dashClientSegment');
+  const aiTag = document.getElementById('dashAiTag');
+  const banner = document.getElementById('dashBannerNotice');
+  const scoreEl = document.getElementById('dashComplexityScore');
+
+  if (nameEl) nameEl.textContent = ai.nome_empresa || payload.client_identity.nome;
+  if (segEl) segEl.textContent = "Segmento: " + (ai.segmento || payload.client_identity.segmento);
+  if (aiTag) {
+    aiTag.textContent = "🧠 Diagnóstico Ao Vivo • Google Gemini IA";
+    aiTag.style.backgroundColor = "rgb(16, 185, 129)"; // Verde esmeralda para indicar IA ao vivo
+    aiTag.style.color = "#ffffff";
+  }
+  if (banner) {
+    banner.style.borderColor = "rgb(16, 185, 129)";
+    banner.style.background = "rgba(16, 185, 129, 0.12)";
+    banner.innerHTML = `<span style="font-size:1.5rem;">🟢</span><div style="color:var(--text-branco);"><strong>Diagnóstico IA Ao Vivo (Google Gemini):</strong> Esta estratégia foi calculada em tempo real pelo Motor ZDE v2.1 com base no Índice de Complexidade e na Política Comercial Soberana da Zellgo.</div>`;
+  }
+
+  if (scoreEl) {
+    const pts = ai.indice_complexidade !== undefined ? ai.indice_complexidade : 18;
+    const tier = ai.tier || "Tier 2 (Média Complexidade ➔ Expansão)";
+    scoreEl.innerHTML = `${pts} PONTOS <div style="font-size:0.9rem; font-weight:400; color:var(--text-branco);">(${tier})</div>`;
+  }
+
+  // 2. Gráfico de Radar Real
+  if (ai.radar && Array.isArray(ai.radar)) {
+    currentRadarData = ai.radar;
+    renderRadarChart(ai.radar);
+  }
+  const radarSum = document.getElementById('dashRadarSummary');
+  if (radarSum && ai.radar_resumo) {
+    radarSum.textContent = `*"${ai.radar_resumo}"*`;
+  }
+
+  // 3. Escopo Recomendado Pela IA
+  const scopeList = document.getElementById('dashScopeList');
+  const scopeCount = document.getElementById('dashScopeCount');
+  if (scopeList && ai.escopo_recomendado && Array.isArray(ai.escopo_recomendado)) {
+    if (scopeCount) scopeCount.textContent = `${ai.escopo_recomendado.length} Módulos IA`;
+    scopeList.innerHTML = '';
+    
+    ai.escopo_recomendado.forEach(item => {
+      const li = document.createElement('li');
+      li.className = 'scope-item';
+      li.innerHTML = `
+        <div class="scope-item-header">
+          <span class="scope-name">${item.modulo || "Solução Zellgo"}</span>
+          <span class="badge-tag badge-rose">${item.prioridade || "Estratégica"}</span>
+        </div>
+        <p class="scope-desc">${item.descricao || "Implementação sob medida com padrão de excelência Zellgo."}</p>
+      `;
+      scopeList.appendChild(li);
+    });
+  }
+
+  // 4. Roadmap de 90 Dias
+  const roadmapEl = document.getElementById('dashRoadmapTimeline');
+  if (roadmapEl && ai.roadmap_90_dias && Array.isArray(ai.roadmap_90_dias)) {
+    roadmapEl.innerHTML = '';
+    ai.roadmap_90_dias.forEach(rm => {
+      const step = document.createElement('div');
+      step.className = 'timeline-step';
+      step.innerHTML = `
+        <div class="step-phase">${rm.fase || "Fase ZVI"}</div>
+        <div class="step-title">${rm.titulo || "Execução"}</div>
+        <div class="step-info">${rm.desc || "Ações estratégicas programadas para expansão de resultados."}</div>
+      `;
+      roadmapEl.appendChild(step);
+    });
+  }
+
+  // 5. Ancoragem de ROI e Valores
+  const roiText = document.getElementById('dashRoiText');
+  const setupVal = document.getElementById('dashSetupVal');
+  const setupLabel = document.getElementById('dashSetupLabel');
+  const retainerVal = document.getElementById('dashRetainerVal');
+
+  if (roiText && ai.ancoragem_roi) roiText.innerHTML = ai.ancoragem_roi;
+  if (ai.valores_proposta) {
+    if (setupLabel && ai.valores_proposta.setup_label) setupLabel.textContent = ai.valores_proposta.setup_label;
+    if (setupVal && ai.valores_proposta.setup_val) setupVal.innerHTML = `${ai.valores_proposta.setup_val} <span style="font-size:0.95rem; font-weight:300; color:var(--text-muted);">(Projeto Base)</span>`;
+    if (retainerVal && ai.valores_proposta.retainer_label) retainerVal.textContent = ai.valores_proposta.retainer_label;
+  }
+}
+
+// Fallback Inteligente (quando testa sem chave ou offline, mas adaptando o nome que o lead digitou!)
+function applyFallbackDashboard(payload) {
+  const nameEl = document.getElementById('dashClientName');
+  const segEl = document.getElementById('dashClientSegment');
+  const aiTag = document.getElementById('dashAiTag');
+  const banner = document.getElementById('dashBannerNotice');
+
+  if (nameEl) nameEl.textContent = payload.client_identity.nome + " (Case de Estudo ZVI)";
+  if (segEl) segEl.textContent = "Segmento: " + (payload.client_identity.segmento || "Gastronomia / Varejo");
+  if (aiTag) {
+    aiTag.textContent = "Modo Demonstrativo • ZDE v2.1";
+    aiTag.style.backgroundColor = "var(--accent-rose)";
+  }
+  if (banner) {
+    banner.innerHTML = `<span style="font-size:1.5rem;">💡</span><div style="color:var(--text-branco);"><strong>Modo de Demonstração (Sem API Key no Vercel):</strong> Exibindo o plano estrutural de referência da Zellgo adaptado para <strong>${payload.client_identity.nome}</strong>. Para análises em tempo real, conecte sua GOOGLE_API_KEY nas configurações da Vercel!</div>`;
   }
 }
 
 // ==========================================================================
-// RENDERIZADOR DO GRÁFICO DE RADAR - CASE DE REFERÊNCIA ZVI
+// RENDERIZADOR DO GRÁFICO DE RADAR - CASE DE REFERÊNCIA OU DADOS DA IA
 // ==========================================================================
-function renderRadarChart() {
+function renderRadarChart(customAxes) {
   const canvas = document.getElementById('radarChart');
   if (!canvas) return;
   
@@ -199,7 +328,7 @@ function renderRadarChart() {
   
   ctx.clearRect(0, 0, width, height);
 
-  const axes = [
+  const defaultAxes = [
     { name: "Posicionamento", value: 3, max: 5 },
     { name: "Marca (Branding)", value: 4, max: 5 },
     { name: "Presença Digital", value: 2, max: 5 },
@@ -210,6 +339,7 @@ function renderRadarChart() {
     { name: "Comercial / Pedidos", value: 2, max: 5 }
   ];
 
+  const axes = customAxes && Array.isArray(customAxes) && customAxes.length > 0 ? customAxes : defaultAxes;
   const numAxes = axes.length;
   const angleStep = (Math.PI * 2) / numAxes;
   const startAngle = -Math.PI / 2; 
@@ -270,11 +400,13 @@ function renderRadarChart() {
   const points = [];
   
   for (let i = 0; i < numAxes; i++) {
-    const valueRatio = axes[i].value / axes[i].max;
+    const val = axes[i].value !== undefined ? axes[i].value : 3;
+    const max = axes[i].max !== undefined ? axes[i].max : 5;
+    const valueRatio = Math.min(Math.max(val / max, 0.1), 1);
     const angle = startAngle + i * angleStep;
     const px = centerX + Math.cos(angle) * (radius * valueRatio);
     const py = centerY + Math.sin(angle) * (radius * valueRatio);
-    points.push({ x: px, y: py, val: axes[i].value });
+    points.push({ x: px, y: py, val: val });
     
     if (i === 0) ctx.moveTo(px, py);
     else ctx.lineTo(px, py);
@@ -311,4 +443,19 @@ function renderRadarChart() {
   });
 
   radarChartRendered = true;
+}
+function showToast(title, desc) {
+  const toast = document.getElementById('toast');
+  const tTitle = document.getElementById('toastTitle');
+  const tDesc = document.getElementById('toastDesc');
+  
+  if (tTitle) tTitle.textContent = title;
+  if (tDesc) tDesc.textContent = desc;
+  
+  if (toast) {
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 6000);
+  }
 }

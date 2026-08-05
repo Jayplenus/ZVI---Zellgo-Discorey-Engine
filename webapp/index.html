@@ -36,7 +36,7 @@
         <span class="tab-icon">📝</span> <span class="tab-label">Briefing</span>
       </button>
       <button class="tab-btn" id="btnTabDashboard" onclick="switchTab('dashboard')" title="Painel do Arquiteto (Preview Demonstrativo)">
-        <span class="tab-icon">📊</span> <span class="tab-label">Painel ZVI (Preview)</span>
+        <span class="tab-icon">📊</span> <span class="tab-label">Painel ZVI (IA Ao Vivo)</span>
       </button>
     </div>
 
@@ -51,12 +51,12 @@
 
     <!-- HERO BANNER -->
     <section class="hero-banner">
-      <span class="hero-tag">⚡ Zellgo Discovery Engine • v2.1 Cloud</span>
+      <span class="hero-tag">⚡ Zellgo Discovery Engine • v2.1 Cloud AI</span>
       <h1 class="hero-title">
         <span class="title-white">DIAGNÓSTICO DE</span> <span class="title-rose">ALTA PRECISÃO E ESCOPO</span>
       </h1>
       <p class="hero-desc">
-        Preencha o briefing modular de forma intuitiva. Nosso motor de inteligência processará a maturidade de marca, posicionamento, tração digital e oportunidades reais para aplicar o padrão de excelência Zellgo no seu negócio.
+        Preencha o briefing modular de forma intuitiva. Nosso motor de inteligência artificial processará ao vivo a maturidade da marca, posicionamento, tração digital e o escopo exato de alavancagem para o seu negócio.
       </p>
     </section>
 
@@ -305,10 +305,10 @@
          ====================================================================== -->
     <section id="viewDashboard" class="view-section">
       
-      <div style="background:rgba(244, 63, 94, 0.12); border:1px solid var(--accent-rose); padding:1rem 1.4rem; border-radius:var(--radius-md); margin-bottom:1.8rem; display:flex; align-items:center; gap:1rem; font-size:0.9rem;">
+      <div id="dashBannerNotice" style="background:rgba(244, 63, 94, 0.12); border:1px solid var(--accent-rose); padding:1rem 1.4rem; border-radius:var(--radius-md); margin-bottom:1.8rem; display:flex; align-items:center; gap:1rem; font-size:0.9rem;">
         <span style="font-size:1.5rem;">💡</span>
         <div style="color:var(--text-branco);">
-          <strong>Preview Demonstrativo do Ecossistema (Case ZVI):</strong> Abaixo apresentamos um <em>exemplo de diagnóstico ao vivo</em> gerado pelo Motor ZDE v2.1. Após o envio do briefing, nossa IA processa a maturidade do negócio, calcula o Índice de Complexidade (IC) e gera o plano de alavancagem de 90 dias sob medida para a sua operação.
+          <strong>Motor ZDE v2.1 Ativo:</strong> Ao enviar o briefing na aba anterior, nosso servidor Vercel Serverless processará ao vivo no Google Gemini a maturidade do negócio, calculará o Índice de Complexidade (IC) e apresentará abaixo a estratégia sob medida para a sua operação.
         </div>
       </div>
 
@@ -316,14 +316,14 @@
       <div class="dashboard-card" style="margin-bottom:1.8rem; background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,20,40,0.9)); border-color:var(--accent-rose);">
         <div class="dashboard-head-flex">
           <div>
-            <span class="badge-tag badge-rose">Case de Referência • ZDE v2.1</span>
-            <span class="badge-tag badge-neutral" style="margin-top:0.3rem; display:inline-block;">Segmento: Gastronomia & Varejo High-End</span>
-            <h2 style="font-size:1.8rem; font-weight:700; margin-top:0.5rem; color:var(--text-branco);">Empresa de Exemplo (Case Estudo ZVI)</h2>
-            <p style="color:var(--text-muted); font-size:0.9rem;">Operação Digital Premium • Expansão Rápida de Vendas 24/7 com IA & Vídeo</p>
+            <span id="dashAiTag" class="badge-tag badge-rose">Case de Referência • ZDE v2.1</span>
+            <span id="dashClientSegment" class="badge-tag badge-neutral" style="margin-top:0.3rem; display:inline-block;">Segmento: Gastronomia & Varejo High-End</span>
+            <h2 id="dashClientName" style="font-size:1.8rem; font-weight:700; margin-top:0.5rem; color:var(--text-branco);">Empresa de Exemplo (Case Estudo ZVI)</h2>
+            <p id="dashClientSub" style="color:var(--text-muted); font-size:0.9rem;">Operação Digital Premium • Expansão Rápida de Vendas 24/7 com IA & Vídeo</p>
           </div>
           <div class="score-card-right">
             <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Índice de Complexidade</div>
-            <div style="font-size:2rem; font-weight:800; color:var(--accent-rose);">18 PONTOS <div style="font-size:0.9rem; font-weight:400; color:var(--text-branco);">(Média Complexidade ➔ Tier 2)</div></div>
+            <div id="dashComplexityScore" style="font-size:2rem; font-weight:800; color:var(--accent-rose);">18 PONTOS <div style="font-size:0.9rem; font-weight:400; color:var(--text-branco);">(Média Complexidade ➔ Tier 2)</div></div>
           </div>
         </div>
       </div>
@@ -341,7 +341,7 @@
           <div class="chart-wrapper">
             <canvas id="radarChart" width="380" height="320"></canvas>
           </div>
-          <p style="font-size:0.8rem; color:var(--text-muted); text-align:center; margin-top:0.6rem;">
+          <p id="dashRadarSummary" style="font-size:0.8rem; color:var(--text-muted); text-align:center; margin-top:0.6rem;">
             *O gráfico identifica excelência de Marca e Legado, apontando necessidade imediata de Tração Digital e Atendimento IA (24/7).*
           </p>
         </div>
@@ -352,10 +352,10 @@
               <h3>💎 Escopo de Soluções (Amostra ZDE)</h3>
               <span>Estratégias de automação e posicionamento High-End</span>
             </div>
-            <span class="badge-tag badge-rose">5 Módulos</span>
+            <span id="dashScopeCount" class="badge-tag badge-rose">5 Módulos</span>
           </header>
 
-          <ul class="scope-list" style="max-height:380px; overflow-y:auto; padding-right:0.4rem;">
+          <ul id="dashScopeList" class="scope-list" style="max-height:380px; overflow-y:auto; padding-right:0.4rem;">
             <li class="scope-item">
               <div class="scope-item-header">
                 <span class="scope-name">1. Agente IA de Conversão (Zellgo Bot 24/7)</span>
@@ -408,11 +408,11 @@
           </div>
         </header>
         
-        <div class="roadmap-timeline">
+        <div id="dashRoadmapTimeline" class="roadmap-timeline">
           <div class="timeline-step">
             <div class="step-phase">⚡ Dias 01 ao 15</div>
             <div class="step-title">Otimização & Setup IA</div>
-            <div class="step-info">Mapeamento da operação, ajustes na infraestrutura digital e treinamento em homologação do Agente IA exclusivo.</div>
+            <div class="step-info">Mapeamento da operação, adjustments na infraestrutura digital e treinamento em homologação do Agente IA exclusivo.</div>
           </div>
           
           <div class="timeline-step">
@@ -438,12 +438,12 @@
         <div class="pricing-banner">
           <div class="pricing-info">
             <h4>💡 Ancoragem por Valor & Retainer Evolutivo (ZDE v2.1)</h4>
-            <p>Demonstração financeira: Eliminar perdas operacionais no WhatsApp e capturar +15 conversões de alto valor mensais injeta mais de <strong>+R$ 45.000 de novo faturamento no mês</strong>. O retorno sobre o investimento supera 300% já no trimestre inicial.</p>
+            <p id="dashRoiText">Demonstração financeira: Eliminar perdas operacionais no WhatsApp e capturar +15 conversões de alto valor mensais injeta mais de <strong>+R$ 45.000 de novo faturamento no mês</strong>. O retorno sobre o investimento supera 300% já no trimestre inicial.</p>
           </div>
           <div class="pricing-values">
-            <div class="val-label">Setup Tier 2 (Expansão Estratégica)</div>
-            <div class="val-tier">R$ 15.000 <span style="font-size:0.95rem; font-weight:300; color:var(--text-muted);">(Projeto Base)</span></div>
-            <div style="margin-top:0.5rem; color:var(--accent-rose); font-weight:600; font-size:0.9rem;">+ Retainer Growth: R$ 3.500 / mês</div>
+            <div id="dashSetupLabel" class="val-label">Setup Tier 2 (Expansão Estratégica)</div>
+            <div id="dashSetupVal" class="val-tier">R$ 15.000 <span style="font-size:0.95rem; font-weight:300; color:var(--text-muted);">(Projeto Base)</span></div>
+            <div id="dashRetainerVal" style="margin-top:0.5rem; color:var(--accent-rose); font-weight:600; font-size:0.9rem;">+ Retainer Growth: R$ 3.500 / mês</div>
           </div>
         </div>
 
