@@ -330,9 +330,6 @@ function applyFallbackDashboard(payload) {
   const aiTag = document.getElementById('dashAiTag');
   const banner = document.getElementById('dashBannerNotice');
 
-  const clientName = payload.client_identity.nome || "Empresa Analisada";
-  const segmentName = payload.client_identity.segmento || "Operações Especializadas";
-
   if (nameEl) nameEl.textContent = clientName;
   if (segEl) segEl.textContent = "Segmento: " + segmentName;
   if (aiTag) {
