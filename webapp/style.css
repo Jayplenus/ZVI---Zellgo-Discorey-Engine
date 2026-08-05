@@ -1090,4 +1090,179 @@ textarea.form-control {
   .dashboard-card { padding: 1.3rem 1rem; }
   .pricing-banner { padding: 1.5rem 1rem; text-align: center; }
   .toast-notice { right: 1rem; left: 1rem; bottom: 1rem; max-width: none; }
+  
+  .zpe-grid-2col, .zpe-grid-3col, .zpe-palette-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .btn-lib-tab {
+    flex: 1 1 100%;
+    text-align: center;
+  }
 }
+
+/* ==========================================================================
+   ESTILOS EXECUTIVOS DA FÁBRICA ZVI (MOTOR 3: ZPE v1.0 & 5 BIBLIOTECAS MESTRAS)
+   ========================================================================== */
+.btn-lib-tab {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 0.8rem 1.4rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-lib-tab:hover {
+  background: var(--bg-card);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--text-branco);
+  transform: translateY(-2px);
+}
+.btn-lib-tab.active {
+  background: linear-gradient(135deg, rgba(244, 63, 94, 0.25), rgba(15, 23, 42, 0.95));
+  border-color: var(--accent-rose);
+  color: #ffffff;
+  box-shadow: 0 4px 16px var(--glow-rose);
+}
+
+.zpe-library-panel {
+  display: none;
+  animation: fadeIn 0.35s ease forwards;
+}
+.zpe-library-panel.active {
+  display: block;
+}
+
+.zpe-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+.zpe-grid-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+.zpe-info-box {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 1.3rem;
+}
+.zpe-box-label {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.zpe-box-val {
+  font-size: 1rem;
+  color: var(--text-branco);
+  line-height: 1.5;
+}
+
+.zpe-list, .zpe-ol {
+  margin: 0.4rem 0 0 1.2rem;
+  padding: 0;
+  color: var(--text-branco);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.zpe-list li {
+  margin-bottom: 0.4rem;
+}
+
+.zpe-lp-step {
+  padding: 1.2rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+  transition: background 0.2s ease;
+}
+.zpe-lp-step:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+.zpe-lp-num {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+}
+.zpe-lp-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-branco);
+}
+.zpe-lp-desc {
+  font-size: 0.98rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+.highlight-mechanism {
+  background: linear-gradient(90deg, rgba(244, 63, 94, 0.18), rgba(15, 23, 42, 0.8));
+  border: 1px solid var(--accent-rose);
+  border-radius: 10px;
+  margin: 0.8rem 0;
+  box-shadow: 0 4px 25px rgba(244, 63, 94, 0.25);
+}
+
+.zpe-palette-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin-top: 0.6rem;
+}
+.palette-swatch-card {
+  background: #0b1120;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.swatch-color {
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+.swatch-info {
+  padding: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.zpe-tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.tag-badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.tag-badge.green {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+.tag-badge.red {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.zpe-resp-box:hover {
+  border-color: var(--accent-rose) !important;
+}
+

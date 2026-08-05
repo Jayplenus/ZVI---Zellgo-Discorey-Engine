@@ -22,12 +22,15 @@ function switchTab(viewName) {
   const btnBriefing = document.getElementById('btnTabBriefing');
   const btnDashboard = document.getElementById('btnTabDashboard');
   const btnStrategy = document.getElementById('btnTabStrategy');
+  const btnProduction = document.getElementById('btnTabProduction');
+
   const viewBriefing = document.getElementById('viewBriefing');
   const viewDashboard = document.getElementById('viewDashboard');
   const viewStrategy = document.getElementById('viewStrategy');
+  const viewProduction = document.getElementById('viewProduction');
 
-  [btnBriefing, btnDashboard, btnStrategy].forEach(b => b && b.classList.remove('active'));
-  [viewBriefing, viewDashboard, viewStrategy].forEach(v => v && v.classList.remove('active'));
+  [btnBriefing, btnDashboard, btnStrategy, btnProduction].forEach(b => b && b.classList.remove('active'));
+  [viewBriefing, viewDashboard, viewStrategy, viewProduction].forEach(v => v && v.classList.remove('active'));
 
   if (viewName === 'briefing') {
     if (btnBriefing) btnBriefing.classList.add('active');
@@ -35,6 +38,9 @@ function switchTab(viewName) {
   } else if (viewName === 'strategy') {
     if (btnStrategy) btnStrategy.classList.add('active');
     if (viewStrategy) viewStrategy.classList.add('active');
+  } else if (viewName === 'production') {
+    if (btnProduction) btnProduction.classList.add('active');
+    if (viewProduction) viewProduction.classList.add('active');
   } else {
     if (btnDashboard) btnDashboard.classList.add('active');
     if (viewDashboard) viewDashboard.classList.add('active');
@@ -651,31 +657,179 @@ function applyFallbackStrategy(zdeInput) {
 }
 
 // ==========================================================================
-// MOTOR 3: ZPE v1.0 — PRODUCTION ENGINE (CONEXÃO COM FÁBRICA / FASE 2)
+// MOTOR 3: ZPE v1.0 — ZELLGO PRODUCTION ENGINE (A FÁBRICA DAS 5 BIBLIOTECAS)
 // ==========================================================================
-function triggerProductionEngine() {
-  const payloadToZpe = {
-    metadata: {
-      engine_origem: "ZSE v1.0 Strategy Engine",
-      destino: "ZPE v1.0 Production Engine",
-      status_aprovacao: "PROPOSTA COMERCIAL APROVADA PELO CLIENTE / ARQUITETO"
-    },
-    estrategia_aprovada: globalZseJson || { cliente: "Case ZVI", status: "Aprovada" },
-    modulos_para_producao: [
-      "1. Branding & Identidade Visual High-End (Paleta + Manual)",
-      "2. Website & Landing Page (UI/UX do Sistema e Boletos)",
-      "3. IA & Automação (System Prompt do Zellgo Bot 24/7 para WhatsApp)",
-      "4. Linha Editorial e Roteiros de Vídeo para Social e Tração"
-    ]
-  };
-
-  const jsonString = JSON.stringify(payloadToZpe, null, 2);
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(jsonString).catch(() => {});
+async function triggerProductionEngine() {
+  const btn = document.getElementById('btnTriggerZpe');
+  const originalText = btn ? btn.innerHTML : '';
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '⏳ Motor ZPE compilando 5 Bibliotecas Mestras de Produção...';
   }
 
-  showToast(
-    '🔨 Conexão ZPE Acionada!',
-    'Pacote de produção exportado (em clipboard)! A estrutura JSON está pronta para alimentar o Motor de Execução e as 8 Bibliotecas (Fase 2).'
-  );
+  // Se acessado diretamente sem histórico anterior, alimenta com o caso local
+  if (!globalZseJson) {
+    globalZseJson = {
+      cliente: "Empresa em Transformação",
+      segmento: "Operações Especializadas",
+      mapeamento: {
+        problema: "Baixa autoridade digital e demora no atendimento a cotações abertos.",
+        estrategia: "Implementação de ecossistema com bot 24/7 e posicionamento high-end.",
+        solucao: "Mecanismo Único blindado e automação inteligente no WhatsApp."
+      }
+    };
+  }
+
+  try {
+    const res = await fetch('/api/production', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(globalZseJson)
+    });
+
+    if (res.ok) {
+      const responseData = await res.json();
+      if (responseData.success && responseData.data) {
+        updateProductionWithAi(responseData.data);
+        showToast('🔨 Motor ZPE Concluído!', 'As 5 Bibliotecas Metodológicas (IA, LP, Branding, Growth e Executive Delivery) foram compiladas ao vivo!');
+        switchTab('production');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = originalText;
+        }
+        return;
+      }
+    }
+    throw new Error('Acionando Fallback ZPE.');
+  } catch(error) {
+    applyFallbackProduction(globalZseJson);
+    showToast('🔨 Fábrica ZPE Ativada!', 'As 5 Bibliotecas foram geradas com o padrão soberano da metodologia Zellgo!');
+    switchTab('production');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = originalText;
+    }
+  }
+}
+
+function showLibrary(index) {
+  for (let i = 1; i <= 5; i++) {
+    const btn = document.getElementById(`btnLib${i}`);
+    const panel = document.getElementById(`zpeLibPanel${i}`);
+    if (btn) btn.classList.remove('active');
+    if (panel) panel.classList.remove('active');
+  }
+  const activeBtn = document.getElementById(`btnLib${index}`);
+  const activePanel = document.getElementById(`zpeLibPanel${index}`);
+  if (activeBtn) activeBtn.classList.add('active');
+  if (activePanel) activePanel.classList.add('active');
+}
+
+function copyTextToClipboard(containerId, successMsg) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const textToCopy = el.innerText || el.textContent;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      showToast('📋 Copiado!', successMsg || 'Conteúdo transferido para a área de transferência com sucesso.');
+    }).catch(() => {
+      showToast('⚠️ Aviso', 'Seu navegador restringiu a cópia automática do texto.');
+    });
+  }
+}
+
+// Atualização Dinâmica com Resposta AI Real (Gemini) no Motor ZPE v1.0
+function updateProductionWithAi(zpeData) {
+  const clientEl = document.getElementById('zpeClientName');
+  const segEl = document.getElementById('zpeSegment');
+  if (clientEl) clientEl.textContent = `${zpeData.cliente || "Empresa Analisada"} (Bibliotecas de Execução)`;
+  if (segEl) segEl.textContent = `Segmento: ${zpeData.segmento || "Operações Especializadas"}`;
+
+  // Biblioteca 1: IA Bot Blueprint
+  const b1 = zpeData.biblioteca_1_ia_bot;
+  if (b1) {
+    if (document.getElementById('zpeBotIdentidade') && b1.identidade) document.getElementById('zpeBotIdentidade').textContent = b1.identidade;
+    if (document.getElementById('zpeBotPersonalidade') && b1.personalidade) document.getElementById('zpeBotPersonalidade').textContent = b1.personalidade;
+    if (document.getElementById('zpeBotObjetivo') && b1.objetivo_principal) document.getElementById('zpeBotObjetivo').textContent = b1.objetivo_principal;
+    if (document.getElementById('zpeBotFluxo') && b1.fluxo_conversacional) document.getElementById('zpeBotFluxo').textContent = b1.fluxo_conversacional;
+    if (document.getElementById('zpeBotProibido') && b1.situacoes_proibidas) document.getElementById('zpeBotProibido').textContent = b1.situacoes_proibidas;
+    if (document.getElementById('zpeBotEscalonamento') && b1.escalonamento_humano) document.getElementById('zpeBotEscalonamento').textContent = b1.escalonamento_humano;
+    if (document.getElementById('zpeBotCopyText') && b1.prompt_copy_paste) document.getElementById('zpeBotCopyText').textContent = b1.prompt_copy_paste;
+    
+    if (document.getElementById('zpeBotRegras') && Array.isArray(b1.regras_atendimento)) {
+      document.getElementById('zpeBotRegras').innerHTML = b1.regras_atendimento.map(r => `<li>${r}</li>`).join('');
+    }
+    if (document.getElementById('zpeBotPerguntas') && Array.isArray(b1.perguntas_qualificacao)) {
+      document.getElementById('zpeBotPerguntas').innerHTML = b1.perguntas_qualificacao.map(p => `<li>${p}</li>`).join('');
+    }
+  }
+
+  // Biblioteca 2: Digital Experience (LP ZVI Framework)
+  const b2 = zpeData.biblioteca_2_digital_exp;
+  if (b2) {
+    if (document.getElementById('zpeLpHero') && b2.hero_promessa) document.getElementById('zpeLpHero').textContent = b2.hero_promessa;
+    if (document.getElementById('zpeLpProblema') && b2.problema_dor) document.getElementById('zpeLpProblema').textContent = b2.problema_dor;
+    if (document.getElementById('zpeLpMecanismo') && b2.mecanismo_unico) document.getElementById('zpeLpMecanismo').textContent = b2.mecanismo_unico;
+    if (document.getElementById('zpeLpSolucao') && b2.solucao) document.getElementById('zpeLpSolucao').textContent = b2.solucao;
+    if (document.getElementById('zpeLpProva') && b2.prova_autoridade) document.getElementById('zpeLpProva').textContent = b2.prova_autoridade;
+    if (document.getElementById('zpeLpProcesso') && b2.processo) document.getElementById('zpeLpProcesso').textContent = b2.processo;
+    if (document.getElementById('zpeLpOferta') && b2.oferta) document.getElementById('zpeLpOferta').textContent = b2.oferta;
+    if (document.getElementById('zpeLpCta') && b2.cta_final) document.getElementById('zpeLpCta').textContent = b2.cta_final;
+  }
+
+  // Biblioteca 3: Brand Direction
+  const b3 = zpeData.biblioteca_3_brand_direction;
+  if (b3) {
+    if (document.getElementById('zpeBrandPos') && b3.posicionamento) document.getElementById('zpeBrandPos').textContent = b3.posicionamento;
+    if (document.getElementById('zpeBrandArq') && b3.arquetipo) document.getElementById('zpeBrandArq').textContent = b3.arquetipo;
+    if (document.getElementById('zpeBrandSensacao') && b3.sensacao_desejada) document.getElementById('zpeBrandSensacao').textContent = b3.sensacao_desejada;
+    
+    if (document.getElementById('zpeBrandUsar') && Array.isArray(b3.palavras_usar)) {
+      document.getElementById('zpeBrandUsar').innerHTML = b3.palavras_usar.map(w => `<span class="tag-badge green">${w}</span>`).join(' ');
+    }
+    if (document.getElementById('zpeBrandProibido') && Array.isArray(b3.palavras_proibidas)) {
+      document.getElementById('zpeBrandProibido').innerHTML = b3.palavras_proibidas.map(w => `<span class="tag-badge red">${w}</span>`).join(' ');
+    }
+  }
+
+  // Biblioteca 4: Growth Engine
+  const b4 = zpeData.biblioteca_4_growth_engine;
+  if (b4) {
+    if (document.getElementById('zpeGrowthIcp') && b4.icp_prioritario) document.getElementById('zpeGrowthIcp').textContent = b4.icp_prioritario;
+    if (document.getElementById('zpeGrowthCanal') && b4.canal_recomendado) document.getElementById('zpeGrowthCanal').textContent = b4.canal_recomendado;
+    if (document.getElementById('zpeGrowthMetrica') && b4.metrica_principal) document.getElementById('zpeGrowthMetrica').textContent = b4.metrica_principal;
+    if (b4.google_ads) {
+      if (document.getElementById('zpeGrowthGadsKeywords') && Array.isArray(b4.google_ads.palavras_chave)) {
+        document.getElementById('zpeGrowthGadsKeywords').textContent = b4.google_ads.palavras_chave.join(', ');
+      }
+      if (document.getElementById('zpeGrowthGadsNegatives') && Array.isArray(b4.google_ads.negatives)) {
+        document.getElementById('zpeGrowthGadsNegatives').textContent = b4.google_ads.negationes.join(', ');
+      }
+    }
+    if (b4.meta_ads) {
+      if (document.getElementById('zpeGrowthMetaHook') && b4.meta_ads.hook) document.getElementById('zpeGrowthMetaHook').textContent = `"${b4.meta_ads.hook}"`;
+      if (document.getElementById('zpeGrowthMetaScript') && b4.meta_ads.roteiro_short_reels) document.getElementById('zpeGrowthMetaScript').textContent = b4.meta_ads.roteiro_short_reels;
+    }
+  }
+
+  // Biblioteca 5: Executive Delivery (Apresentação de Reunião)
+  const b5 = zpeData.biblioteca_5_executive_delivery;
+  if (b5) {
+    if (document.getElementById('zpeExecTitle') && b5.apresentacao_titulo) document.getElementById('zpeExecTitle').textContent = b5.apresentacao_titulo;
+    if (document.getElementById('zpeExecResumo') && b5.resumo_executivo) document.getElementById('zpeExecResumo').textContent = b5.resumo_executivo;
+    if (document.getElementById('zpeExecCronograma') && b5.cronograma_resumo) {
+      document.getElementById('zpeExecCronograma').innerHTML = `<p style="color:#ffffff;">${b5.cronograma_resumo}</p>`;
+    }
+    if (document.getElementById('zpeExecNextSteps') && Array.isArray(b5.proximos_passos)) {
+      document.getElementById('zpeExecNextSteps').innerHTML = b5.proximos_passos.map(s => `<li>${s}</li>`).join('');
+    }
+  }
+}
+
+function applyFallbackProduction(zseInput) {
+  const clientName = zseInput ? zseInput.cliente : "Empresa Analisada";
+  const clientEl = document.getElementById('zpeClientName');
+  if (clientEl) clientEl.textContent = `${clientName} (Bibliotecas de Execução)`;
 }

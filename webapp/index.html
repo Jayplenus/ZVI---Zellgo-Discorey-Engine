@@ -30,7 +30,7 @@
       </div>
     </div>
     
-    <!-- COMANDO CENTRAL DE ABAS: BRIEFING -> MOTOR 1 (ZDE) -> MOTOR 2 (ZSE) -->
+    <!-- COMANDO CENTRAL DE ABAS: BRIEFING -> MOTOR 1 (ZDE) -> MOTOR 2 (ZSE) -> MOTOR 3 (ZPE) -->
     <div class="view-tabs" style="display:flex; flex-wrap:wrap; gap:0.5rem;">
       <button class="tab-btn active" id="btnTabBriefing" onclick="switchTab('briefing')" title="Módulo de Briefing">
         <span class="tab-icon">📝</span> <span class="tab-label">1. Briefing Modular</span>
@@ -40,6 +40,9 @@
       </button>
       <button class="tab-btn" id="btnTabStrategy" onclick="switchTab('strategy')" title="Estratégia & Proposta ZSE">
         <span class="tab-icon">⚖️</span> <span class="tab-label">3. Estratégia (ZSE v1.0)</span>
+      </button>
+      <button class="tab-btn" id="btnTabProduction" onclick="switchTab('production')" title="Fábrica de Execução ZPE">
+        <span class="tab-icon">🔨</span> <span class="tab-label">4. Produção (ZPE v1.0)</span>
       </button>
     </div>
 
@@ -585,24 +588,373 @@
 
       </div>
 
-      <!-- BOTÃO PARA FAJAR O MOTOR 3 (ZPE - PRODUÇÃO) -->
+      <!-- BOTÃO PARA ACIONAR O MOTOR 3 (ZPE - PRODUÇÃO) -->
       <div class="dashboard-card" style="text-align:center; background:linear-gradient(145deg, rgba(16,185,129,0.1), rgba(15,23,42,0.95)); border-color:#10b981;">
         <h3 style="color:var(--text-branco); font-family:var(--font-heading); font-size:1.5rem; margin-bottom:0.6rem;">✅ Proposta Validada! Próxima Etapa: Como vamos produzir? (Motor ZPE)</h3>
         <p style="color:var(--text-muted); font-size:0.95rem; max-width:700px; margin:0 auto 1.8rem auto;">
-          Acionar o <strong>Motor ZPE (Zellgo Production Engine v1.0)</strong> transmitirá esta estratégia em JSON para a fábrica técnica, compilando diretrizes e prompts executáveis em nossas 8 Bibliotecas de Produção.
+          Acionar o <strong>Motor ZPE (Zellgo Production Engine v1.0)</strong> processará esta estratégia ao vivo no motor de Inteligência Artificial, compilando nossas <strong>5 Bibliotecas Mestras de Metodologia e Produção</strong>.
         </p>
         <div>
           <button id="btnTriggerZpe" class="btn btn-success" onclick="triggerProductionEngine()" style="font-size:1.1rem; padding:1rem 2.5rem; box-shadow: 0 4px 22px rgba(16,185,129,0.4);">
-            <span>🔨 ACIONAR MOTOR ZPE v1.0 (GERAR BIBLIOTECA DE PRODUÇÃO)</span> &rarr;
+            <span>🔨 ACIONAR MOTOR ZPE v1.0 (GERAR 5 BIBLIOTECAS DE PRODUÇÃO)</span> &rarr;
           </button>
         </div>
       </div>
 
     </section>
 
-  </main>
+    <!-- ======================================================================
+         VIEW 4: MOTOR ZPE v1.0 (PRODUCTION ENGINE & AS 5 BIBLIOTECAS MESTRAS)
+         ====================================================================== -->
+    <section id="viewProduction" class="view-section">
+      
+      <!-- CABEÇALHO DA FÁBRICA ZPE -->
+      <div class="dash-header">
+        <div class="dash-title-wrap">
+          <span id="zpeStatusTag" class="dash-status-tag" style="background:rgba(16,185,129,0.2); color:#10b981; border:1px solid #10b981;">🔨 FÁBRICA ZVI EM PRODUÇÃO • ZPE v1.0 AI</span>
+          <h2 id="zpeClientName" class="dash-client-name">Empresa Analisada (Bibliotecas Técnicas)</h2>
+          <span id="zpeSegment" class="dash-client-segment">Segmento: Operações Especializadas</span>
+        </div>
+        <div class="dash-score-wrap">
+          <div class="score-label">METODOLOGIA ZELLGO</div>
+          <div class="score-value" id="zpeLibrariesCount" style="color:var(--text-branco); font-size:1.5rem;">5 BIBLIOTECAS</div>
+        </div>
+      </div>
 
-  <!-- TOAST NOTIFICATION -->
+      <!-- BANNER DE ORIENTAÇÃO EXECUTIVA -->
+      <div id="zpeBannerNotice" class="dash-banner" style="border-color:#10b981; background:rgba(16, 185, 129, 0.12);">
+        <span style="font-size:1.5rem;">⚙️</span>
+        <div style="color:var(--text-branco);">
+          <strong>O Blueprint Vira Metodologia Imbatível:</strong> O Motor ZPE v1.0 estrutura as diretrizes profundas, Mecanismo Único e prompts acionáveis para potencializar o diretor de criação, a equipe de desenvolvimento e a diretoria do cliente.
+        </div>
+      </div>
+
+      <!-- SELETOR INTERNO DAS 5 BIBLIOTECAS -->
+      <div class="zpe-lib-nav" style="display:flex; flex-wrap:wrap; gap:0.6rem; margin: 1.5rem 0;">
+        <button class="btn-lib-tab active" id="btnLib1" onclick="showLibrary(1)">🤖 1. IA & Automação (Bot Blueprint)</button>
+        <button class="btn-lib-tab" id="btnLib2" onclick="showLibrary(2)">🌐 2. Digital Experience (LP & Mecanismo Único)</button>
+        <button class="btn-lib-tab" id="btnLib3" onclick="showLibrary(3)">🎨 3. Brand Direction (Tom de Voz)</button>
+        <button class="btn-lib-tab" id="btnLib4" onclick="showLibrary(4)">📈 4. Growth Engine (Aquisição)</button>
+        <button class="btn-lib-tab" id="btnLib5" onclick="showLibrary(5)" style="border-color:var(--accent-rose);">📦 5. Executive Delivery (Apresentação)</button>
+      </div>
+
+      <!-- ==========================================
+           BIBLIOTECA 1: ZELLGO BOT IA BLUEPRINT
+           ========================================== -->
+      <div id="zpeLibPanel1" class="zpe-library-panel active">
+        <div class="dashboard-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem; border-bottom:1px solid var(--border-color); padding-bottom:1rem;">
+            <div>
+              <h3 style="color:var(--text-branco); font-size:1.4rem; font-family:var(--font-heading); margin-bottom:0.3rem;">🤖 Biblioteca 1 — Blueprint Metodológico do Agente IA (Zellgo Bot)</h3>
+              <p style="color:var(--text-muted); font-size:0.9rem;">Estrutura profunda de 9 camadas para garantir que a inteligência da operação nunca fique defasada.</p>
+            </div>
+            <button class="btn btn-primary" onclick="copyTextToClipboard('zpeBotCopyText', 'Blueprint do Zellgo Bot 24/7 copiado com sucesso!')" style="padding:0.6rem 1.2rem; font-size:0.9rem;">📋 Copiar Blueprint & Prompt</button>
+          </div>
+
+          <div class="zpe-grid-2col">
+            <div class="zpe-info-box">
+              <span class="zpe-box-label">1. Identidade do Agente</span>
+              <div id="zpeBotIdentidade" class="zpe-box-val">Consultora Executiva Virtual de Atendimento e Vendas</div>
+            </div>
+            <div class="zpe-info-box">
+              <span class="zpe-box-label">2. Personalidade & Tom de Voz</span>
+              <div id="zpeBotPersonalidade" class="zpe-box-val">Tom resoluto, sofisticado, ágil e focado em soluções comerciais.</div>
+            </div>
+            <div class="zpe-info-box">
+              <span class="zpe-box-label">3. Objetivo Principal</span>
+              <div id="zpeBotObjetivo" class="zpe-box-val">Atender cotações no WhatsApp em menos de 15s e fechar reuniões qualificados.</div>
+            </div>
+            <div class="zpe-info-box">
+              <span class="zpe-box-label">6. Fluxo Conversacional</span>
+              <div id="zpeBotFluxo" class="zpe-box-val">1. Saudação Rápida ➔ 2. Diagnóstico da Dor ➔ 3. Mecanismo Único ➔ 4. Fechamento/Escalonamento</div>
+            </div>
+          </div>
+
+          <div class="zpe-grid-2col" style="margin-top:1rem;">
+            <div class="zpe-info-box">
+              <span class="zpe-box-label" style="color:#10b981;">4. Regras de Atendimento</span>
+              <ul id="zpeBotRegras" class="zpe-list">
+                <li>Responder em blocos curtos e humanos (estilo WhatsApp).</li>
+                <li>Ancorar a autoridade e garantia antes de revelar orçamentos complexos.</li>
+              </ul>
+            </div>
+            <div class="zpe-info-box">
+              <span class="zpe-box-label" style="color:var(--accent-cyan);">5. Perguntas de Qualificação</span>
+              <ul id="zpeBotPerguntas" class="zpe-list">
+                <li>Qual é a urgência e dimensão do projeto que precisamos atender?</li>
+                <li>Qual o seu prazo ideal de entrega para o início da operação?</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="zpe-grid-2col" style="margin-top:1rem;">
+            <div class="zpe-info-box" style="border-left:4px solid #ef4444;">
+              <span class="zpe-box-label" style="color:#ef4444;">7. Situações Proibidas</span>
+              <div id="zpeBotProibido" class="zpe-box-val">Nunca prometer descontos inviáveis, citar concorrentes ou afirmar incompetência técnica.</div>
+            </div>
+            <div class="zpe-info-box" style="border-left:4px solid var(--accent-gold);">
+              <span class="zpe-box-label" style="color:var(--accent-gold);">8. Escalonamento Humano</span>
+              <div id="zpeBotEscalonamento" class="zpe-box-val">Acionar consultor especialista no WhatsApp apenas quando o cliente estiver 100% qualificado para contrato alto.</div>
+            </div>
+          </div>
+
+          <div style="margin-top:1.5rem;">
+            <span class="zpe-box-label" style="font-size:1rem; color:var(--accent-rose);">9. System Prompt Final (Copy/Paste Integrado)</span>
+            <div class="code-terminal" id="zpeBotCopyText" style="margin-top:0.5rem; background:#080c14; border:1px solid #1e293b; padding:1.2rem; border-radius:12px; color:#94a3b8; font-family:monospace; font-size:0.95rem; line-height:1.6; max-height:260px; overflow-y:auto;">
+Você é o Agente Inteligente da Empresa, operando pelo sistema Zellgo Bot 24/7. Seu tom de voz é elegante, resoluto e altamente técnico. Sua missão é recepcionar leads oriundos do Google e Instagram, respondendo com precisão clínica em menos de 15 segundos. Ao identificar a dor principal do contratante, apresente nosso Mecanismo Único de excelência operacional e qualifique a intenção de investimento. Siga rigorosamente o fluxo conversacional de 4 etapas...
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           BIBLIOTECA 2: DIGITAL EXPERIENCE (LP ZVI FRAMEWORK)
+           ========================================== -->
+      <div id="zpeLibPanel2" class="zpe-library-panel">
+        <div class="dashboard-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem; border-bottom:1px solid var(--border-color); padding-bottom:1rem;">
+            <div>
+              <h3 style="color:var(--text-branco); font-size:1.4rem; font-family:var(--font-heading); margin-bottom:0.3rem;">🌐 Biblioteca 2 — Digital Experience (LP ZVI Framework 9 Dobras)</h3>
+              <p style="color:var(--text-muted); font-size:0.9rem;">Estrutura de conversão High-End centrada no Mecanismo Único para diferenciar a marca.</p>
+            </div>
+            <button class="btn btn-primary" onclick="copyTextToClipboard('zpeLpContainer', 'Wireframe e Copy da Landing Page copiados!')" style="padding:0.6rem 1.2rem; font-size:0.9rem;">📋 Copiar Estrutura LP ZVI</button>
+          </div>
+
+          <div id="zpeLpContainer">
+            <!-- 01 Hero -->
+            <div class="zpe-lp-step">
+              <div class="zpe-lp-num">01 HERO (PROMESSA)</div>
+              <div id="zpeLpHero" class="zpe-lp-title">Engenharia e Operações de Altíssima Performance sem Competições por Preço Baixo</div>
+            </div>
+            <!-- 02 Problema -->
+            <div class="zpe-lp-step">
+              <div class="zpe-lp-num">02 PROBLEMA (A DOR REAL DO CLIENTE)</div>
+              <div id="zpeLpProblema" class="zpe-lp-desc">O mercado sofre com fornecedores amadores que prometem atendimento humanizado e entregam atrasos e inconsistência.</div>
+            </div>
+            <!-- 03 MECANISMO ÚNICO (DESTAQUE ZELLGO) -->
+            <div class="zpe-lp-step highlight-mechanism">
+              <div class="zpe-lp-num" style="color:var(--text-branco); background:var(--accent-rose); display:inline-block; padding:0.2rem 0.6rem; border-radius:6px; font-weight:700;">⭐ 03 MECANISMO ÚNICO (O SEGREDO DA DIFERENCIAÇÃO)</div>
+              <div id="zpeLpMecanismo" class="zpe-lp-title" style="font-size:1.3rem; margin-top:0.6rem; color:#ffffff;">Metodologia Operacional Blindada 360° (Precisão de Diagnóstico + Bot IA 24/7 + Execução Zero Falhas)</div>
+            </div>
+            <!-- 04 Solução -->
+            <div class="zpe-lp-step">
+              <div class="zpe-lp-num">04 SOLUÇÃO (COMO RESOLVEMOS)</div>
+              <div id="zpeLpSolucao" class="zpe-lp-desc">Integração completa entre processos validados e automação contínua para proteger seu investimento.</div>
+            </div>
+            <!-- 05 Prova -->
+            <div class="zpe-lp-step">
+              <div class="zpe-lp-num">05 PROVA (AUTORIDADE E GARANTIA)</div>
+              <div id="zpeLpProva" class="zpe-lp-desc">Casos validados, padrão de rigor executivo AAA e compliance total com prazos e escopos.</div>
+            </div>
+            <!-- 06 Processo -->
+            <div class="zpe-lp-step">
+              <div class="zpe-lp-num">06 PROCESSO (COMO FUNCIONA CONTRATAR)</div>
+              <div id="zpeLpProcesso" class="zpe-lp-desc">Passo 1: Auditoria Diagnóstica. Passo 2: Alinhamento de Metas. Passo 3: Execução Imediata do Plano.</div>
+            </div>
+            <!-- 07 Oferta -->
+            <div class="zpe-lp-step">
+              <div class="zpe-lp-num">07 OFERTA (PRÓXIMO PASSO)</div>
+              <div id="zpeLpOferta" class="zpe-lp-desc">Apresentação da solução modular com investimento transparente e retorno sobre margem.</div>
+            </div>
+            <!-- 08 FAQ -->
+            <div class="zpe-lp-step">
+              <div class="zpe-lp-num">08 FAQ (QUEBRA DE OBJEÇÕES)</div>
+              <div id="zpeLpFaq" class="zpe-lp-desc">Perguntas respondidas de forma cirúrgica sobre garantia, suporte 24/7 e tempo de entrega.</div>
+            </div>
+            <!-- 09 CTA Final -->
+            <div class="zpe-lp-step" style="border-bottom:none;">
+              <div class="zpe-lp-num">09 CTA FINAL (CONVERSÃO NO BOT 24/7)</div>
+              <div id="zpeLpCta" class="zpe-lp-title" style="color:var(--accent-rose);">🚀 Solicitar Diagnóstico Operacional via Agente Inteligente WhatsApp &rarr;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           BIBLIOTECA 3: BRAND DIRECTION (POSICIONAMENTO)
+           ========================================== -->
+      <div id="zpeLibPanel3" class="zpe-library-panel">
+        <div class="dashboard-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem; border-bottom:1px solid var(--border-color); padding-bottom:1rem;">
+            <div>
+              <h3 style="color:var(--text-branco); font-size:1.4rem; font-family:var(--font-heading); margin-bottom:0.3rem;">🎨 Biblioteca 3 — Direção Estratégica de Marca (Brand Direction)</h3>
+              <p style="color:var(--text-muted); font-size:0.9rem;">O motor potencializa o Diretor de Criação fornecendo o alinhamento de arquétipo e psicologia visual.</p>
+            </div>
+            <button class="btn btn-primary" onclick="copyTextToClipboard('zpeBrandContainer', 'Direção de Marca copiada!')" style="padding:0.6rem 1.2rem; font-size:0.9rem;">📋 Copiar Direção de Marca</button>
+          </div>
+
+          <div id="zpeBrandContainer">
+            <div class="zpe-grid-3col">
+              <div class="zpe-info-box">
+                <span class="zpe-box-label">Posicionamento</span>
+                <div id="zpeBrandPos" class="zpe-box-val" style="color:var(--text-branco); font-weight:600;">Premium • Autoridade Técnica AAA</div>
+              </div>
+              <div class="zpe-info-box">
+                <span class="zpe-box-label">Arquétipo de Marca</span>
+                <div id="zpeBrandArq" class="zpe-box-val" style="color:var(--accent-gold); font-weight:600;">O Governante (Precisão & Eficiência)</div>
+              </div>
+              <div class="zpe-info-box">
+                <span class="zpe-box-label">Sensação Desejada</span>
+                <div id="zpeBrandSensacao" class="zpe-box-val">Segurança absoluta e superioridade na vitrine digital.</div>
+              </div>
+            </div>
+
+            <!-- Paleta de Cores Recomendada -->
+            <div style="margin-top:1.5rem;">
+              <span class="zpe-box-label">Direção Visual & Paleta Sugerida (HEX + Justificativa Psicológica)</span>
+              <div id="zpeBrandPaletaGrid" class="zpe-palette-grid">
+                <div class="palette-swatch-card">
+                  <div class="swatch-color" style="background:#0F172A;">#0F172A</div>
+                  <div class="swatch-info"><strong>Azul Slate Noturno:</strong> Transmite estabilidade executiva e rigor técnico sem ruídos.</div>
+                </div>
+                <div class="palette-swatch-card">
+                  <div class="swatch-color" style="background:#F43F5E;">#F43F5E</div>
+                  <div class="swatch-info"><strong>Rosa Vibrante / Acento:</strong> Ponto focal de alta conversão para botões e chamadas.</div>
+                </div>
+                <div class="palette-swatch-card">
+                  <div class="swatch-color" style="background:#F8FAFC; color:#0F172A;">#F8FAFC</div>
+                  <div class="swatch-info"><strong>Geada Minimalista:</strong> Contraste limpo de alta legibilidade para relatórios e LPs.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Palavras Permitidas vs Proibidas -->
+            <div class="zpe-grid-2col" style="margin-top:1.5rem;">
+              <div class="zpe-info-box" style="border-top:3px solid #10b981;">
+                <span class="zpe-box-label" style="color:#10b981;">🟢 Vocabulário de Poder (Palavras que Usamos)</span>
+                <div id="zpeBrandUsar" class="zpe-tags-wrap">
+                  <span class="tag-badge green">Precisão</span> <span class="tag-badge green">Mecanismo Único</span> <span class="tag-badge green">Autoridade</span> <span class="tag-badge green">Eficiência Operacional</span> <span class="tag-badge green">Garantia</span>
+                </div>
+              </div>
+              <div class="zpe-info-box" style="border-top:3px solid #ef4444;">
+                <span class="zpe-box-label" style="color:#ef4444;">🔴 Vocabulário Proibido (Clichês Banais)</span>
+                <div id="zpeBrandProibido" class="zpe-tags-wrap">
+                  <span class="tag-badge red">Baratinho</span> <span class="tag-badge red">Atendimento humanizado comunzinho</span> <span class="tag-badge red">Orçamento grátis sem compromisso</span> <span class="tag-badge red">Promoção</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           BIBLIOTECA 4: GROWTH ENGINE (AQUISIÇÃO & CAMPANHAS)
+           ========================================== -->
+      <div id="zpeLibPanel4" class="zpe-library-panel">
+        <div class="dashboard-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem; border-bottom:1px solid var(--border-color); padding-bottom:1rem;">
+            <div>
+              <h3 style="color:var(--text-branco); font-size:1.4rem; font-family:var(--font-heading); margin-bottom:0.3rem;">📈 Biblioteca 4 — Aquisição ZVI (Growth Engine)</h3>
+              <p style="color:var(--text-muted); font-size:0.9rem;">Estratégia completa de aquisição conectando ICP, Google Ads de intenção, Meta Ads e LP.</p>
+            </div>
+            <button class="btn btn-primary" onclick="copyTextToClipboard('zpeGrowthContainer', 'Biblioteca de Aquisição copiada!')" style="padding:0.6rem 1.2rem; font-size:0.9rem;">📋 Copiar Growth Engine</button>
+          </div>
+
+          <div id="zpeGrowthContainer">
+            <div class="zpe-grid-3col">
+              <div class="zpe-info-box">
+                <span class="zpe-box-label">1. ICP Prioritário</span>
+                <div id="zpeGrowthIcp" class="zpe-box-val">Tomadores de decisão e proprietários que valorizam agilidade e sofisticação de entrega.</div>
+              </div>
+              <div class="zpe-info-box">
+                <span class="zpe-box-label">2. Canal Recomendado & Oferta</span>
+                <div id="zpeGrowthCanal" class="zpe-box-val">Google Ads (Intenção Urgente) + WhatsApp Automático 24/7 com cotação imediata.</div>
+              </div>
+              <div class="zpe-info-box">
+                <span class="zpe-box-label">7. Métrica Principal de Sucesso</span>
+                <div id="zpeGrowthMetrica" class="zpe-box-val" style="color:#10b981; font-weight:600;">CPA Qualificado (Custo por Cotação) & Tempo de Resposta < 15s.</div>
+              </div>
+            </div>
+
+            <!-- Google Ads & Meta Ads -->
+            <div class="zpe-grid-2col" style="margin-top:1.5rem;">
+              <div class="zpe-info-box" style="background:rgba(15,23,42,0.6);">
+                <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.8rem;">
+                  <span style="font-size:1.3rem;">🔍</span> <strong style="color:var(--text-branco); font-size:1.1rem;">4. Google Ads (Search Intencional)</strong>
+                </div>
+                <span class="zpe-box-label">Palavras-Chave de Alto Valor (Fundo de Funil):</span>
+                <div id="zpeGrowthGadsKeywords" class="zpe-box-val" style="font-family:monospace; color:var(--accent-cyan);">+contratar empresa especialista, +melhor serviço profissional na região</div>
+                <span class="zpe-box-label" style="margin-top:0.8rem;">Palavras Negativas:</span>
+                <div id="zpeGrowthGadsNegatives" class="zpe-box-val" style="font-family:monospace; color:#ef4444;">-gratis, -curso, -vaga, -emprego, -barato, -como fazer em casa</div>
+              </div>
+
+              <div class="zpe-info-box" style="background:rgba(15,23,42,0.6);">
+                <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.8rem;">
+                  <span style="font-size:1.3rem;">📱</span> <strong style="color:var(--text-branco); font-size:1.1rem;">5. Meta Ads (Instagram Autoridade & Hook)</strong>
+                </div>
+                <span class="zpe-box-label">Conceito Criativo & Hook (Gancho 0-3s):</span>
+                <div id="zpeGrowthMetaHook" class="zpe-box-val" style="color:var(--text-branco);">"Cansado de atrasos ao contratar serviços? Conheça o Mecanismo Único que garante entrega no prazo sem dor de cabeça."</div>
+                <span class="zpe-box-label" style="margin-top:0.8rem;">Roteiro Curto (Reels / Stories):</span>
+                <div id="zpeGrowthMetaScript" class="zpe-box-val" style="font-size:0.88rem;">Cena 1: Quebrar o clichê do mercado. Cena 2: Apresentar o Mecanismo Único 360°. Cena 3: CTA para chamar no Zellgo Bot agora.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           BIBLIOTECA 5: EXECUTIVE DELIVERY (A CEREJA DO BOLO)
+           ========================================== -->
+      <div id="zpeLibPanel5" class="zpe-library-panel">
+        <div class="dashboard-card" style="border-color:var(--accent-rose); box-shadow:0 10px 40px rgba(244,63,94,0.15);">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem; border-bottom:1px solid rgba(244,63,94,0.3); padding-bottom:1rem;">
+            <div>
+              <span class="badge-tag badge-rose" style="margin-bottom:0.4rem; display:inline-block;">💎 A CEREJA DO BOLO • DOCUMENTO DE REUNIÃO</span>
+              <h3 style="color:var(--text-branco); font-size:1.5rem; font-family:var(--font-heading); margin-top:0.3rem;">📦 Biblioteca 5 — Executive Delivery (Resumo de Diretoria & Próximos Passos)</h3>
+              <p style="color:var(--text-muted); font-size:0.9rem;">O documento consolidado para apresentar na reunião de fechamento com o empresário ou conselho.</p>
+            </div>
+            <button class="btn btn-rose" onclick="copyTextToClipboard('zpeExecContainer', 'Plano Executivo de Reunião copiado!')" style="padding:0.8rem 1.6rem; font-size:1rem; font-weight:700;">📦 Copiar Resumo Executivo para Reunião</button>
+          </div>
+
+          <div id="zpeExecContainer">
+            <h4 id="zpeExecTitle" style="color:var(--text-branco); font-size:1.3rem; margin-bottom:0.8rem;">Plano de Transformação Modular e Execução Direcionada</h4>
+            <div id="zpeExecResumo" style="background:rgba(244,63,94,0.08); border-left:4px solid var(--accent-rose); padding:1.2rem; border-radius:8px; color:var(--text-branco); font-size:1.05rem; line-height:1.6; margin-bottom:1.5rem;">
+              A auditoria ZDE mapeou as alavancas de rentabilidade da operação e a estratégia ZSE formulou os módulos de virada. Esta consolidação de Engenharia Operacional destrava o crescimento contínuo por meio do Mecanismo Único e automação 24/7, blindando contra competição por preço baixo e garantindo ROI sobre a margem líquida.
+            </div>
+
+            <!-- Próximos Passos & Cronograma -->
+            <div class="zpe-grid-2col">
+              <div class="zpe-info-box">
+                <span class="zpe-box-label" style="color:var(--accent-rose); font-size:1.05rem;">🚀 Próximos Passos (Imediatos)</span>
+                <ol id="zpeExecNextSteps" class="zpe-ol" style="margin-top:0.6rem; padding-left:1.2rem; color:var(--text-branco); line-height:1.8;">
+                  <li><strong>Aprovação Formal:</strong> Assinatura do termo do projeto e ativação do retainer modular.</li>
+                  <li><strong>Kick-off & Mecanismo Único (Dias 1 a 7):</strong> Alinhamento do guia de marca e validação do fluxo do bot.</li>
+                  <li><strong>Go-Live em Produção (Dias 8 a 15):</strong> Publicação da LP High-End e ativação das campanhas de alta intenção.</li>
+                </ol>
+              </div>
+
+              <div class="zpe-info-box">
+                <span class="zpe-box-label" style="color:var(--accent-cyan); font-size:1.05rem;">⏳ Cronograma Trimestral de Retorno</span>
+                <div id="zpeExecCronograma" style="margin-top:0.6rem; color:var(--text-muted); line-height:1.7;">
+                  <p><strong style="color:#ffffff;">Mês 1 (Fundação & Bot 24/7):</strong> Instalação da inteligência artificial e eliminação do gargalo operacional.</p>
+                  <p><strong style="color:#ffffff;">Mês 2 (Vitrine & Conversão):</strong> Lançamento do ecossistema visual e LP focar em Mecanismo Único.</p>
+                  <p><strong style="color:#ffffff;">Mês 3 (Escala & Retainer):</strong> Otimização de CPA Qualificado e expansão territorial das campanhas.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Matriz de Responsabilidades -->
+            <div style="margin-top:1.5rem;">
+              <span class="zpe-box-label" style="font-size:1.05rem; color:var(--accent-gold);">⚖️ Matriz de Responsabilidades (Quem faz o que)</span>
+              <div id="zpeExecRespGrid" class="zpe-grid-2col" style="margin-top:0.6rem;">
+                <div class="zpe-resp-box" style="background:#0F172A; padding:1rem; border-radius:8px; border:1px solid #334155;">
+                  <strong style="color:var(--accent-gold); font-size:1.1rem; display:block; margin-bottom:0.4rem;">🏛️ Arquiteto Chefe & Equipe Zellgo</strong>
+                  <p style="color:var(--text-muted); font-size:0.92rem; margin:0;">Desenvolvimento do Mecanismo Único, engenharia do System Prompt, design high-end, compra de tráfego intencional e suporte técnico evolutivo.</p>
+                </div>
+                <div class="zpe-resp-box" style="background:#0F172A; padding:1rem; border-radius:8px; border:1px solid #334155;">
+                  <strong style="color:#ffffff; font-size:1.1rem; display:block; margin-bottom:0.4rem;">🤝 Cliente / Diretoria Contratante</strong>
+                  <p style="color:var(--text-muted); font-size:0.92rem; margin:0;">Aprovação rápida de respostas técnicas do bot, envio de logomarcas/ativos e condução das reuniões finais de fechamento com os leads gerados.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TOAST NOTIFICATION -->
   <div id="toast" class="toast-notice">
     <span class="toast-icon">✨</span>
     <div class="toast-text">
