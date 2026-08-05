@@ -1,7 +1,6 @@
 /* ==========================================================================
    ZELLGO VISUAL INTELLIGENCE (ZVI) — ENGINE LOGIC & RADAR CHART RENDERER
-   Compatível com zellgo.com.br / ZDE v1.1 - Paleta Rosa Vibrante / Noite
-   Análise Ativa no Painel: Restaurante Rio Zen Sushi
+   Compatível com zellgo.com.br / ZDE v2.1 - Paleta Rosa Vibrante / Noite
    ========================================================================== */
 
 let currentBlock = 0;
@@ -66,23 +65,35 @@ function changeBlock(direction) {
   }
 }
 
+// O Botão Verde (Export/Enviar) agora aparece APENAS no Bloco H (última página)!
 function updateNavState() {
   const btnPrev = document.getElementById('btnPrev');
   const btnNext = document.getElementById('btnNext');
+  const btnExport = document.getElementById('btnExport');
   
-  btnPrev.disabled = (currentBlock === 0);
+  if (btnPrev) {
+    btnPrev.disabled = (currentBlock === 0);
+  }
   
   if (currentBlock === totalBlocks - 1) {
-    btnNext.innerHTML = '🚀 Concluir e Transmitir para IA';
-    btnNext.style.background = 'linear-gradient(135deg, #f43f5e, #ff7185)';
+    // Bloco 08 (Último bloco do briefing): esconde o botão "Próximo" e exibe APENAS o botão verde de Enviar
+    if (btnNext) btnNext.style.display = 'none';
+    if (btnExport) {
+      btnExport.style.display = 'inline-flex';
+      btnExport.innerHTML = '🚀 Enviar Briefing e Finalizar';
+    }
   } else {
-    btnNext.innerHTML = 'Próximo Bloco <span>&rarr;</span>';
-    btnNext.style.background = '';
+    // Blocos 01 ao 07: exibe apenas os botões de navegação Próximo/Anterior
+    if (btnNext) {
+      btnNext.style.display = 'inline-flex';
+      btnNext.innerHTML = 'Próximo Bloco <span>&rarr;</span>';
+    }
+    if (btnExport) btnExport.style.display = 'none';
   }
 }
 
 // ==========================================================================
-// TRANSMISSÃO PARA O MOTOR ZDE (VIA WEBHOOK/CANAL ZELLGO + FALLBACK CLIPBOARD)
+// TRANSMISSÃO PARA O MOTOR ZDE (SEM DOWNLOAD ARCAICO DE JASON!)
 // ==========================================================================
 function getRadioVal(name) {
   const el = document.querySelector(`input[name="${name}"]:checked`);
@@ -90,9 +101,15 @@ function getRadioVal(name) {
 }
 
 function sendToZellgoEngine() {
+  const btnExport = document.getElementById('btnExport');
+  if (btnExport) {
+    btnExport.disabled = true;
+    btnExport.innerHTML = '⏳ Transmitindo ao Motor ZDE...';
+  }
+
   const payload = {
     metadata: {
-      engine: "ZDE v1.1 (Zellgo Discovery Engine)",
+      engine: "ZDE v2.1 (Zellgo Discovery Engine)",
       source_domain: "https://zellgo.com.br/zvi",
       timestamp: new Date().toISOString()
     },
@@ -134,43 +151,46 @@ function sendToZellgoEngine() {
 
   const jsonString = JSON.stringify(payload, null, 2);
 
+  // Guarda no Clipboard em segundo plano (útil para consultores que quiserem colar no CRM ou ChatGPT/Antigravity)
   if (navigator.clipboard) {
-    navigator.clipboard.writeText(jsonString).then(() => {
-      showToast('🚀 Briefing Transmitido!', 'Os dados foram empacotados em JSON e estão prontos no clipboard. Ao rodar no servidor zellgo.com.br, um Webhook transmitirá estes dados direto ao canal do seu time automaticamente!');
-    }).catch(err => {
-      showToast('Briefing Gerado!', 'Pronto para processamento.');
-    });
+    navigator.clipboard.writeText(jsonString).catch(() => {});
   }
 
-  triggerFileDownload(payload.client_identity.nome, jsonString);
-}
+  // Notificação elegante de sucesso sem acionar nenhum download invasivo!
+  showToast(
+    '✅ Briefing Transmitido!',
+    'Os dados do seu negócio foram registrados com sucesso no ecossistema Zellgo. Encaminhando para a visualização demonstrativa...'
+  );
 
-function triggerFileDownload(clientName, content) {
-  const cleanName = clientName.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase() || 'cliente';
-  const blob = new Blob([content], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `briefing_zde_${cleanName}.json`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  // Transição suave e impactante para a aba do Painel de Demonstração (Preview)
+  setTimeout(() => {
+    switchTab('dashboard');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (btnExport) {
+      btnExport.disabled = false;
+      btnExport.innerHTML = '🚀 Enviar Briefing e Finalizar';
+    }
+  }, 1600);
 }
 
 function showToast(title, desc) {
   const toast = document.getElementById('toast');
-  document.getElementById('toastTitle').textContent = title;
-  document.getElementById('toastDesc').textContent = desc;
+  const tTitle = document.getElementById('toastTitle');
+  const tDesc = document.getElementById('toastDesc');
   
-  toast.classList.add('show');
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, 5000);
+  if (tTitle) tTitle.textContent = title;
+  if (tDesc) tDesc.textContent = desc;
+  
+  if (toast) {
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 6000);
+  }
 }
 
 // ==========================================================================
-// RENDERIZADOR DO GRÁFICO DE RADAR - RESTAURANTE RIO ZEN SUSHI
+// RENDERIZADOR DO GRÁFICO DE RADAR - CASE DE REFERÊNCIA ZVI
 // ==========================================================================
 function renderRadarChart() {
   const canvas = document.getElementById('radarChart');
@@ -185,7 +205,6 @@ function renderRadarChart() {
   
   ctx.clearRect(0, 0, width, height);
 
-  // Notas Reais Processadas para o Restaurante Rio Zen Sushi
   const axes = [
     { name: "Posicionamento", value: 3, max: 5 },
     { name: "Marca (Branding)", value: 4, max: 5 },
@@ -237,7 +256,6 @@ function renderRadarChart() {
     ctx.strokeStyle = "rgba(245, 245, 245, 0.12)";
     ctx.stroke();
 
-    // Rótulos dos eixos
     const labelDistance = radius + 25;
     const lx = centerX + Math.cos(angle) * labelDistance;
     const ly = centerY + Math.sin(angle) * labelDistance;

@@ -30,7 +30,7 @@
       </div>
     </div>
     
-    <!-- ABA ATIVA POR PADRÃO AGORA É O BRIEFING PARA RECEBER O PARCEIRO/LEAD -->
+    <!-- ABA ATIVA POR PADRÃO: MÓDULO DE BRIEFING -->
     <div class="view-tabs">
       <button class="tab-btn active" id="btnTabBriefing" onclick="switchTab('briefing')" title="Módulo de Briefing">
         <span class="tab-icon">📝</span> <span class="tab-label">Briefing</span>
@@ -66,7 +66,7 @@
     <section id="viewBriefing" class="view-section active">
       <div class="form-container">
         
-        <!-- SIDEBAR DE NAVEGAÇÃO DOS BLOCOS (RESPONSIVO: 4 EM CIMA / 4 EM BAIXO NO MOBILE) -->
+        <!-- SIDEBAR DE NAVEGAÇÃO DOS BLOCOS -->
         <aside class="sidebar-nav">
           <h2 class="sidebar-title">Blocos de Estratégia</h2>
           <ul class="block-nav-list">
@@ -93,7 +93,7 @@
                 <p class="block-subtitle">O ponto de partida para compreendermos o negócio, seu segmento de mercado e solidez atual.</p>
               </header>
               <div class="form-group">
-                <label class="form-label" for="emp_nome">Nome da Empresa ou Marca <span class="form-sublabel">*(Obrigatorio)*</span></label>
+                <label class="form-label" for="emp_nome">Nome da Empresa ou Marca <span class="form-sublabel">*(Obrigatório)*</span></label>
                 <input type="text" id="emp_nome" class="form-control" placeholder="Ex: Sakura Gastronomia / Zellgo Tech / Studio Alpha / E-commerce Moda">
               </div>
               <div class="form-group">
@@ -288,8 +288,8 @@
               </button>
               
               <div class="action-buttons-group">
-                <button class="btn btn-success" id="btnExport" onclick="sendToZellgoEngine()" title="Envia o briefing para o ecossistema Zellgo e processa o diagnóstico">
-                  <span>🚀 Enviar e Processar com IA</span>
+                <button class="btn btn-success" id="btnExport" onclick="sendToZellgoEngine()" title="Envia o briefing para o ecossistema Zellgo e processa o diagnóstico" style="display: none;">
+                  <span>🚀 Enviar Briefing e Finalizar</span>
                 </button>
 
                 <button class="btn btn-primary" id="btnNext" onclick="changeBlock(1)">
@@ -309,7 +309,6 @@
          ====================================================================== -->
     <section id="viewDashboard" class="view-section">
       
-      <!-- ALERTA DE PREVIEW PARA O PARCEIRO/TESTADOR -->
       <div style="background:rgba(244, 63, 94, 0.12); border:1px solid var(--accent-rose); padding:1rem 1.4rem; border-radius:var(--radius-md); margin-bottom:1.8rem; display:flex; align-items:center; gap:1rem; font-size:0.9rem;">
         <span style="font-size:1.5rem;">💡</span>
         <div style="color:var(--text-branco);">
@@ -336,7 +335,6 @@
       <!-- GRID DO GRÁFICO E ESCOPO -->
       <div class="dashboard-grid">
         
-        <!-- RADAR CHART CARD -->
         <div class="dashboard-card">
           <header class="card-header">
             <div class="card-title-group">
@@ -352,7 +350,6 @@
           </p>
         </div>
 
-        <!-- ESCOPO RECOMENDADO -->
         <div class="dashboard-card">
           <header class="card-header">
             <div class="card-title-group">
