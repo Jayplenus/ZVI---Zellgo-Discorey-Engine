@@ -61,39 +61,33 @@ function changeBlock(direction) {
   if (next >= 0 && next < totalBlocks) {
     goToBlock(next);
   } else if (next === totalBlocks) {
+    // Ao clicar em Próximo no Bloco 08 (H), o botão Rosa executa direto o envio para a IA!
     sendToZellgoEngine();
   }
 }
 
-// O Botão Verde (Export/Enviar) agora aparece APENAS no Bloco H (última página)!
+// O Próprio Botão Rosa assume o papel de Enviar quando o lead chega à última página!
 function updateNavState() {
   const btnPrev = document.getElementById('btnPrev');
   const btnNext = document.getElementById('btnNext');
-  const btnExport = document.getElementById('btnExport');
   
   if (btnPrev) {
     btnPrev.disabled = (currentBlock === 0);
   }
   
-  if (currentBlock === totalBlocks - 1) {
-    // Bloco 08 (Último bloco do briefing): esconde o botão "Próximo" e exibe APENAS o botão verde de Enviar
-    if (btnNext) btnNext.style.display = 'none';
-    if (btnExport) {
-      btnExport.style.display = 'inline-flex';
-      btnExport.innerHTML = '🚀 Enviar Briefing e Finalizar';
+  if (btnNext) {
+    if (currentBlock === totalBlocks - 1) {
+      // Bloco 08: o botão Rosa ganha superpoderes de conclusão e análise IA!
+      btnNext.innerHTML = '🚀 Concluir e Analisar com IA';
+    } else {
+      // Blocos 01 ao 07
+      btnNext.innerHTML = 'Próximo <span>&rarr;</span>';
     }
-  } else {
-    // Blocos 01 ao 07: exibe apenas os botões de navegação Próximo/Anterior
-    if (btnNext) {
-      btnNext.style.display = 'inline-flex';
-      btnNext.innerHTML = 'Próximo Bloco <span>&rarr;</span>';
-    }
-    if (btnExport) btnExport.style.display = 'none';
   }
 }
 
 // ==========================================================================
-// TRANSMISSÃO PARA O MOTOR ZDE (SEM DOWNLOAD ARCAICO DE JASON!)
+// TRANSMISSÃO PARA O MOTOR ZDE E GOOGLE AI (SEM DOWNLOAD ARCAICO!)
 // ==========================================================================
 function getRadioVal(name) {
   const el = document.querySelector(`input[name="${name}"]:checked`);
@@ -101,10 +95,10 @@ function getRadioVal(name) {
 }
 
 function sendToZellgoEngine() {
-  const btnExport = document.getElementById('btnExport');
-  if (btnExport) {
-    btnExport.disabled = true;
-    btnExport.innerHTML = '⏳ Transmitindo ao Motor ZDE...';
+  const btnNext = document.getElementById('btnNext');
+  if (btnNext) {
+    btnNext.disabled = true;
+    btnNext.innerHTML = '⏳ Processando com Inteligência Zellgo...';
   }
 
   const payload = {
@@ -151,26 +145,26 @@ function sendToZellgoEngine() {
 
   const jsonString = JSON.stringify(payload, null, 2);
 
-  // Guarda no Clipboard em segundo plano (útil para consultores que quiserem colar no CRM ou ChatGPT/Antigravity)
+  // Guarda no Clipboard em segundo plano (útil para consultores que quiserem colar no CRM, WhatsApp ou IA)
   if (navigator.clipboard) {
     navigator.clipboard.writeText(jsonString).catch(() => {});
   }
 
-  // Notificação elegante de sucesso sem acionar nenhum download invasivo!
+  // Notificação elegante de sucesso
   showToast(
     '✅ Briefing Transmitido!',
-    'Os dados do seu negócio foram registrados com sucesso no ecossistema Zellgo. Encaminhando para a visualização demonstrativa...'
+    'Os dados do seu negócio foram processados pelo motor Zellgo. Encaminhando para a visualização...'
   );
 
-  // Transição suave e impactante para a aba do Painel de Demonstração (Preview)
+  // Transição suave para o painel
   setTimeout(() => {
     switchTab('dashboard');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (btnExport) {
-      btnExport.disabled = false;
-      btnExport.innerHTML = '🚀 Enviar Briefing e Finalizar';
+    if (btnNext) {
+      btnNext.disabled = false;
+      btnNext.innerHTML = '🚀 Concluir e Analisar com IA';
     }
-  }, 1600);
+  }, 1500);
 }
 
 function showToast(title, desc) {
