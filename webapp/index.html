@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zellgo Visual Intelligence (ZVI) — Discovery Engine (ZDE v2.2)</title>
-  <meta name="description" content="Módulo de Inteligência Diagnóstica e Briefing Modular da Zellgo. Projeção de estratégias avançadas para marcas de alto padrão e empresas orientadas ao crescimento.">
+  <title>Zellgo Visual Intelligence (ZVI) — Suíte de Motores OS (ZDE + ZSE)</title>
+  <meta name="description" content="Módulo de Inteligência Diagnóstica e Estratégica da Zellgo. Projeção de estratégias avançadas e orçamentos modulares para marcas de alto padrão e empresas orientadas ao crescimento.">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="https://zellgo.com.br/favicon.ico">
 </head>
@@ -26,23 +26,26 @@
       </div>
       <div class="brand-text">
         <span class="brand-title">Zellgo <span style="font-weight:300;">Visual Intelligence</span></span>
-        <span class="brand-subtitle">Discovery Engine • zellgo.com.br</span>
+        <span class="brand-subtitle">Operating System • ZDE & ZSE v1.0</span>
       </div>
     </div>
     
-    <!-- ABA ATIVA POR PADRÃO: MÓDULO DE BRIEFING -->
-    <div class="view-tabs">
+    <!-- COMANDO CENTRAL DE ABAS: BRIEFING -> MOTOR 1 (ZDE) -> MOTOR 2 (ZSE) -->
+    <div class="view-tabs" style="display:flex; flex-wrap:wrap; gap:0.5rem;">
       <button class="tab-btn active" id="btnTabBriefing" onclick="switchTab('briefing')" title="Módulo de Briefing">
-        <span class="tab-icon">📝</span> <span class="tab-label">Briefing</span>
+        <span class="tab-icon">📝</span> <span class="tab-label">1. Briefing Modular</span>
       </button>
-      <button class="tab-btn" id="btnTabDashboard" onclick="switchTab('dashboard')" title="Painel do Arquiteto">
-        <span class="tab-icon">📊</span> <span class="tab-label">Painel ZVI (Estratégia)</span>
+      <button class="tab-btn" id="btnTabDashboard" onclick="switchTab('dashboard')" title="Diagnóstico ZDE">
+        <span class="tab-icon">🧠</span> <span class="tab-label">2. Diagnóstico ZDE</span>
+      </button>
+      <button class="tab-btn" id="btnTabStrategy" onclick="switchTab('strategy')" title="Estratégia & Proposta ZSE">
+        <span class="tab-icon">⚖️</span> <span class="tab-label">3. Estratégia (ZSE v1.0)</span>
       </button>
     </div>
 
     <div class="header-status">
       <div class="pulse-dot"></div>
-      <span class="status-text">MOTOR ON-LINE — ZDE v2.2</span>
+      <span class="status-text">SUÍTE ZVI OS — ON-LINE</span>
     </div>
   </header>
 
@@ -51,12 +54,12 @@
 
     <!-- HERO BANNER -->
     <section class="hero-banner">
-      <span class="hero-tag">⚡ Zellgo Discovery Engine • v2.2 Modular</span>
+      <span class="hero-tag">⚡ Zellgo Visual Intelligence OS • Motores ZDE & ZSE Ativos</span>
       <h1 class="hero-title">
-        <span class="title-white">DIAGNÓSTICO DE</span> <span class="title-rose">ALTA PRECISÃO E ESCOPO</span>
+        <span class="title-white">DIAGNÓSTICO DE</span> <span class="title-rose">ALTA PRECISÃO E ESTRATÉGIA</span>
       </h1>
       <p class="hero-desc">
-        Preencha o briefing modular de forma intuitiva. Nosso motor de inteligência artificial processará ao vivo a maturidade da marca, posicionamento, tração digital e o escopo exato de alavancagem adaptado à escala do seu negócio.
+        Preencha o briefing modular. Nossos motores sequenciais processarão em tempo real a maturidade da marca (ZDE) e formularão a proposta estratégica de valor objetivo (ZSE), conectando dores a soluções tangíveis e ROI imediato.
       </p>
     </section>
 
@@ -301,14 +304,14 @@
     </section>
 
     <!-- ======================================================================
-         VIEW 2: PAINEL DO ARQUITETO (ANALISADO SOB MEDIDA)
+         VIEW 2: MOTOR 1 — ZDE (ZELLGO DISCOVERY ENGINE)
          ====================================================================== -->
     <section id="viewDashboard" class="view-section">
       
       <div id="dashBannerNotice" style="background:rgba(244, 63, 94, 0.12); border:1px solid var(--accent-rose); padding:1rem 1.4rem; border-radius:var(--radius-md); margin-bottom:1.8rem; display:flex; align-items:center; gap:1rem; font-size:0.9rem;">
         <span style="font-size:1.5rem;">⚡</span>
         <div style="color:var(--text-branco);">
-          <strong>Motor ZDE v2.2 Modular:</strong> Nossa arquitetura de inteligência processa a maturidade do seu negócio, calcula o Índice de Complexidade (IC) e gera uma estratégia sob medida — adaptando o investimento exatamente ao porte e realidade de lucro de cada empresa.
+          <strong>Motor ZDE v1.1 (Discovery):</strong> Nossa arquitetura analisa a maturidade do negócio e calcula o Índice de Complexidade (IC), revelando as oportunidades de expansão antes de desenhar qualquer proposta comercial.
         </div>
       </div>
 
@@ -316,7 +319,7 @@
       <div class="dashboard-card" style="margin-bottom:1.8rem; background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,20,40,0.9)); border-color:var(--accent-rose);">
         <div class="dashboard-head-flex">
           <div>
-            <span id="dashAiTag" class="badge-tag badge-rose">Estratégia Customizada • ZDE v2.2</span>
+            <span id="dashAiTag" class="badge-tag badge-rose">Diagnóstico de Maturidade • ZDE</span>
             <span id="dashClientSegment" class="badge-tag badge-neutral" style="margin-top:0.3rem; display:inline-block;">Segmento: Varejo & Operações Locais</span>
             <h2 id="dashClientName" style="font-size:1.8rem; font-weight:700; margin-top:0.5rem; color:var(--text-branco);">GF Riototal (Case ZVI)</h2>
             <p id="dashClientSub" style="color:var(--text-muted); font-size:0.9rem;">Operação Enxuta & Ágil • Automação Inteligente de Atendimento e Destrave de Conversão</p>
@@ -349,88 +352,250 @@
         <div class="dashboard-card">
           <header class="card-header">
             <div class="card-title-group">
-              <h3>💎 Escopo de Soluções Recomendadas</h3>
-              <span>Ações prioritárias para otimização operacionais e ROI rápido</span>
+              <h3>💎 Gaps & Oportunidades Identificadas</h3>
+              <span>Lacunas estratégicas mapeadas na operação do cliente</span>
             </div>
-            <span id="dashScopeCount" class="badge-tag badge-rose">3 Módulos</span>
+            <span id="dashScopeCount" class="badge-tag badge-rose">3 Lacunas</span>
           </header>
 
           <ul id="dashScopeList" class="scope-list" style="max-height:380px; overflow-y:auto; padding-right:0.4rem;">
             <li class="scope-item">
               <div class="scope-item-header">
-                <span class="scope-name">1. Agente de Conversão no WhatsApp (Zellgo Bot)</span>
-                <span class="badge-tag badge-rose">Prioridade Máxima</span>
+                <span class="scope-name">1. Gargalo no Atendimento e Cotações via WhatsApp</span>
+                <span class="badge-tag badge-rose">Alta Prioridade</span>
               </div>
-              <p class="scope-desc">Automação de respostas instantâneas para atender cotações e dúvidas frequentes em segundos, liberando a equipe física para focar nas vendas e fechamento.</p>
+              <p class="scope-desc">Demora no retorno de cotações básicas por sobrecarga do time. Oportunidade para aplicar o Agente Inteligente Zellgo Bot 24/7.</p>
             </li>
 
             <li class="scope-item">
               <div class="scope-item-header">
-                <span class="scope-name">2. Otimização do Perfil & Reposição Visual</span>
-                <span class="badge-tag badge-rose">Alta</span>
+                <span class="scope-name">2. Percepção Visual e Autoridade Digital Comum</span>
+                <span class="badge-tag badge-rose">Oportunidade</span>
               </div>
-              <p class="scope-desc">Padronização profissional dos canais de contato e Google Meu Negócio para projetar autoridade imediata sobre a concorrência local.</p>
+              <p class="scope-desc">Necessidade de reposicionamento visual de alto padrão nos canais para blindar a marca contra concorrentes que competem por preço.</p>
             </li>
 
             <li class="scope-item">
               <div class="scope-item-header">
-                <span class="scope-name">3. Campanhas de Ativação Local (Tráfego Cirúrgico)</span>
-                <span class="badge-tag badge-neutral">Média</span>
+                <span class="scope-name">3. Dependência de Indicação Passiva</span>
+                <span class="badge-tag badge-neutral">Crescimento</span>
               </div>
-              <p class="scope-desc">Estratégia enxuta de anúncios no raio de atuação da empresa para atrair novos clientes qualificados direto para o WhatsApp automatizado.</p>
+              <p class="scope-desc">Ausência de canal contínuo de aquisição local. Oportunidade de criar fluxo de entrada com tráfego cirúrgico no raio da empresa.</p>
             </li>
           </ul>
         </div>
       </div>
 
-      <!-- ROADMAP -->
-      <div class="dashboard-card">
+      <!-- TRANSIÇÃO PARA MOTOR 2 (ZSE) -->
+      <div class="dashboard-card" style="text-align:center; background:linear-gradient(145deg, rgba(15,23,42,0.9), rgba(244,63,94,0.1)); border-color:var(--accent-rose);">
+        <h3 style="color:var(--text-branco); font-family:var(--font-heading); font-size:1.5rem; margin-bottom:0.6rem;">⚡ Diagnóstico ZDE Validado. Próximo Bloco: O que a Zellgo deve fazer?</h3>
+        <p style="color:var(--text-muted); font-size:0.95rem; max-width:700px; margin:0 auto 1.8rem auto;">
+          Acione agora o <strong>Motor ZSE (Zellgo Strategy Engine v1.0)</strong> para transformar estas lacunas e dores em uma estratégia comercial coesa, com escopo modular, roadmap de 90 dias e investimentos com valores objetivos para o fechamento.
+        </p>
+        <div>
+          <button id="btnTriggerZse" class="btn btn-primary" onclick="triggerStrategyEngine()" style="font-size:1.1rem; padding:1rem 2.5rem; box-shadow: 0 4px 22px rgba(244,63,94,0.5);">
+            <span>⚡ ACIONAR MOTOR ZSE v1.0 (FORMULAR ESTRATÉGIA)</span> &rarr;
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ======================================================================
+         VIEW 3: MOTOR 2 — ZSE (ZELLGO STRATEGY ENGINE v1.0)
+         ====================================================================== -->
+    <section id="viewStrategy" class="view-section">
+      
+      <!-- CABEÇALHO DA ESTRATÉGIA -->
+      <div class="dashboard-card" style="margin-bottom:1.8rem; background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,30,60,0.9)); border-color:#3b82f6;">
+        <div class="dashboard-head-flex">
+          <div>
+            <span id="zseStatusTag" class="badge-tag" style="background:rgba(59,130,246,0.2); color:#60a5fa; border:1px solid rgba(59,130,246,0.4);">ESTRATÉGIA ZVI • ZSE v1.0</span>
+            <h2 id="zseClientName" style="font-size:1.8rem; font-weight:700; margin-top:0.6rem; color:var(--text-branco);">GF Riototal (Proposta Comercial)</h2>
+            <p id="zseSegment" style="color:var(--text-muted); font-size:0.95rem;">Segmento: Varejo & Operações Locais</p>
+          </div>
+          <div class="score-card-right" style="border-top-color:rgba(59,130,246,0.3);">
+            <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Índice de Oportunidade</div>
+            <div id="zseOpportunityScore" style="font-size:2rem; font-weight:800; color:#60a5fa;">94% ALAVANCAGEM <div style="font-size:0.85rem; font-weight:400; color:var(--text-branco);">(Retorno de Margem no Trimestre)</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOCO 1: MAPEAMENTO PROBLEMA -> ESTRATÉGIA -> SOLUÇÃO -->
+      <div class="dashboard-card" style="margin-bottom:2rem;">
         <header class="card-header">
           <div class="card-title-group">
-            <h3>🗺️ Roadmap de Execução & Crescimento</h3>
-            <span>Cronograma orquestrado com precisão para gerar resultados no trimestre sem sobrecarregar o time</span>
+            <h3>🧭 Bloco 1: O Mapeamento da Virada (Diagnóstico ➔ Proposta)</h3>
+            <span>Como a Zellgo transforma gargalos em alavancas de crescimento e autoridade</span>
           </div>
         </header>
-        
-        <div id="dashRoadmapTimeline" class="roadmap-timeline">
-          <div class="timeline-step">
-            <div class="step-phase">⚡ Dias 01 ao 15</div>
-            <div class="step-title">Setup & Automação</div>
-            <div class="step-info">Configuração do Agente Inteligente no WhatsApp e alinhamento da comunicação de vendas da empresa.</div>
+
+        <div class="zse-flow-grid">
+          <div class="zse-flow-card problem">
+            <span class="zse-flow-title" style="color:#ef4444;">🚨 Problema Mapeado</span>
+            <div id="zseProbText" class="zse-flow-body">Sobrecarga no atendimento via WhatsApp e dependência de indicações sem canal ativo.</div>
           </div>
+
+          <div class="zse-arrow">&rarr;</div>
+
+          <div class="zse-flow-card strategy">
+            <span class="zse-flow-title" style="color:#60a5fa;">🧭 Estratégia Recomendada</span>
+            <div id="zseStratText" class="zse-flow-body">Automação de cotações em segundos 24/7 e reposicionamento visual de alta confiança.</div>
+          </div>
+
+          <div class="zse-arrow">&rarr;</div>
+
+          <div class="zse-flow-card solution">
+            <span class="zse-flow-title" style="color:var(--accent-rose);">💎 Solução Integrada Zellgo</span>
+            <div id="zseSolText" class="zse-flow-body">Agente IA de Conversão (Zellgo Bot) + Branding & Perfil + Tráfego Local Cirúrgico.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOCO 2: MÓDULOS RECOMENDADOS -->
+      <div class="dashboard-card" style="margin-bottom:2rem;">
+        <header class="card-header">
+          <div class="card-title-group">
+            <h3>📦 Bloco 2: Módulos Prioritários Recomendados</h3>
+            <span>Seleção das nossas 8 bibliotecas especializadas para acionamento na operação</span>
+          </div>
+          <span id="zseModCount" class="badge-tag badge-rose">5 Módulos</span>
+        </header>
+
+        <div id="zseModGrid" class="zse-module-grid">
+          
+          <div class="zse-module-card">
+            <div class="zse-mod-header">
+              <span class="zse-mod-icon">🤖</span>
+              <div class="zse-mod-title">IA & Automação (Zellgo Bot)</div>
+            </div>
+            <p class="zse-mod-desc">Atendimento automatizado 24/7 no WhatsApp, capturando cotações e eliminando espera no horário de pico sem inchar custos.</p>
+            <span class="badge-tag badge-rose" style="align-self:flex-start;">Prioridade Máxima</span>
+          </div>
+
+          <div class="zse-module-card">
+            <div class="zse-mod-header">
+              <span class="zse-mod-icon">🎨</span>
+              <div class="zse-mod-title">Branding & Identidade</div>
+            </div>
+            <p class="zse-mod-desc">Padronização visual e manual de marca para projetar autoridade e afastar concorrentes focados em menor preço.</p>
+            <span class="badge-tag badge-rose" style="align-self:flex-start;">Alta Autoridade</span>
+          </div>
+
+          <div class="zse-module-card">
+            <div class="zse-mod-header">
+              <span class="zse-mod-icon">🌐</span>
+              <div class="zse-mod-title">Website / Landing Page</div>
+            </div>
+            <p class="zse-mod-desc">Vitrine digital elegante e moderna orientada a transformar visitantes curadores em leads qualificados.</p>
+            <span class="badge-tag badge-neutral" style="align-self:flex-start;">Front-stage</span>
+          </div>
+
+          <div class="zse-module-card">
+            <div class="zse-mod-header">
+              <span class="zse-mod-icon">📱</span>
+              <div class="zse-mod-title">Conteúdo & Social</div>
+            </div>
+            <p class="zse-mod-desc">Estratégia editorial e apresentações institucionais para consolidação de presença nas redes.</p>
+            <span class="badge-tag badge-neutral" style="align-self:flex-start;">Autoridade</span>
+          </div>
+
+          <div class="zse-module-card">
+            <div class="zse-mod-header">
+              <span class="zse-mod-icon">🎯</span>
+              <div class="zse-mod-title">Tráfego & Campanhas</div>
+            </div>
+            <p class="zse-mod-desc">Campanhas locais de alta precisão no raio da empresa para alimentar continuamente o funil automatizado.</p>
+            <span class="badge-tag badge-neutral" style="align-self:flex-start;">Aceleração</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- BLOCO 3: ROADMAP 90 DIAS -->
+      <div class="dashboard-card" style="margin-bottom:2rem;">
+        <header class="card-header">
+          <div class="card-title-group">
+            <h3>🗺️ Bloco 3: Roadmap Cronológico (90 Dias)</h3>
+            <span>Execução organizada em etapas lógicas para entrega de valor contínua e resultados mensuráveis</span>
+          </div>
+        </header>
+
+        <div id="zseRoadmapGrid" class="roadmap-timeline">
           
           <div class="timeline-step">
-            <div class="step-phase">📅 Dias 16 ao 30</div>
-            <div class="step-title">Destrave & Tempo Livre</div>
-            <div class="step-info">Ativação do bot 24/7. O sistema assume o atendimento inicial e cotações básicas, zero atrasos nas respostas.</div>
+            <div class="step-phase" style="color:#60a5fa;">⚡ Mês 1: Fundação</div>
+            <div class="step-title">Setup & Automação IA</div>
+            <div class="step-info">Calibração do Agente no WhatsApp 24/7, estruturação de canais e alinhamento do posicionamento comercial.</div>
           </div>
 
           <div class="timeline-step">
-            <div class="step-phase">🔥 Dias 31 ao 60</div>
-            <div class="step-title">Tração & Autoridade</div>
-            <div class="step-info">Refinamento visual da marca nos pontos de contato digital e ativação da aquisição contínua de clientes.</div>
+            <div class="step-phase" style="color:var(--accent-rose);">📅 Mês 2: Construção</div>
+            <div class="step-title">Vitrine & Destrave</div>
+            <div class="step-info">Ativação da nova identidade visual, Landing Page High-End e início dos fluxos contínuos de captação.</div>
           </div>
 
           <div class="timeline-step">
-            <div class="step-phase">🔭 Dias 61 ao 90+</div>
-            <div class="step-title">Expansão de Margem</div>
-            <div class="step-info">Avaliação dos lucros adicionais conquistados pela eficiência do sistema e planejamento de novas metas de crescimento.</div>
+            <div class="step-phase" style="color:#10b981;">🔥 Mês 3: Escala</div>
+            <div class="step-title">Aceleração de Margem</div>
+            <div class="step-info">Otimização de tráfego pago civil, avaliação dos ganhos de produtividade e replanejamento de metas do trimestre.</div>
           </div>
+
+        </div>
+      </div>
+
+      <!-- BLOCO 4: PRECIFICAÇÃO MODULAR (INVESTIMENTO ESTRATÉGICO ZELLGO) -->
+      <div class="dashboard-card" style="margin-bottom:2rem; border:1px solid var(--accent-rose);">
+        <header class="card-header" style="border-bottom:none; margin-bottom:0.5rem;">
+          <div class="card-title-group">
+            <h3>💡 Bloco 4: Investimento Estratégico Zellgo (Orçamento Modular)</h3>
+            <span>Ancoragem objetiva em ranges reais de mercado de acordo com os módulos selecionados</span>
+          </div>
+          <span class="badge-tag badge-rose">ZDE/ZSE v2.3</span>
+        </header>
+
+        <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:0.8rem;">
+          *A Zellgo não vende serviços isolados, resolve problemas de negócio. Nossos planos são modulares e desenhados para que a eficiência conquistada pague o investimento no próprio ciclo de execução.*
+        </p>
+
+        <div class="zse-invest-grid">
+          
+          <div class="zse-invest-card">
+            <div class="zse-inv-phase">Mês 01 • Setup Base</div>
+            <div class="zse-inv-name" id="zseFundacaoLabel">Fundação (Automação Essencial)</div>
+            <div class="zse-inv-price" id="zseFundacaoVal">R$ 3.500 a R$ 6.500</div>
+            <p style="color:var(--text-muted); font-size:0.85rem; margin-top:0.6rem;">Agente Inteligente 24/7 + Estruturação de Canais e Atendimento.</p>
+          </div>
+
+          <div class="zse-invest-card featured">
+            <div class="zse-inv-phase" style="color:var(--text-branco);">Mês 02 • Ampliação</div>
+            <div class="zse-inv-name" id="zseConstrucaoLabel">Construção (Autoridade & Vitrine)</div>
+            <div class="zse-inv-price" id="zseConstrucaoVal">R$ 4.500 a R$ 7.000</div>
+            <p style="color:var(--text-branco); font-size:0.85rem; margin-top:0.6rem;">Branding High-End + Landing Page de Captação e Integração.</p>
+          </div>
+
+          <div class="zse-invest-card" style="border-color:#10b981;">
+            <div class="zse-inv-phase" style="color:#10b981;">Mês 03+ • Retainer Evolutivo</div>
+            <div class="zse-inv-name" id="zseAceleracaoLabel">Aceleração & Manutenção IA</div>
+            <div class="zse-inv-price" id="zseAceleracaoVal" style="color:#10b981; font-size:1.4rem;">+ a partir de R$ 1.600 / mês</div>
+            <p style="color:var(--text-muted); font-size:0.85rem; margin-top:0.6rem;">Fee Operacional contínuo para suporte, hospedagem, tráfego e evolução do Bot.</p>
+          </div>
+
         </div>
 
-        <!-- BÚSSOLA DE PRECIFICAÇÃO E ANCORAGEM POR VALOR (v2.3) -->
-        <div class="pricing-banner">
-          <div class="pricing-info">
-            <h4>💡 Ancoragem Objetiva & Retainer Evolutivo (ZDE v2.3)</h4>
-            <p id="dashRoiText">Demonstração de ROI: Investimentos modulares focados em retorno rápido. Automatizar o atendimento no WhatsApp 24/7 (Zellgo Bot) e profissionalizar os canais de contato elimina gargalos operacionais e captura cotações perdidas no horário de pico — gerando retorno superior ao investimento já no trimestre inicial.</p>
-          </div>
-          <div class="pricing-values">
-            <div id="dashSetupLabel" class="val-label">Setup Tier 1 (Impulso & Automação Essencial)</div>
-            <div id="dashSetupVal" class="val-tier" style="font-size:1.6rem;">R$ 3.500 a R$ 6.500 <div style="font-size:0.85rem; font-weight:400; color:var(--text-muted); margin-top:0.2rem;">(Projeto Modular Sob Medida)</div></div>
-            <div id="dashRetainerVal" style="margin-top:0.7rem; color:var(--accent-rose); font-weight:600; font-size:0.95rem;">+ Fee Operacional: a partir de R$ 1.600 / mês</div>
-          </div>
-        </div>
+      </div>
 
+      <!-- BOTÃO PARA FAJAR O MOTOR 3 (ZPE - PRODUÇÃO) -->
+      <div class="dashboard-card" style="text-align:center; background:linear-gradient(145deg, rgba(16,185,129,0.1), rgba(15,23,42,0.95)); border-color:#10b981;">
+        <h3 style="color:var(--text-branco); font-family:var(--font-heading); font-size:1.5rem; margin-bottom:0.6rem;">✅ Proposta Validada! Próxima Etapa: Como vamos produzir? (Motor ZPE)</h3>
+        <p style="color:var(--text-muted); font-size:0.95rem; max-width:700px; margin:0 auto 1.8rem auto;">
+          Acionar o <strong>Motor ZPE (Zellgo Production Engine v1.0)</strong> transmitirá esta estratégia em JSON para a fábrica técnica, compilando diretrizes e prompts executáveis em nossas 8 Bibliotecas de Produção.
+        </p>
+        <div>
+          <button id="btnTriggerZpe" class="btn btn-success" onclick="triggerProductionEngine()" style="font-size:1.1rem; padding:1rem 2.5rem; box-shadow: 0 4px 22px rgba(16,185,129,0.4);">
+            <span>🔨 ACIONAR MOTOR ZPE v1.0 (GERAR BIBLIOTECA DE PRODUÇÃO)</span> &rarr;
+          </button>
+        </div>
       </div>
 
     </section>

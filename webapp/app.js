@@ -7,6 +7,8 @@ let currentBlock = 0;
 const totalBlocks = 8;
 let radarChartRendered = false;
 let currentRadarData = null; 
+let globalZdeJson = null; // Armazena a saída JSON do Motor 1 (ZDE) para transmissão ao Motor 2 (ZSE)
+let globalZseJson = null; // Armazena a saída JSON do Motor 2 (ZSE) para o Motor de Produção (ZPE)
 
 document.addEventListener('DOMContentLoaded', () => {
   updateNavState();
@@ -14,25 +16,28 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================================================
-// CONTROLE DE ABAS (VIEWS)
+// CONTROLE DE ABAS DA SUÍTE ZVI (1. BRIEFING ➔ 2. DIAGNÓSTICO ZDE ➔ 3. ESTRATÉGIA ZSE)
 // ==========================================================================
 function switchTab(viewName) {
   const btnBriefing = document.getElementById('btnTabBriefing');
   const btnDashboard = document.getElementById('btnTabDashboard');
+  const btnStrategy = document.getElementById('btnTabStrategy');
   const viewBriefing = document.getElementById('viewBriefing');
   const viewDashboard = document.getElementById('viewDashboard');
+  const viewStrategy = document.getElementById('viewStrategy');
+
+  [btnBriefing, btnDashboard, btnStrategy].forEach(b => b && b.classList.remove('active'));
+  [viewBriefing, viewDashboard, viewStrategy].forEach(v => v && v.classList.remove('active'));
 
   if (viewName === 'briefing') {
-    btnBriefing.classList.add('active');
-    btnDashboard.classList.remove('active');
-    viewBriefing.classList.add('active');
-    viewDashboard.classList.remove('active');
+    if (btnBriefing) btnBriefing.classList.add('active');
+    if (viewBriefing) viewBriefing.classList.add('active');
+  } else if (viewName === 'strategy') {
+    if (btnStrategy) btnStrategy.classList.add('active');
+    if (viewStrategy) viewStrategy.classList.add('active');
   } else {
-    btnDashboard.classList.add('active');
-    btnBriefing.classList.remove('active');
-    viewDashboard.classList.add('active');
-    viewBriefing.classList.remove('active');
-    
+    if (btnDashboard) btnDashboard.classList.add('active');
+    if (viewDashboard) viewDashboard.classList.add('active');
     if (!radarChartRendered) {
       renderRadarChart(currentRadarData);
     }
@@ -201,6 +206,20 @@ function finalizeSubmission() {
 // ATUALIZAÇÃO DO DOM COM RESPOSTAS REAIS DA INTELIGÊNCIA ARTIFICIAL (GEMINI)
 // ==========================================================================
 function updateDashboardWithAi(ai, payload) {
+  // Salva o JSON estruturado do Motor 1 (ZDE) para alimentar o Motor 2 (ZSE)
+  globalZdeJson = {
+    cliente: ai.nome_empresa || payload.client_identity.nome,
+    segmento: ai.segmento || payload.client_identity.segmento,
+    diagnostico: {
+      indice_complexidade: ai.indice_complexidade !== undefined ? ai.indice_complexidade : 12,
+      tier: ai.tier || "Tier 1 (Impulso & Automação Essencial)",
+      gargalo_central: ai.gargalo_central || payload.operations.gargalos_operacionais,
+      ancoragem_roi: ai.ancoragem_roi || "Automação 24/7 com retorno imediato e expansão de lucro sem inchar folha."
+    },
+    gaps: ai.escopo_recomendado || [],
+    oportunidades: ai.radar || []
+  };
+
   const nameEl = document.getElementById('dashClientName');
   const segEl = document.getElementById('dashClientSegment');
   const aiTag = document.getElementById('dashAiTag');
@@ -285,6 +304,27 @@ function updateDashboardWithAi(ai, payload) {
 
 // Apresentação profissional e polida para quando roda offline ou sem chave (zero avisos assustadores)
 function applyFallbackDashboard(payload) {
+  // Configura a estrutura JSON de Diagnóstico no Fallback para conexão com o Motor ZSE
+  const clientName = payload.client_identity.nome || "Empresa Analisada";
+  const segmentName = payload.client_identity.segmento || "Operações Especializadas";
+
+  globalZdeJson = {
+    cliente: clientName,
+    segmento: segmentName,
+    diagnostico: {
+      indice_complexidade: 12,
+      tier: "Tier 1 (Impulso & Automação Essencial)",
+      gargalo_central: payload.operations?.gargalos_operacionais || "Sobrecarga no atendimento e atrasos na conversão de cotações pelo WhatsApp.",
+      ancoragem_roi: "Automação de atendimento com bot 24/7 para eliminar tempo de espera e elevar margem de lucro."
+    },
+    gaps: [
+      { modulo: "Gargalo de Atendimento no WhatsApp", prioridade: "Alta Prioridade", descricao: "Demora no retorno a leads quentes por sobrecarga da equipe manual." },
+      { modulo: "Percepção Visual Comum e Defasada", prioridade: "Oportunidade", descricao: "Necessidade de reposicionamento High-End para blindar contra competição por preço." },
+      { modulo: "Dependência de Indicação e Boca a Boca", prioridade: "Crescimento", descricao: "Criar canal contínuo de entrada de cotações com tráfego cirúrgico." }
+    ],
+    oportunidades: currentRadarData || []
+  };
+
   const nameEl = document.getElementById('dashClientName');
   const segEl = document.getElementById('dashClientSegment');
   const aiTag = document.getElementById('dashAiTag');
@@ -451,4 +491,194 @@ function showToast(title, desc) {
       toast.classList.remove('show');
     }, 6000);
   }
+}
+
+// ==========================================================================
+// MOTOR 2: ZSE v1.0 — ZELLGO STRATEGY ENGINE (O QUE A ZELLGO DEVE FAZER?)
+// ==========================================================================
+async function triggerStrategyEngine() {
+  const btn = document.getElementById('btnTriggerZse');
+  const originalText = btn ? btn.innerHTML : '';
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '⏳ Motor ZSE formulando estratégia modular...';
+  }
+
+  // Se for acessado direto sem submeter briefing, carrega o Case ZVI atual do DOM
+  if (!globalZdeJson) {
+    const nomeEl = document.getElementById('dashClientName');
+    const segEl = document.getElementById('dashClientSegment');
+    globalZdeJson = {
+      cliente: nomeEl ? nomeEl.textContent : "GF Riototal (Case ZVI)",
+      segmento: segEl ? segEl.textContent.replace("Segmento: ", "") : "Varejo & Operações Locais",
+      diagnostico: {
+        indice_complexidade: 12,
+        tier: "Tier 1 (Impulso & Automação Essencial)",
+        gargalo_central: "Sobrecarga no atendimento e tempo de resposta via WhatsApp.",
+        ancoragem_roi: "Automação 24/7 liberando a equipe e elevando a conversão de cotações sem inchar folha."
+      },
+      gaps: [
+        { modulo: "Gargalo no Atendimento WhatsApp", prioridade: "Alta Prioridade", descricao: "Demora nas respostas manuais por falta de bot 24/7." },
+        { modulo: "Percepção Visual Comum", prioridade: "Oportunidade", descricao: "Reposição visual para transmitir máxima confiança." }
+      ],
+      oportunidades: currentRadarData || []
+    };
+  }
+
+  try {
+    const res = await fetch('/api/strategy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(globalZdeJson)
+    });
+
+    if (res.ok) {
+      const responseData = await res.json();
+      if (responseData.success && responseData.data) {
+        updateStrategyWithAi(responseData.data);
+        showToast('⚙️ Motor ZSE Concluído!', 'Proposta comercial e investimento modular formulados com precisão! Encaminhando...');
+        switchTab('strategy');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = originalText;
+        }
+        return;
+      }
+    }
+    throw new Error('Acionando Fallback ZSE.');
+  } catch(error) {
+    applyFallbackStrategy(globalZdeJson);
+    showToast('⚙️ Estratégia Modular ZSE Ativa!', 'Painel da estratégia sincronizado com a realidade da operação e orçamentos objetivos.');
+    switchTab('strategy');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = originalText;
+    }
+  }
+}
+
+function updateStrategyWithAi(zseData) {
+  globalZseJson = zseData;
+
+  const clientEl = document.getElementById('zseClientName');
+  const segEl = document.getElementById('zseSegment');
+  const oppEl = document.getElementById('zseOpportunityScore');
+  const statusTag = document.getElementById('zseStatusTag');
+
+  if (clientEl) clientEl.textContent = `${zseData.cliente || "Empresa Analisada"} (Proposta Comercial)`;
+  if (segEl) segEl.textContent = `Segmento: ${zseData.segmento || "Operações Especializadas"}`;
+  if (oppEl && zseData.indice_oportunidade) oppEl.innerHTML = `${zseData.indice_oportunidade} <div style="font-size:0.85rem; font-weight:400; color:var(--text-branco);">(Retorno de Margem no Trimestre)</div>`;
+  if (statusTag) {
+    statusTag.textContent = "⚙️ ESTRATÉGIA AO VIVO • ZSE v1.0 AI";
+    statusTag.style.background = "rgba(16, 185, 129, 0.2)";
+    statusTag.style.color = "#10b981";
+    statusTag.style.borderColor = "#10b981";
+  }
+
+  // Bloco 1: Mapeamento da Virada
+  if (zseData.mapeamento) {
+    const probEl = document.getElementById('zseProbText');
+    const stratEl = document.getElementById('zseStratText');
+    const solEl = document.getElementById('zseSolText');
+    if (probEl && zseData.mapeamento.problema) probEl.textContent = zseData.mapeamento.problema;
+    if (stratEl && zseData.mapeamento.estrategia) stratEl.textContent = zseData.mapeamento.estrategia;
+    if (solEl && zseData.mapeamento.solucao) solEl.textContent = zseData.mapeamento.solucao;
+  }
+
+  // Bloco 2: Módulos Prioritários
+  if (zseData.modulos_prioritarios && Array.isArray(zseData.modulos_prioritarios)) {
+    const grid = document.getElementById('zseModGrid');
+    const count = document.getElementById('zseModCount');
+    if (count) count.textContent = `${zseData.modulos_prioritarios.length} Módulos`;
+    if (grid) {
+      grid.innerHTML = zseData.modulos_prioritarios.map((mod, idx) => `
+        <div class="zse-module-card">
+          <div class="zse-mod-header">
+            <span class="zse-mod-icon">${mod.icone || "⚡"}</span>
+            <div class="zse-mod-title">${mod.titulo || mod.categoria}</div>
+          </div>
+          <p class="zse-mod-desc">${mod.desc || ""}</p>
+          <span class="badge-tag ${idx === 0 ? 'badge-rose' : 'badge-neutral'}" style="align-self:flex-start;">${idx === 0 ? 'Prioridade Máxima' : 'Recomendado'}</span>
+        </div>
+      `).join('');
+    }
+  }
+
+  // Bloco 3: Roadmap 90 Dias
+  if (zseData.roadmap_90_dias && Array.isArray(zseData.roadmap_90_dias)) {
+    const roadmapGrid = document.getElementById('zseRoadmapGrid');
+    if (roadmapGrid) {
+      roadmapGrid.innerHTML = zseData.roadmap_90_dias.map(step => `
+        <div class="timeline-step">
+          <div class="step-phase" style="color:var(--accent-rose);">${step.etapa}</div>
+          <div class="step-title">${step.titulo}</div>
+          <div class="step-info">${step.acao}</div>
+        </div>
+      `).join('');
+    }
+  }
+
+  // Bloco 4: Investimento Estratégico (Nunca falar 'Preço gerado por IA')
+  if (zseData.investimento_estrategico) {
+    const fundVal = document.getElementById('zseFundacaoVal');
+    const constrVal = document.getElementById('zseConstrucaoVal');
+    const acelVal = document.getElementById('zseAceleracaoVal');
+
+    if (fundVal && zseData.investimento_estrategico.fundacao_val) fundVal.textContent = zseData.investimento_estrategico.fundacao_val;
+    if (constrVal && zseData.investimento_estrategico.construcao_val) constrVal.textContent = zseData.investimento_estrategico.construcao_val;
+    if (acelVal && zseData.investimento_estrategico.aceleracao_val) acelVal.textContent = zseData.investimento_estrategico.aceleracao_val;
+  }
+}
+
+function applyFallbackStrategy(zdeInput) {
+  const clientName = zdeInput ? zdeInput.cliente : "Empresa em Análise";
+  const segment = zdeInput ? zdeInput.segmento : "Operações Especializadas";
+  const clientEl = document.getElementById('zseClientName');
+  const segEl = document.getElementById('zseSegment');
+
+  if (clientEl) clientEl.textContent = `${clientName} (Proposta Comercial)`;
+  if (segEl) segEl.textContent = `Segmento: ${segment}`;
+
+  globalZseJson = {
+    cliente: clientName,
+    segmento: segment,
+    status: "Validado pelo Arquiteto Chefe • ZSE v1.0",
+    investimento: {
+      fundacao: "R$ 3.500 a R$ 6.500",
+      construcao: "R$ 4.500 a R$ 7.000",
+      aceleracao_retainer: "+ a partir de R$ 1.600 / mês"
+    }
+  };
+}
+
+// ==========================================================================
+// MOTOR 3: ZPE v1.0 — PRODUCTION ENGINE (CONEXÃO COM FÁBRICA / FASE 2)
+// ==========================================================================
+function triggerProductionEngine() {
+  const payloadToZpe = {
+    metadata: {
+      engine_origem: "ZSE v1.0 Strategy Engine",
+      destino: "ZPE v1.0 Production Engine",
+      status_aprovacao: "PROPOSTA COMERCIAL APROVADA PELO CLIENTE / ARQUITETO"
+    },
+    estrategia_aprovada: globalZseJson || { cliente: "Case ZVI", status: "Aprovada" },
+    modulos_para_producao: [
+      "1. Branding & Identidade Visual High-End (Paleta + Manual)",
+      "2. Website & Landing Page (UI/UX do Sistema e Boletos)",
+      "3. IA & Automação (System Prompt do Zellgo Bot 24/7 para WhatsApp)",
+      "4. Linha Editorial e Roteiros de Vídeo para Social e Tração"
+    ]
+  };
+
+  const jsonString = JSON.stringify(payloadToZpe, null, 2);
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(jsonString).catch(() => {});
+  }
+
+  showToast(
+    '🔨 Conexão ZPE Acionada!',
+    'Pacote de produção exportado (em clipboard)! A estrutura JSON está pronta para alimentar o Motor de Execução e as 8 Bibliotecas (Fase 2).'
+  );
 }

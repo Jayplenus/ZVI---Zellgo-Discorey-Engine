@@ -751,6 +751,135 @@ textarea.form-control {
 }
 
 /* ==========================================================================
+   MOTOR ZSE v1.0 — STRATEGY ENGINE (ESTRATÉGIA & OFERTA MODULAR)
+   ========================================================================== */
+.zse-flow-grid {
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr 40px 1fr;
+  align-items: stretch;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+.zse-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  color: var(--accent-rose);
+  font-weight: 800;
+}
+.zse-flow-card {
+  background: var(--bg-input);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.zse-flow-card.problem { border-left: 4px solid #ef4444; }
+.zse-flow-card.strategy { border-left: 4px solid #3b82f6; }
+.zse-flow-card.solution { border-left: 4px solid var(--accent-rose); background: rgba(244, 63, 94, 0.05); }
+
+.zse-flow-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.6rem;
+  color: var(--text-muted);
+}
+.zse-flow-body {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-branco);
+  line-height: 1.4;
+}
+
+.zse-module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.zse-module-card {
+  background: var(--bg-input);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+  transition: var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.zse-module-card:hover {
+  border-color: var(--accent-rose);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(244, 63, 94, 0.15);
+}
+.zse-mod-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.zse-mod-icon {
+  font-size: 1.8rem;
+}
+.zse-mod-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-branco);
+}
+.zse-mod-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.zse-invest-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.zse-invest-card {
+  background: var(--bg-input);
+  border: 1px solid rgba(244, 63, 94, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  text-align: center;
+  position: relative;
+}
+.zse-invest-card.featured {
+  border-color: var(--accent-rose);
+  background: linear-gradient(145deg, rgba(244, 63, 94, 0.12), rgba(15, 23, 42, 0.85));
+  box-shadow: 0 10px 30px var(--glow-rose);
+}
+.zse-inv-phase {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 1.5px;
+  margin-bottom: 0.5rem;
+}
+.zse-inv-name {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-branco);
+  margin-bottom: 1rem;
+}
+.zse-inv-price {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent-rose);
+}
+
+/* ==========================================================================
    TOAST NOTIFICATION
    ========================================================================== */
 .toast-notice {
@@ -943,6 +1072,19 @@ textarea.form-control {
   }
   .score-card-right > div:nth-child(2) {
     font-size: 1.6rem !important;
+  }
+  
+  .zse-flow-grid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+  .zse-arrow {
+    transform: rotate(90deg);
+    margin: 0.2rem 0;
+  }
+  .zse-invest-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
   .dashboard-card { padding: 1.3rem 1rem; }
