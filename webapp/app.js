@@ -229,7 +229,6 @@ function updateDashboardWithAi(ai, payload) {
   const nameEl = document.getElementById('dashClientName');
   const segEl = document.getElementById('dashClientSegment');
   const aiTag = document.getElementById('dashAiTag');
-  const banner = document.getElementById('dashBannerNotice');
   const scoreEl = document.getElementById('dashComplexityScore');
 
   if (nameEl) nameEl.textContent = ai.nome_empresa || payload.client_identity.nome;
@@ -239,11 +238,7 @@ function updateDashboardWithAi(ai, payload) {
     aiTag.style.backgroundColor = "rgb(16, 185, 129)"; 
     aiTag.style.color = "#ffffff";
   }
-  if (banner) {
-    banner.style.borderColor = "rgb(16, 185, 129)";
-    banner.style.background = "rgba(16, 185, 129, 0.12)";
-    banner.innerHTML = `<span style="font-size:1.5rem;">🟢</span><div style="color:var(--text-branco);"><strong>Estratégia Processada ao Vivo:</strong> Nosso Motor ZDE calculou este plano com base no Índice de Complexidade e na capacidade de investimento da sua empresa, aplicando a Política Soberana Zellgo.</div>`;
-  }
+
 
   if (scoreEl) {
     const pts = ai.indice_complexidade !== undefined ? ai.indice_complexidade : 12;
@@ -334,19 +329,14 @@ function applyFallbackDashboard(payload) {
   const nameEl = document.getElementById('dashClientName');
   const segEl = document.getElementById('dashClientSegment');
   const aiTag = document.getElementById('dashAiTag');
-  const banner = document.getElementById('dashBannerNotice');
 
   if (nameEl) nameEl.textContent = clientName;
   if (segEl) segEl.textContent = "Segmento: " + segmentName;
   if (aiTag) {
     aiTag.textContent = "⚡ Estratégia Customizada • ZDE v2.3";
-    aiTag.style.backgroundColor = "var(--accent-rose)";
-    aiTag.style.color = "#ffffff";
-  }
-  if (banner) {
-    banner.style.borderColor = "var(--accent-rose)";
-    banner.style.background = "rgba(244, 63, 94, 0.12)";
-    banner.innerHTML = `<span style="font-size:1.5rem;">⚡</span><div style="color:var(--text-branco);"><strong>Auditoria Estratégica ZDE v2.3:</strong> Apresentamos o mapeamento estrutural e as soluções recomendadas sob medida para <strong>${clientName}</strong>, com plano de investimento modular e objetivo adaptado à realidade da operação.</div>`;
+    aiTag.style.backgroundColor = "rgba(231, 233, 238, 0.1)";
+    aiTag.style.border = "1px solid rgba(231, 233, 238, 0.3)";
+    aiTag.style.color = "#E7E9EE";
   }
 }
 
@@ -681,10 +671,15 @@ async function triggerProductionEngine() {
   }
 
   try {
+    const zpePayload = {
+      estrategia_zse: globalZseJson || {},
+      diagnostico_base_zde: globalZdeJson || {}
+    };
+
     const res = await fetch('/api/production', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(globalZseJson)
+      body: JSON.stringify(zpePayload)
     });
 
     if (res.ok) {
@@ -804,8 +799,9 @@ function updateProductionWithAi(zpeData) {
       if (document.getElementById('zpeGrowthGadsKeywords') && Array.isArray(b4.google_ads.palavras_chave)) {
         document.getElementById('zpeGrowthGadsKeywords').textContent = b4.google_ads.palavras_chave.join(', ');
       }
-      if (document.getElementById('zpeGrowthGadsNegatives') && Array.isArray(b4.google_ads.negatives)) {
-        document.getElementById('zpeGrowthGadsNegatives').textContent = b4.google_ads.negationes.join(', ');
+      const negativesArr = b4.google_ads.negativas || b4.google_ads.negatives;
+      if (document.getElementById('zpeGrowthGadsNegatives') && Array.isArray(negativesArr)) {
+        document.getElementById('zpeGrowthGadsNegatives').textContent = negativesArr.join(', ');
       }
     }
     if (b4.meta_ads) {
@@ -829,7 +825,20 @@ function updateProductionWithAi(zpeData) {
 }
 
 function applyFallbackProduction(zseInput) {
-  const clientName = zseInput ? zseInput.cliente : "Empresa Analisada";
+  const clientName = zseInput ? (zseInput.cliente || "Empresa Analisada") : "Empresa Analisada";
+  const segment = zseInput ? (zseInput.segmento || "Operações Especializadas") : "Operações Especializadas";
   const clientEl = document.getElementById('zpeClientName');
-  if (clientEl) clientEl.textContent = `${clientName} (Bibliotecas de Execução)`;
+  const segEl = document.getElementById('zpeSegment');
+  if (clientEl) clientEl.textContent = `${clientName} (Bibliotecas de Execução - Fallback Módulo Offline)`;
+  if (segEl) segEl.textContent = `Segmento: ${segment}`;
+
+  if (document.getElementById('zpeGrowthGadsKeywords')) {
+    document.getElementById('zpeGrowthGadsKeywords').textContent = `+comprar ${segment.toLowerCase()} atacado, +fornecedor ${segment.toLowerCase()}, +distribuidora de ${segment.toLowerCase()}`;
+  }
+  if (document.getElementById('zpeGrowthMetaHook')) {
+    document.getElementById('zpeGrowthMetaHook').textContent = `"Busca pontualidade indiscutível e excelência no setor de ${segment}? Conheça a operação blindada e consolidada da ${clientName}."`;
+  }
+  if (document.getElementById('zpeGrowthMetaScript')) {
+    document.getElementById('zpeGrowthMetaScript').textContent = `Cena 1 (0-3s): Mostra a frustração e atrasos comuns ao contratar fornecedores no setor de ${segment}. Cena 2 (3-8s): Apresenta o mecanismo operacional de alta qualidade e a tradição da ${clientName}. Cena 3 (8-15s): Chamada direta para cotação com atendimento instantâneo no WhatsApp 24/7.`;
+  }
 }

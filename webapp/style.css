@@ -11,31 +11,32 @@
    VARIÁVEIS DO SISTEMA DE DESIGN ZELLGO (DESIGN TOKENS)
    ========================================================================== */
 :root {
-  /* Paleta de Cor Oficial Zellgo */
-  --bg-dark: #0f172a;        /* Preto Noite */
+  /* Paleta de Cor Oficial Zellgo (Suíça & High-End) */
+  --bg-dark: #0F1117;        /* Background Noite Suíça */
   --accent-rose: #f43f5e;    /* Rosa Vibrante */
-  --text-branco: #F5F5F5;    /* Branco Puro */
+  --text-branco: #E7E9EE;    /* Texto Principal */
+  --text-secondary: #B7BDC8; /* Texto Secundário */
+  --text-muted: #8A919D;     /* Texto Auxiliar */
 
   /* Tons Auxiliares & Glassmorphism */
-  --bg-card: rgba(30, 41, 59, 0.65);
-  --bg-input: rgba(15, 23, 42, 0.85);
-  --border-glass: rgba(245, 245, 245, 0.12);
+  --bg-card: rgba(23, 26, 36, 0.75);
+  --bg-input: rgba(15, 17, 23, 0.9);
+  --border-glass: rgba(231, 233, 238, 0.12);
   --border-focus: rgba(244, 63, 94, 0.6);
-  --text-muted: #94a3b8;
   
   /* Gradientes & Brilhos */
   --glow-rose: rgba(244, 63, 94, 0.25);
   --glow-rose-intense: rgba(244, 63, 94, 0.45);
-  --gradient-glass: linear-gradient(135deg, rgba(245, 245, 245, 0.05) 0%, rgba(245, 245, 245, 0.01) 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(231, 233, 238, 0.05) 0%, rgba(231, 233, 238, 0.01) 100%);
   --gradient-rose: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
   
-  /* Tipografia */
-  --font-base: 'Inter', 'Neue Haas Grotesk', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-heading: 'Outfit', 'Neue Haas Grotesk', ui-sans-serif, system-ui, sans-serif;
+  /* Tipografia - Neue Haas Grotesk */
+  --font-base: 'Neue Haas Grotesk', 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-heading: 'Neue Haas Grotesk', 'Outfit', ui-sans-serif, system-ui, sans-serif;
 
   /* Sombra & Raio */
-  --shadow-lg: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px -5px var(--glow-rose);
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 0 20px -5px var(--glow-rose);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4);
   --radius-xl: 20px;
   --radius-md: 12px;
   --radius-sm: 8px;
@@ -225,39 +226,39 @@ body {
 .hero-tag {
   display: inline-block;
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--accent-rose);
-  background: rgba(244, 63, 94, 0.12);
+  color: var(--text-branco);
+  background: rgba(231, 233, 238, 0.08);
   padding: 0.4rem 1rem;
   border-radius: 99px;
   margin-bottom: 1rem;
-  border: 1px solid rgba(244, 63, 94, 0.3);
+  border: 1px solid rgba(231, 233, 238, 0.3);
 }
 
-/* Título em Peso 200 (UPPERCASE) com precisão nas cores da Paleta Zellgo */
+/* Hero Title: Bold (700) - todas as palavras em Branco (#E7E9EE) */
 .hero-title {
   font-family: var(--font-heading);
   font-size: 3.6rem;
-  font-weight: 200;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0px;
   line-height: 1.15;
   margin-bottom: 1.2rem;
+  color: var(--text-branco);
 }
 .title-white {
   color: var(--text-branco);
 }
 .title-rose {
-  color: var(--accent-rose);
-  text-shadow: 0 0 25px var(--glow-rose);
-  font-weight: 400; /* Levemente ressaltado mantendo a harmonia fina */
+  color: var(--text-branco);
+  font-weight: 700;
 }
 .hero-desc {
   max-width: 720px;
   margin: 0 auto;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: 1.05rem;
   font-weight: 300;
 }
@@ -389,18 +390,20 @@ body {
   text-transform: uppercase;
   letter-spacing: 1.5px;
   color: var(--accent-rose);
-  font-weight: 700;
+  font-weight: 600;
 }
 .block-title {
   font-family: var(--font-heading);
   font-size: 1.8rem;
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--text-branco);
   margin: 0.4rem 0 0.5rem 0;
 }
 .block-subtitle {
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: 0.95rem;
+  font-weight: 300;
 }
 
 /* CONTROLES E INPUTS FORMULÁRIO */
@@ -593,12 +596,14 @@ textarea.form-control {
 .card-title-group h3 {
   font-family: var(--font-heading);
   font-size: 1.35rem;
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: 0px;
   color: var(--text-branco);
 }
 .card-title-group span {
   font-size: 0.8rem;
-  color: var(--text-muted);
+  font-weight: 300;
+  color: var(--text-secondary);
 }
 .badge-tag {
   font-size: 0.75rem;
@@ -656,7 +661,7 @@ textarea.form-control {
   gap: 0.5rem;
 }
 .scope-name {
-  font-weight: 700;
+  font-weight: 500;
   color: var(--text-branco);
   font-size: 1.05rem;
 }
@@ -685,14 +690,15 @@ textarea.form-control {
 }
 .step-phase {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   color: var(--accent-rose);
   margin-bottom: 0.4rem;
 }
 .step-title {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 400;
+  letter-spacing: -0.01em;
   font-size: 1.15rem;
   color: var(--text-branco);
   margin-bottom: 0.5rem;
@@ -719,7 +725,8 @@ textarea.form-control {
 .pricing-info h4 {
   font-family: var(--font-heading);
   font-size: 1.4rem;
-  font-weight: 700;
+  font-weight: 300;
+  letter-spacing: -0.01em;
   color: var(--text-branco);
   margin-bottom: 0.4rem;
 }
@@ -745,7 +752,8 @@ textarea.form-control {
 .val-tier {
   font-family: var(--font-heading);
   font-size: 1.8rem;
-  font-weight: 800;
+  font-weight: 400;
+  letter-spacing: -0.02em;
   color: var(--accent-rose);
   line-height: 1.2;
 }
@@ -783,7 +791,7 @@ textarea.form-control {
 
 .zse-flow-title {
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 0.6rem;
@@ -792,7 +800,7 @@ textarea.form-control {
 .zse-flow-body {
   font-family: var(--font-heading);
   font-size: 1.15rem;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--text-branco);
   line-height: 1.4;
 }
@@ -828,7 +836,8 @@ textarea.form-control {
 }
 .zse-mod-title {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 400;
+  letter-spacing: -0.01em;
   font-size: 1.1rem;
   color: var(--text-branco);
 }
@@ -859,7 +868,7 @@ textarea.form-control {
 }
 .zse-inv-phase {
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   color: var(--text-muted);
   letter-spacing: 1.5px;
@@ -868,14 +877,16 @@ textarea.form-control {
 .zse-inv-name {
   font-family: var(--font-heading);
   font-size: 1.3rem;
-  font-weight: 700;
+  font-weight: 300;
+  letter-spacing: -0.01em;
   color: var(--text-branco);
   margin-bottom: 1rem;
 }
 .zse-inv-price {
   font-family: var(--font-heading);
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 400;
+  letter-spacing: -0.02em;
   color: var(--accent-rose);
 }
 
@@ -1156,7 +1167,7 @@ textarea.form-control {
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--text-muted);
-  font-weight: 700;
+  font-weight: 600;
   display: block;
   margin-bottom: 0.5rem;
 }
@@ -1187,14 +1198,15 @@ textarea.form-control {
 }
 .zpe-lp-num {
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 1.5px;
   color: var(--text-muted);
   margin-bottom: 0.3rem;
 }
 .zpe-lp-title {
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 400;
+  letter-spacing: -0.01em;
   color: var(--text-branco);
 }
 .zpe-lp-desc {
