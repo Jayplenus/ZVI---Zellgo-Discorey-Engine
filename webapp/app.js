@@ -780,7 +780,20 @@ function updateProductionWithAi(zpeData) {
     if (document.getElementById('zpeBrandPos') && b3.posicionamento) document.getElementById('zpeBrandPos').textContent = b3.posicionamento;
     if (document.getElementById('zpeBrandArq') && b3.arquetipo) document.getElementById('zpeBrandArq').textContent = b3.arquetipo;
     if (document.getElementById('zpeBrandSensacao') && b3.sensacao_desejada) document.getElementById('zpeBrandSensacao').textContent = b3.sensacao_desejada;
-    
+    if (document.getElementById('zpeBrandPaletaGrid') && Array.isArray(b3.paleta_sugerida)) {
+      document.getElementById('zpeBrandPaletaGrid').innerHTML = b3.paleta_sugerida.map(item => {
+        const bg = item.hex || item.cor || "#0F172A";
+        const isLight = (bg.toUpperCase() === '#F8FAFC' || bg.toUpperCase() === '#FFFFFF' || bg.toUpperCase() === '#F5F5F5' || bg.toUpperCase() === '#E2E8F0');
+        const textColor = isLight ? '#0F172A' : '#FFFFFF';
+        return `
+          <div class="palette-swatch-card">
+            <div class="swatch-color" style="background:${bg}; color:${textColor};">${bg}</div>
+            <div class="swatch-info"><strong>${item.cor || "Cor Recomendada"}:</strong> ${item.justificativa || ""}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
     if (document.getElementById('zpeBrandUsar') && Array.isArray(b3.palavras_usar)) {
       document.getElementById('zpeBrandUsar').innerHTML = b3.palavras_usar.map(w => `<span class="tag-badge green">${w}</span>`).join(' ');
     }
