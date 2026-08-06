@@ -92,9 +92,9 @@ Sua tarefa é compilar o pacote executivo de produção de altíssimo nível e D
     "sensacao_desejada": "Segurança absoluta na entrega, tranquilidade operacional e percepção de superioridade indiscutível na vitrine.",
     "direcao_visual": "Design limpo, tipografia sólida e imponente com contraste estudado para projetar excelência.",
     "paleta_sugerida": [
-      { "cor": "Primária de Autoridade", "hex": "#0F172A", "justificativa": "Justificativa da cor primária alinhada à psicologia do segmento do cliente." },
-      { "cor": "Acento de Conversão", "hex": "#0284C7", "justificativa": "Justificativa da cor vibrante para botões e chamadas de WhatsApp/Ação." },
-      { "cor": "Base Neutra de Leitura", "hex": "#F8FAFC", "justificativa": "Base clara e limpa para respiro visual e leitura técnica impecável." }
+      { "cor": "Cor Primária (NOME REAL DA COR)", "hex": "GERE UM HEXADECIMAL ESPECÍFICO PARA O NICHO DO CLIENTE (Ex: Azul Glacial #e0f2fe para Fábrica de Gelo, Preto Matte #171717 para Luxo)", "justificativa": "Justifique por que essa cor domina o mercado deste cliente e transmite sua autoridade industrial/comercial." },
+      { "cor": "Acento de Conversão", "hex": "GERE UM HEX VIBRANTE", "justificativa": "Justificativa da cor vibrante de destaque (botões/CTAs) que harmonize perfeitamente com a primária e o segmento." },
+      { "cor": "Base Neutra", "hex": "GERE UM HEX NEUTRO CLARO", "justificativa": "Justificativa da base neutra para respiro e leitura técnica de alto nível." }
     ],
     "referencias_esteticas": "Minimalismo funcional com acabamento de alta precisão e interfaces de alta performance."
   },
@@ -107,7 +107,7 @@ Sua tarefa é compilar o pacote executivo de produção de altíssimo nível e D
       "palavras_chave": [
         "Array com 4 a 6 palavras-chave REAIS DE DESTAQUE DE INTENÇÃO DE COMPRA EXATA que os clientes deste segmento digitam no Google. PROIBIDO USAR TERMOS GENÉRICOS COMO '+contratar empresa especialista' OU '+melhor serviço profissional'! Use o nome real dos produtos/serviços do cliente, intenção B2B/atacado/varejo e busca local se aplicável (Exemplo para fábrica de gelo: '+comprar gelo em atacado', '+distribuidora de gelo na região', '+fábrica de gelo 24 horas', '+gelo em cubos para comércio')."
       ],
-      "negativas": ["-gratis", "-curso", "-vaga", "-emprego", "-como fazer em casa", "-barato", "-usado", "-caseiro"],
+      "negativas": ["Array com 8 a 12 palavras-chave negativas REAIS E PROFISSIONAIS adequadas ao setor (B2B ou High-End). PROIBIDO usar diminutivos infantis. Foque em bloquear intenções amadoras, curiosos ou varejo de baixo ticket. (Ex: -gratis, -curso, -vaga, -emprego, -usado, -caseiro, -conserto, -amador, -aprendiz)."],
       "intencao": "Capturar com precisão cirúrgica o comprador no momento exato em que busca pela solução com intenção imediata de negociação."
     },
     "meta_ads": {
