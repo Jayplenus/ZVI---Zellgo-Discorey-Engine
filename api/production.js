@@ -170,8 +170,28 @@ REGRAS SOBERANAS DO MOTOR ZPE (ZPE v1.1 - FIDELIDADE DE PRODUÇÃO):
       throw new Error('A API do Google retornou uma resposta vazia para o Motor ZPE.');
     }
 
-    const cleanJsonText = rawAiText.replace(/^```json\s*/i, '').replace(/\s*```$/i, '').trim();
-    const parsedProduction = JSON.parse(cleanJsonText);
+    let cleanJsonText = rawAiText;
+    const jsonBlockRegex = /\`\`\`(?:json)?\s*([\s\S]*?)\s*\`\`\`/i;
+    const match = rawAiText.match(jsonBlockRegex);
+    
+    if (match && match[1]) {
+      cleanJsonText = match[1].trim();
+    } else {
+      const firstBrace = rawAiText.indexOf('{');
+      const lastBrace = rawAiText.lastIndexOf('}');
+      if (firstBrace !== -1 && lastBrace !== -1 && lastBrace >= firstBrace) {
+        cleanJsonText = rawAiText.substring(firstBrace, lastBrace + 1).trim();
+      } else {
+        cleanJsonText = rawAiText.trim();
+      }
+    }
+
+    let parsedProduction;
+    try {
+      parsedProduction = JSON.parse(cleanJsonText);
+    } catch (parseError) {
+      throw new Error(\`Falha ao converter resposta da IA para JSON. Resposta bruta: \${rawAiText.substring(0, 200)}... Erro técnico: \${parseError.message}\`);
+    }
 
     return res.status(200).json({
       success: true,
