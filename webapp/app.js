@@ -538,25 +538,14 @@ async function triggerStrategyEngine() {
     btn.innerHTML = '⏳ Motor ZSE formulando estratégia modular...';
   }
 
-  // Se for acessado direto sem submeter briefing, carrega o Case ZVI atual do DOM
+  // Impede que o Motor 2 rode sem que o Motor 1 (ZDE) tenha operado com sucesso
   if (!globalZdeJson) {
-    const nomeEl = document.getElementById('dashClientName');
-    const segEl = document.getElementById('dashClientSegment');
-    globalZdeJson = {
-      cliente: nomeEl ? nomeEl.textContent : "GF Riototal (Case ZVI)",
-      segmento: segEl ? segEl.textContent.replace("Segmento: ", "") : "Varejo & Operações Locais",
-      diagnostico: {
-        indice_complexidade: 12,
-        tier: "Tier 1 (Impulso & Automação Essencial)",
-        gargalo_central: "Sobrecarga no atendimento e tempo de resposta via WhatsApp.",
-        ancoragem_roi: "Automação 24/7 liberando a equipe e elevando a conversão de cotações sem inchar folha."
-      },
-      gaps: [
-        { modulo: "Gargalo no Atendimento WhatsApp", prioridade: "Alta Prioridade", descricao: "Demora nas respostas manuais por falta de bot 24/7." },
-        { modulo: "Percepção Visual Comum", prioridade: "Oportunidade", descricao: "Reposição visual para transmitir máxima confiança." }
-      ],
-      oportunidades: currentRadarData || []
-    };
+    showToast('⚠️ Erro de Sequência', 'ZDE não disponível. Execute/corrija o diagnóstico antes de gerar a estratégia.');
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = originalText;
+    }
+    return;
   }
 
   try {
