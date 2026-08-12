@@ -256,7 +256,7 @@ function updateDashboardWithAi(ai, payload) {
   if (scoreEl) {
     const pts = ai.indice_complexidade;
     const tier = ai.tier;
-    scoreEl.innerHTML = \`\${pts} PONTOS <div style="font-size:0.9rem; font-weight:400; color:var(--text-branco);">(\${tier})</div>\`;
+    scoreEl.innerHTML = `${pts} PONTOS <div style="font-size:0.9rem; font-weight:400; color:var(--text-branco);">(${tier})</div>`;
   }
 
   if (ai.radar && Array.isArray(ai.radar)) {
