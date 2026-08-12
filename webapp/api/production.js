@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization');
 
   if (req.method === 'OPTIONS') {
     res.status(200).end();
@@ -16,6 +16,34 @@ export default async function handler(req, res) {
 
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Método não permitido. Utilize POST para acionar o Motor ZPE.' });
+  }
+
+  // Verificação de Segurança (Supabase Auth)
+  const authHeader = req.headers['authorization'];
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'Acesso negado. Token de autenticação ausente.' });
+  }
+  
+  const token = authHeader.split(' ')[1];
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    return res.status(503).json({ error: 'Configuração do Supabase ausente no servidor.' });
+  }
+
+  try {
+    const authRes = await fetch(`${supabaseUrl}/auth/v1/user`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'apikey': supabaseAnonKey
+      }
+    });
+    if (!authRes.ok) {
+      return res.status(401).json({ error: 'Acesso negado. Token de autenticação inválido ou expirado.' });
+    }
+  } catch(e) {
+    return res.status(401).json({ error: 'Erro de conexão com o provedor de autenticação.' });
   }
 
   const apiKey = process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY;

@@ -7,8 +7,36 @@
   <meta name="description" content="Módulo de Inteligência Diagnóstica e Estratégica da Zellgo. Projeção de estratégias avançadas e orçamentos modulares para marcas de alto padrão e empresas orientadas ao crescimento.">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="https://zellgo.com.br/favicon.ico">
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
+
+  <!-- AUTHENTICATION WALL -->
+  <div id="auth-container" class="auth-wrapper" style="display: flex;">
+    <div class="auth-glass-box">
+      <div class="auth-logo">
+        <h2 style="color: white; font-size: 2rem; margin-bottom: 0;">Zellgo <span style="font-weight:300;">OS</span></h2>
+      </div>
+      <h3 class="auth-title">Acesso Restrito</h3>
+      <p class="auth-subtitle">Autentique-se para acessar os Motores ZVI.</p>
+      <form id="login-form" class="auth-form">
+        <div class="form-group">
+          <label>E-mail Corporativo</label>
+          <input type="email" id="auth-email" required placeholder="seu@email.com">
+        </div>
+        <div class="form-group">
+          <label>Senha de Acesso</label>
+          <input type="password" id="auth-password" required placeholder="••••••••">
+        </div>
+        <div id="login-error" class="auth-error" style="display: none; color: #f5487f; margin-bottom: 1rem; font-size: 0.9rem;">Erro ao fazer login</div>
+        <button type="submit" class="auth-submit-btn">Acessar Motores ZVI</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MAIN APP CONTENT (Hidden by default) -->
+  <div id="app-content" style="display: none;">
 
   <!-- HEADER -->
   <header class="zvi-header">
@@ -46,6 +74,9 @@
       </button>
       <button class="tab-btn" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.4);" onclick="exportAllJson()" title="Baixar todos os JSONs gerados em um único arquivo">
         <span class="tab-icon">💾</span> <span class="tab-label">Exportar JSON</span>
+      </button>
+      <button class="tab-btn" id="btn-logout" style="background: rgba(245, 72, 127, 0.15); color: #f5487f; border: 1px solid rgba(245, 72, 127, 0.4); margin-left: 1rem;" title="Sair do Sistema">
+        <span class="tab-icon">🚪</span> <span class="tab-label">Sair</span>
       </button>
     </div>
   </header>
@@ -929,7 +960,9 @@ Você é o Agente Inteligente da Empresa, operando pelo sistema Zellgo Bot 24/7.
       <p id="toastDesc">Os dados do cliente foram enviados para o canal de processamento da equipe Zellgo com sucesso!</p>
     </div>
   </div>
+  </div> <!-- FIM APP CONTENT -->
 
+  <script src="auth.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

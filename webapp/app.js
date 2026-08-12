@@ -159,10 +159,14 @@ async function sendToZellgoEngine() {
   }
 
   try {
+    const { data: { session } } = await supabase.auth.getSession();
+    const token = session?.access_token || '';
+
     const res = await fetch('/api/engine', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: jsonString
     });
@@ -549,9 +553,15 @@ async function triggerStrategyEngine() {
   }
 
   try {
+    const { data: { session } } = await supabase.auth.getSession();
+    const token = session?.access_token || '';
+
     const res = await fetch('/api/strategy', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
       body: JSON.stringify(globalZdeJson)
     });
 
@@ -702,9 +712,15 @@ async function triggerProductionEngine() {
       diagnostico_base_zde: globalZdeJson || {}
     };
 
+    const { data: { session } } = await supabase.auth.getSession();
+    const token = session?.access_token || '';
+
     const res = await fetch('/api/production', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
       body: JSON.stringify(zpePayload)
     });
 
