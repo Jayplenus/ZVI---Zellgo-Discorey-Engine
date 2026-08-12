@@ -686,19 +686,6 @@ async function triggerProductionEngine() {
     btn.innerHTML = '⏳ Motor ZPE compilando 5 Bibliotecas Mestras de Produção...';
   }
 
-  // Se acessado diretamente sem histórico anterior, alimenta com o caso local
-  if (!globalZseJson) {
-    globalZseJson = {
-      cliente: "Empresa em Transformação",
-      segmento: "Operações Especializadas",
-      mapeamento: {
-        problema: "Baixa autoridade digital e demora no atendimento a cotações abertos.",
-        estrategia: "Implementação de ecossistema com bot 24/7 e posicionamento high-end.",
-        solucao: "Mecanismo Único blindado e automação inteligente no WhatsApp."
-      }
-    };
-  }
-
   try {
     const zpePayload = {
       estrategia_zse: globalZseJson || {},

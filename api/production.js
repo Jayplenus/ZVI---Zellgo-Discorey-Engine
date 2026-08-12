@@ -42,107 +42,100 @@ O prompt sozinho envelhece rápido; o Blueprint vira metodologia imbatível. O Z
 Abaixo estão os dados do Diagnóstico (Motor 1 - ZDE) e da Estratégia Comercial aprovada (Motor 2 - ZSE):
 ${JSON.stringify(zseInput, null, 2)}
 
-Sua tarefa é compilar o pacote executivo de produção de altíssimo nível e DEVOLVER UMA RESPOSTA EXCLUSIVAMENTE EM JSON VÁLIDO (sem markdown de crases ou textos adicionais fora do JSON), seguindo rigorosamente o esquema abaixo para as 5 Bibliotecas Mestras:
+Sua tarefa é compilar o pacote executivo de produção de altíssimo nível e DEVOLVER UMA RESPOSTA EXCLUSIVAMENTE EM JSON VÁLIDO (sem markdown de crases ou textos adicionais fora do JSON), seguindo rigorosamente a ESTRUTURA abaixo.
+MUITO IMPORTANTE: Os valores contidos no esquema abaixo são APENAS DESCRITIVOS de formato. Você NÃO DEVE INVENTAR decisões estratégicas (como Bot 24/7, Google Ads, Arquétipos específicos) a menos que elas tenham sido solicitadas ou sugeridas no diagnóstico (ZDE) ou na estratégia (ZSE) enviada a você. Tudo o que você produzir nas bibliotecas DEVE ser fundamentado exclusivamente nos dados fornecidos do ZDE e ZSE. Se não houver contexto suficiente, mantenha a neutralidade ou indique a falta de dados.
 
 {
-  "cliente": "Nome do Cliente / Empresa",
-  "segmento": "Segmento específico da Empresa",
-  "status": "Pacote Metodológico de Produção Concluído • ZPE v1.0",
+  "cliente": "NOME DO CLIENTE",
+  "segmento": "SEGMENTO",
+  "status": "Pacote Metodológico de Produção Concluído • ZPE v1.1",
   
   "biblioteca_1_ia_bot": {
-    "identidade": "Defina quem é o agente centrado no nicho da empresa (Ex: Assistente Executiva e Consultora Técnica de Vendas da [Nome da Empresa])",
-    "personalidade": "Tom de voz resoluto, elegante, empático e com autoridade técnica no setor do cliente.",
-    "objetivo_principal": "Atender cotações e dúvidas técnicas sobre os produtos/serviços reais da empresa no WhatsApp em menos de 15 segundos, qualificando leads e fechando pedidos sem inchar folha salarial.",
+    "identidade": "[SE SOLICITADO NO ZDE/ZSE: Crie a identidade do agente IA para o cliente]",
+    "personalidade": "[SE SOLICITADO: Defina o tom de voz do agente com base no cliente]",
+    "objetivo_principal": "[SE SOLICITADO: Objetivo de negócio da IA]",
     "regras_atendimento": [
-      "Responder de forma cordial e objetiva em blocos curtos (estilo WhatsApp).",
-      "Ancorar a tradição, capacidade e autoridade técnica da empresa antes de passar condições de investimento ou preços."
+      "[Regra 1 customizada para o cliente]",
+      "[Regra 2 customizada para o cliente]"
     ],
     "perguntas_qualificacao": [
-      "Pergunta específica sobre o produto/serviço exato que o cliente deseja contratar ou comprar na empresa.",
-      "Pergunta sobre volume, prazo ou urgência de entrega que seja realista para o modelo de negócio (B2B, atacado ou varejo)."
+      "[Pergunta 1 para o contexto do cliente]",
+      "[Pergunta 2 para o contexto do cliente]"
     ],
-    "fluxo_conversacional": "1. Saudação & Enquadramento ➔ 2. Diagnóstico da Dor e Demanda ➔ 3. Apresentação do Mecanismo Único ➔ 4. Cotação/Fechamento ou Escalonamento",
-    "situacoes_proibidas": "Nunca prometer descontos fora da política, nunca citar concorrentes pelo nome nem dizer 'sou uma IA experimental'.",
-    "escalonamento_humano": "Acionar o consultor especialista humano no WhatsApp em negociações de alto porte, grandes volumes ou parcerias comerciais estratégicas.",
-    "prompt_copy_paste": "Escreva o System Prompt COMPLETO E EXECUTÁVEL do Agente Inteligente, incluindo falas e instruções customizadas EXCLUSIVAMENTE para a realidade operativa da empresa, sem placeholders ou colchetes inacabados."
+    "fluxo_conversacional": "[Passo a passo conversacional do bot]",
+    "situacoes_proibidas": "[O que a IA não deve fazer neste negócio]",
+    "escalonamento_humano": "[Quando transferir para o humano no contexto do cliente]",
+    "prompt_copy_paste": "[System Prompt executável do agente, SE a automação for parte da estratégia]"
   },
 
   "biblioteca_2_digital_exp": {
-    "hero_promessa": "Título de alto impacto com a Promessa Principal de Valor real e inconfundível do produto/serviço da empresa (sem clichês corporativos)",
-    "problema_dor": "A principal dor, atraso ou frustração operacional que o comprador deste nicho enfrenta ao depender dos concorrentes comuns",
-    "mecanismo_unico": "O coração metodológico da empresa! Invente um nome proprietário brilhante e relevante para o nicho (ex: para uma fábrica de gelo, algo como 'Sistema de Pureza Térmica & Logística Zero Queda 360°') explicando por que ele supera os concorrentes.",
-    "solucao": "Como a empresa resolve o problema usando seu Mecanismo Único, sua estrutura de atendimento e sua excelência de entrega",
-    "prova_autoridade": "Elementos de confiança reais baseados no diagnóstico: anos de consolidação, carteira de clientes, rigor técnico e capacidade de atendimento",
-    "processo": "Passo a passo simples e prático em 3 etapas para cotar, contratar ou fazer um pedido na empresa",
-    "oferta": "A chamada comercial irresistível para iniciar negociação ou pedido imediato",
+    "hero_promessa": "[Promessa Principal baseada na estratégia ZSE]",
+    "problema_dor": "[Principal dor identificada no ZDE]",
+    "mecanismo_unico": "[SE SOLICITADO NO ZSE: Nome proprietário do mecanismo/solução desenvolvido para a empresa]",
+    "solucao": "[Como a empresa resolve o problema usando sua solução]",
+    "prova_autoridade": "[Provas reais baseadas no ZDE]",
+    "processo": "[Passo a passo prático para compra]",
+    "oferta": "[Chamada comercial definida para o cliente]",
     "faq_objecoes": [
-      { "pergunta": "Objeção mais comum e específica do nicho da empresa?", "resposta": "Resposta técnica mostrando como a operação da marca blinda o cliente contra falhas." },
-      { "pergunta": "Como funciona o suporte e cotação de urgência?", "resposta": "Atendimento instantâneo via Agente Inteligente 24/7 com suporte comercial humanizado e ágil." }
+      { "pergunta": "[Objeção real do cliente]", "resposta": "[Resposta quebra-objeção]" }
     ],
-    "cta_final": "Botão de ação forte e focado na conversão imediata do nicho (Ex: 'Cotar Pedido no WhatsApp 24/7' ou 'Falar com Consultor Técnico')"
+    "cta_final": "[Botão de ação (CTA) alinhado à estratégia]"
   },
 
   "biblioteca_3_brand_direction": {
-    "posicionamento": "Posicionamento claro e diretivo adaptado ao perfil da marca (ex: Referência Industrial Confiável & High-End Operacional)",
-    "arquetipo": "Arquétipo de marca perfeitamente justificado para o negócio (ex: O Governante da Excelência ou O Mago da Precisão)",
-    "personalidade": "Confiável, pontual, inovadora, sólida e direta.",
-    "tom_verbal": "Voz de especialista com autoridade clínica e industrial/comercial, eliminando promessas vagas ou adjetivos vazios.",
-    "palavras_usar": ["Array com 6 palavras de autoridade e poder adaptadas EXCLUSIVAMENTE ao vocabulário e nicho da empresa (não use apenas palavras genéricas; inclua termos que remetam à força e exclusividade do produto)"],
-    "palavras_proibidas": ["Array com 6 termos proibidos no marketing da marca, como: 'Baratinho', 'Orçamento grátis sem compromisso', 'Mais um do mercado' e clichês batidos do setor"],
-    "sensacao_desejada": "Segurança absoluta na entrega, tranquilidade operacional e percepção de superioridade indiscutível na vitrine.",
-    "direcao_visual": "Design limpo, tipografia sólida e imponente com contraste estudado para projetar excelência.",
+    "posicionamento": "[Posicionamento extraído/deduzido a partir do ZDE/ZSE]",
+    "arquetipo": "[Arquétipo mais adequado aos dados do ZDE/ZSE]",
+    "personalidade": "[Traços de personalidade da marca]",
+    "tom_verbal": "[Diretrizes de tom de voz para a comunicação]",
+    "palavras_usar": ["Array de palavras fortes e específicas para o vocabulário do cliente"],
+    "palavras_proibidas": ["Array de palavras proibidas ou clichês do setor do cliente"],
+    "sensacao_desejada": "[O que a marca deve transmitir]",
+    "direcao_visual": "[Direção de design alinhada ao posicionamento]",
     "paleta_sugerida": [
-      { "cor": "Cor Primária (NOME REAL DA COR)", "hex": "GERE UM HEXADECIMAL ESPECÍFICO PARA O NICHO DO CLIENTE (Ex: Azul Glacial #e0f2fe para Fábrica de Gelo, Preto Matte #171717 para Luxo)", "justificativa": "Justifique por que essa cor domina o mercado deste cliente e transmite sua autoridade industrial/comercial." },
-      { "cor": "Acento de Conversão", "hex": "GERE UM HEX VIBRANTE", "justificativa": "Justificativa da cor vibrante de destaque (botões/CTAs) que harmonize perfeitamente com a primária e o segmento." },
-      { "cor": "Base Neutra", "hex": "GERE UM HEX NEUTRO CLARO", "justificativa": "Justificativa da base neutra para respiro e leitura técnica de alto nível." }
+      { "cor": "[Nome da Cor]", "hex": "[Hexadecimal compatível]", "justificativa": "[Por que usar esta cor no contexto do cliente]" }
     ],
-    "referencias_esteticas": "Minimalismo funcional com acabamento de alta precisão e interfaces de alta performance."
+    "referencias_esteticas": "[Estilo visual e interface]"
   },
 
   "biblioteca_4_growth_engine": {
-    "icp_prioritario": "Descrição exata do tomador de decisão (compradores B2B, gerentes, empresários ou consumidores exigentes) que busca qualidade e pontualidade na empresa",
-    "canal_recomendado": "Mix de canais focado no faturamento rápido: WhatsApp Automático 24/7 + Google Ads (Intenção Urgente) + Instagram de Autoridade",
-    "oferta_entrada": "A oferta de engajamento que quebra a barreira de entrada (cotação com atendimento zero fila e garantia de prazo)",
+    "icp_prioritario": "[Público-alvo extraído do ZDE/ZSE]",
+    "canal_recomendado": "[Canais definidos na Estratégia ZSE (não invente canais não solicitados)]",
+    "oferta_entrada": "[Oferta definida no ZSE]",
     "google_ads": {
       "palavras_chave": [
-        "Array com 4 a 6 palavras-chave REAIS DE DESTAQUE DE INTENÇÃO DE COMPRA EXATA que os clientes deste segmento digitam no Google. PROIBIDO USAR TERMOS GENÉRICOS COMO '+contratar empresa especialista' OU '+melhor serviço profissional'! Use o nome real dos produtos/serviços do cliente, intenção B2B/atacado/varejo e busca local se aplicável (Exemplo para fábrica de gelo: '+comprar gelo em atacado', '+distribuidora de gelo na região', '+fábrica de gelo 24 horas', '+gelo em cubos para comércio')."
+        "[Array de palavras-chave REAIS e ESPECÍFICAS para intenção de compra no setor do cliente, SE Google Ads for parte da estratégia]"
       ],
-      "negativas": ["Array com 8 a 12 palavras-chave negativas REAIS E PROFISSIONAIS adequadas ao setor (B2B ou High-End). PROIBIDO usar diminutivos infantis. Foque em bloquear intenções amadoras, curiosos ou varejo de baixo ticket. (Ex: -gratis, -curso, -vaga, -emprego, -usado, -caseiro, -conserto, -amador, -aprendiz)."],
-      "intencao": "Capturar com precisão cirúrgica o comprador no momento exato em que busca pela solução com intenção imediata de negociação."
+      "negativas": ["[Array de palavras-chave negativas para o setor do cliente]"],
+      "intencao": "[A estratégia de busca exata]"
     },
     "meta_ads": {
-      "conceito_criativo": "Demonstração de força operacional, confiabilidade e superioridade do Mecanismo Único da empresa no feed/stories",
-      "hook": "Gancho magnético e específico para o setor do cliente nos primeiros 3 segundos. PROIBIDO USAR CLICHÊS GENÉRICOS COMO 'Cansado de atrasos ao contratar serviços?'. Escreva uma frase forte e provocativa tocando no problema específico que o cliente do nicho enfrenta na sua rotina!",
-      "roteiro_short_reels": "ROTEIRO PRONTO E COMPLETO em 3 cenas, com a fala/áudio real do narrador e a indicação de câmera/vídeo específicos para o negócio do cliente. PROIBIDO APRESENTAR APENAS RESUMOS TEÓRICOS DE CENA COMO 'Cena 1: Quebrar o clichê do mercado'. ESCREVA AS FALAS ESPECÍFICOS mencionando o nome, os anos de história e o produto real do cliente!"
+      "conceito_criativo": "[Direção do criativo SE Meta Ads for utilizado]",
+      "hook": "[Gancho específico para a dor do ICP, sem clichês]",
+      "roteiro_short_reels": "[Roteiro adaptado ao cliente, com falas e instruções]"
     },
-    "lp_conectada": "Direcionamento integral para a Landing Page High-End (Biblioteca 2) com o Agente Inteligente pronto para responder no WhatsApp.",
-    "metrica_principal": "Custo por Cotação Qualificada no WhatsApp (CPA Qualificado) com Tempo de Resposta inferior a 15 segundos."
+    "lp_conectada": "[Como o tráfego se conecta com a conversão]",
+    "metrica_principal": "[Métrica de sucesso principal alinhada ao objetivo]"
   },
 
   "biblioteca_5_executive_delivery": {
-    "apresentacao_titulo": "Plano Executivo de Transformação & Engenharia Modular — [Nome Real do Cliente]",
-    "resumo_executivo": "Síntese executiva mostrando como as bibliotecas ZPE (automação IA, vitrine digital, posicionamento de autoridade e tráfego de alta intenção) resolvem os gargalos identificados na auditoria ZDE e alavancam o crescimento sólido sem dependência de indicação manual.",
+    "apresentacao_titulo": "[Título do Plano Executivo para o Cliente]",
+    "resumo_executivo": "[Resumo de como a estratégia atende aos gaps do ZDE]",
     "proximos_passos": [
-      "1. Aprovação do plano modular e cronograma de desdobramento (Setup & Fee Operacional).",
-      "2. Kick-off e calibração fina da Identidade Visual e Mecanismo Único da marca (Dias 01 a 07).",
-      "3. Ativação em produção do Agente Inteligente Zellgo Bot 24/7 e campanhas de aquisição (Dias 08 a 15)."
+      "[Passo 1 baseado na estratégia]",
+      "[Passo 2]"
     ],
-    "cronograma_resumo": "Execução estruturada: Mês 1 (Fundação & Bot IA 24/7), Mês 2 (Vitrine High-End & LP do Mecanismo Único), Mês 3 (Growth, Campanhas & ROI de Margem).",
+    "cronograma_resumo": "[Fases da execução]",
     "responsabilidades": [
-      { "papel": "Equipe Zellgo & Arquiteto Chefe", "dever": "Desenvolvimento do Mecanismo Único proprietário, calibração do Bot IA 24/7, design high-end e gestão contínua de tráfego de intenção." },
-      { "papel": "Cliente / Diretoria", "dever": "Validação técnica do fluxo de atendimento, fornecimento de ativos operacionais e acompanhamento dos fechamentos de vendas no CRM/WhatsApp." }
+      { "papel": "Equipe", "dever": "Tarefas" },
+      { "papel": "Cliente", "dever": "Validações" }
     ]
   }
 }
 
-REGRAS SOBERANAS DO MOTOR ZPE (LEI MARCIAL ANTI-GENÉRICA):
-1. PROIBIDO CONTEÚDO GENÉRICO OU RESUMOS DE TEMPLATE: Você está operando sobre dados profundos de diagnóstico de uma empresa real (ex: se o cliente é uma FÁBRICA DE GELO CONSOLIDADA HÁ 40 ANOS, um restaurante, uma clínica ou corretora, TODOS os textos, roteiros de reels, hooks de anúncios e palavras de marca têm que exalar o vocabulário real, a tradição e os produtos específicos do setor!).
-2. REGRA DE OURO PARA O GOOGLE ADS: NUNCA, SOB HIPÓTESE ALGUMA, gere palavras-chave preguiçosas ou genéricas como "+contratar empresa especialista", "+melhor serviço profissional" ou termos com colchetes. Crie termos comerciais REAIS e ESPECÍFICOS para o produto/serviço que a empresa vende!
-3. REGRA DE OURO PARA O META ADS (HOOK E ROTEIRO REELS): 
-   - NUNCA use hooks de template escolar como "Cansado de atrasos ao contratar serviços?". Escreva um hook poderoso, chamando a atenção do decisor específico daquele setor para o maior pesadelo ou desejo da sua rotina.
-   - NUNCA escreva resumos teóricos para o Roteiro do Reels ("Cena 1: Quebrar o clichê do mercado. Cena 2: Apresentar o Mecanismo Único..."). Você é O ENGENHEIRO E CRIADOR: escreva o texto COMPLETO do roteiro para ser gravado imediatamente, com as FALAS/LOCOÇÃO ESCRITAS VERBATIM e instruções da CENA VISUAL (ex: "Cena 1 (Visual: Gelo cristalino caindo em escala industrial...) - Áudio Locutor: 'Seu comércio não pode parar porque faltou gelo em pleno fim de semana...'").
-4. PROFUNDIDADE CLÍNICA E CONSULTORIA AAA: O Mecanismo Único deve ser um conceito proprietário brilhante aplicável à realidade de engenharia ou serviço do cliente, diferenciando-o drasticamente na competição por preço baixo.
-5. RETORNE APENAS O JSON VERDADEIRO SEM FORMATAÇÕES DE MARKDOWN EXTERNAS OU COMIDA SOLTA.
+REGRAS SOBERANAS DO MOTOR ZPE (ZPE v1.1 - FIDELIDADE DE PRODUÇÃO):
+1. ESTRITA FIDELIDADE: O ZPE NÃO DEVE INVENTAR tecnologias, serviços ou metodologias (como "Bots de IA", "Mecanismo Único", "Google Ads") se eles não estiverem alinhados com o diagnóstico (ZDE) e a estratégia (ZSE). Trabalhe EXCLUSIVAMENTE com o que foi passado.
+2. NADA DE TEMPLATES FIXOS: Abandone textos genéricos. Escreva o conteúdo das bibliotecas com profundidade técnica e vocabulário real do setor do cliente.
+3. RETORNE APENAS O JSON VERDADEIRO SEM FORMATAÇÕES DE MARKDOWN EXTERNAS.
 `;
 
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
