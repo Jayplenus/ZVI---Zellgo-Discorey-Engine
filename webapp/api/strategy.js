@@ -94,7 +94,7 @@ REGRAS RÍGIDAS DE INTELIGÊNCIA COMERCIAL E PRECIFICAÇÃO MODULAR (ZSE v1.0 / 
 - RETORNE EXCLUSIVAMENTE O JSON VERDADEIRO SEM COMIDA OU CITAÇÃO DE MARKDOWN NA FORMA DE TEXTO SOLTO.
 `;
 
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`;
 
     const apiResponse = await fetch(geminiUrl, {
       method: 'POST',
