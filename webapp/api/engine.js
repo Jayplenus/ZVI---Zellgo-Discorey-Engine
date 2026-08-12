@@ -146,8 +146,29 @@ REGRAS RÍGIDAS DE PRECIFICAÇÃO OBJETIVA E MODULAR (ZDE v2.3):
       throw new Error('A API do Google retornou uma resposta vazia.');
     }
 
-    const cleanJsonText = rawAiText.replace(/^```json\s*/i, '').replace(/\s*```$/i, '').trim();
-    const parsedDiagnosis = JSON.parse(cleanJsonText);
+    let cleanJsonText = rawAiText;
+    const jsonBlockRegex = /\`\`\`(?:json)?\s*([\s\S]*?)\s*\`\`\`/i;
+    const match = rawAiText.match(jsonBlockRegex);
+    
+    if (match && match[1]) {
+      cleanJsonText = match[1].trim();
+    } else {
+      const firstBrace = rawAiText.indexOf('{');
+      const lastBrace = rawAiText.lastIndexOf('}');
+      if (firstBrace !== -1 && lastBrace !== -1 && lastBrace >= firstBrace) {
+        cleanJsonText = rawAiText.substring(firstBrace, lastBrace + 1).trim();
+      } else {
+        cleanJsonText = rawAiText.trim();
+      }
+    }
+
+    let parsedDiagnosis;
+    try {
+      parsedDiagnosis = JSON.parse(cleanJsonText);
+    } catch (parseError) {
+      console.error(\`[FALHA DE PARSING ZDE] Status: 500 | Erro: \${parseError.message} | Resposta bruta (200 chars): \${rawAiText.substring(0, 200)}\`);
+      throw new Error(\`Falha na extração do JSON. O motor não pôde interpretar a resposta da IA.\`);
+    }
 
     return res.status(200).json({
       success: true,

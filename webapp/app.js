@@ -182,15 +182,22 @@ async function sendToZellgoEngine() {
       }
     }
     
-    throw new Error('Fallback acionado com sucesso.');
+    throw new Error('Falha na API ZDE.');
 
   } catch (error) {
-    // Apresentação limpa, profissional e sem mensagens de erro ou "demo"
-    applyFallbackDashboard(payload);
+    globalZdeJson = null;
+    const nameEl = document.getElementById('dashClientName');
+    if (nameEl) nameEl.textContent = 'ERRO ZDE — resposta do motor não disponível.';
+    
+    // Neutralizar conteúdo mock para não confundir o usuário
+    ['dashClientSegment', 'dashComplexityScore', 'dashRadarSummary', 'dashScopeList', 'dashRoadmapTimeline', 'dashRoiText', 'dashSetupVal', 'dashRetainerVal'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = '';
+    });
 
     showToast(
-      '✅ Radiografia Transmitida!',
-      'O plano estratégico foi formulado para a sua operação. Encaminhando para visualização...'
+      '❌ Falha Crítica ZDE',
+      'ERRO ZDE — resposta do motor não disponível.'
     );
 
     finalizeSubmission();
@@ -213,15 +220,20 @@ function finalizeSubmission() {
 // ATUALIZAÇÃO DO DOM COM RESPOSTAS REAIS DA INTELIGÊNCIA ARTIFICIAL (GEMINI)
 // ==========================================================================
 function updateDashboardWithAi(ai, payload) {
+  // Se a IA não retornar uma propriedade obrigatória, isso deve ser tratado como erro de contrato
+  if (ai.indice_complexidade === undefined || !ai.tier || !ai.gargalo_central || !ai.ancoragem_roi) {
+    throw new Error("A IA retornou um JSON incompleto. Faltam propriedades obrigatórias no contrato estrutural.");
+  }
+
   // Salva o JSON estruturado do Motor 1 (ZDE) para alimentar o Motor 2 (ZSE)
   globalZdeJson = {
     cliente: ai.nome_empresa || payload.client_identity.nome,
     segmento: ai.segmento || payload.client_identity.segmento,
     diagnostico: {
-      indice_complexidade: ai.indice_complexidade !== undefined ? ai.indice_complexidade : 12,
-      tier: ai.tier || "Tier 1 (Impulso & Automação Essencial)",
-      gargalo_central: ai.gargalo_central || payload.operations.gargalos_operacionais,
-      ancoragem_roi: ai.ancoragem_roi || "Automação 24/7 com retorno imediato e expansão de lucro sem inchar folha."
+      indice_complexidade: ai.indice_complexidade,
+      tier: ai.tier,
+      gargalo_central: ai.gargalo_central,
+      ancoragem_roi: ai.ancoragem_roi
     },
     gaps: ai.escopo_recomendado || [],
     oportunidades: ai.radar || []
@@ -242,9 +254,9 @@ function updateDashboardWithAi(ai, payload) {
 
 
   if (scoreEl) {
-    const pts = ai.indice_complexidade !== undefined ? ai.indice_complexidade : 12;
-    const tier = ai.tier || "Tier 1 (Impulso & Automação Essencial)";
-    scoreEl.innerHTML = `${pts} PONTOS <div style="font-size:0.9rem; font-weight:400; color:var(--text-branco);">(${tier})</div>`;
+    const pts = ai.indice_complexidade;
+    const tier = ai.tier;
+    scoreEl.innerHTML = \`\${pts} PONTOS <div style="font-size:0.9rem; font-weight:400; color:var(--text-branco);">(\${tier})</div>\`;
   }
 
   if (ai.radar && Array.isArray(ai.radar)) {
@@ -568,10 +580,19 @@ async function triggerStrategyEngine() {
         return;
       }
     }
-    throw new Error('Acionando Fallback ZSE.');
+    throw new Error('Falha na API ZSE.');
   } catch(error) {
-    applyFallbackStrategy(globalZdeJson);
-    showToast('⚙️ Estratégia Modular ZSE Ativa!', 'Painel da estratégia sincronizado com a realidade da operação e orçamentos objetivos.');
+    globalZseJson = null;
+    const clientEl = document.getElementById('zseClientName');
+    if (clientEl) clientEl.textContent = 'ERRO ZSE — resposta do motor não disponível.';
+    
+    // Neutralizar conteúdo mock
+    ['zseSegment', 'zseOpportunityScore', 'zseProbText', 'zseStratText', 'zseSolText', 'zseModGrid', 'zseRoadmapGrid', 'zseFundacaoVal', 'zseConstrucaoVal', 'zseAceleracaoVal'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = '';
+    });
+
+    showToast('❌ Falha Crítica ZSE', 'ERRO ZSE — resposta do motor não disponível.');
     switchTab('strategy');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (btn) {
@@ -712,10 +733,19 @@ async function triggerProductionEngine() {
         return;
       }
     }
-    throw new Error('Acionando Fallback ZPE.');
+    throw new Error('Falha na API ZPE.');
   } catch(error) {
-    applyFallbackProduction(globalZseJson);
-    showToast('🔨 Fábrica ZPE Ativada!', 'As 5 Bibliotecas foram geradas com o padrão soberano da metodologia Zellgo!');
+    globalZpeJson = null;
+    const clientEl = document.getElementById('zpeClientName');
+    if (clientEl) clientEl.textContent = 'ERRO ZPE — resposta do motor não disponível.';
+    
+    // Neutralizar conteúdo mock das bibliotecas para não exibir "Zellgo Bot 24/7"
+    for (let i = 1; i <= 5; i++) {
+      const panel = document.getElementById(`zpeLibPanel${i}`);
+      if (panel) panel.innerHTML = '<div style="padding: 2rem; color: #f43f5e; text-align: center; border: 1px solid rgba(244,63,94,0.3); border-radius: 8px; margin-top: 2rem;">ERRO ZPE — resposta do motor não disponível.</div>';
+    }
+
+    showToast('❌ Falha Crítica ZPE', 'ERRO ZPE — resposta do motor não disponível.');
     switchTab('production');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (btn) {
