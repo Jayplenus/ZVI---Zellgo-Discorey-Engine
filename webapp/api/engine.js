@@ -114,7 +114,7 @@ REGRAS RÍGIDAS DE PRECIFICAÇÃO OBJETIVA E MODULAR (ZDE v2.3):
 - RETORNE APENAS O JSON PURAMENTE. Zero texto de introdução ou conclusão fora da estrutura.
 `;
 
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`;
 
     const apiResponse = await fetch(geminiUrl, {
       method: 'POST',
