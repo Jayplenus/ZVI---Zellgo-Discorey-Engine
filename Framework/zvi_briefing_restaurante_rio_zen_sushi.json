@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "generator": "Zellgo Discovery Engine (ZDE v1.1)",
+    "origin_url": "https://zellgo.com.br/zvi",
+    "timestamp": "2026-08-04T20:42:00.988Z"
+  },
+  "bloco_A_Empresa": {
+    "nome": "Restaurante Rio Zen sushi",
+    "segmento": "culinaria japonesa",
+    "core_business": "Tudo da culinaria japonesa, sushis, sashimis, saques, com vasto cardápio"
+  },
+  "bloco_B_Mercado": {
+    "concorrentes": "Max sushi, Benkei",
+    "posicionamento": "Intermediário / Competitivo"
+  },
+  "bloco_C_Publico": {
+    "persona": "B2C predominantemente",
+    "dor_principal": "sem exposição alguma para vender seu delivery"
+  },
+  "bloco_D_Marca": {
+    "diferencial_exclusivo": "legado de 10 anos, operação excelente, milhares de clientes que conhecem a marca",
+    "status_identidade_visual": "Profissional / High-End"
+  },
+  "bloco_E_Tracao": {
+    "origem_clientes": "Indicações / Boca a boca predominante",
+    "canais_ativos": "Google fraco, instagram com 19kseguidores, sem muito engajamento"
+  },
+  "bloco_F_Tecnologia": {
+    "site_url": "não tem site",
+    "ferramentas_mkt": "Instagram, WP business",
+    "gestao_erp": "Não temos sistema"
+  },
+  "bloco_G_Operacao": {
+    "gargalo_operacional": "tronar conhecido novamente com a nova operação e vender",
+    "tipo_atendimento": "100% manual através do WhatsApp e instagram"
+  },
+  "bloco_H_Objetivos": {
+    "meta_90_dias": "vender delivery em franca expansão",
+    "investimento_esperado": "À definir (Ancoragem por ROI)"
+  }
+}

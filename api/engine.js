@@ -42,7 +42,8 @@ Nós operamos ajudando marcas de todos os portes a destravarem vendas com excel�
 O usuário acaba de submeter as respostas do Briefing Modular do cliente. Abaixo estão os dados JSON brutos:
 ${JSON.stringify(briefingData, null, 2)}
 
-Sua tarefa é realizar uma auditoria clínica e de alta precisão neste negócio e DEVOLVER UMA RESPOSTA ESTRUTURADA EXCLUSIVAMENTE EM JSON VÁLIDO (sem formatação markdown de crases ou textos adicionais fora do JSON), seguindo perfeitamente o esquema abaixo:
+Sua tarefa é realizar uma auditoria clínica e de alta precisão neste negócio e DEVOLVER UMA RESPOSTA ESTRUTURADA EXCLUSIVAMENTE EM JSON VÁLIDO (sem formatação markdown de crases ou textos adicionais fora do JSON), seguindo perfeitamente o esquema estrutural abaixo.
+MUITO IMPORTANTE: Os valores inseridos neste JSON de exemplo (como "Tier 1", "12 pontos", etc.) são APENAS UM EXEMPLO FICTÍCIO. VOCÊ DEVE GERAR OS SEUS PRÓPRIOS VALORES REAIS baseando-se EXCLUSIVAMENTE no briefing recebido. Caso o briefing esteja vazio, você deve retornar um diagnóstico apontando falta de dados, com índice de complexidade 0 e Tier 0.
 
 {
   "nome_empresa": "Nome real ou identificado da empresa do cliente",

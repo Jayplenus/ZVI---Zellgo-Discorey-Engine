@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "engine": "ZDE v1.1 (Zellgo Discovery Engine)",
+    "source_domain": "https://zellgo.com.br/zvi",
+    "timestamp": "2026-08-05T00:24:35.790Z"
+  },
+  "client_identity": {
+    "nome": "[Cliente sem nome]",
+    "segmento": "[Segmento em Aberto]",
+    "core_business": "[Em Aberto]"
+  },
+  "market": {
+    "concorrentes": "[Não informado]",
+    "posicionamento": "Intermediário / Competitivo"
+  },
+  "target_audience": {
+    "persona": "[Não informado]",
+    "dor_principal": "[Não informado]"
+  },
+  "branding": {
+    "diferencial_exclusivo": "[Não informado]",
+    "status_marca": "Funcional mas comum"
+  },
+  "traction": {
+    "origem_clientes": "Indicação e Boca a Boca predominantemente",
+    "canais_ativos": "[Não informado]"
+  },
+  "technology": {
+    "site_url": "Não informado",
+    "stack_tools": "Não informado",
+    "infra_erp": "Não temos sistema complexo"
+  },
+  "operations": {
+    "gargalos_operacionais": "[Nenhum gargalo reportado]",
+    "atendimento": "Não especificado"
+  },
+  "objectives": {
+    "meta_90_dias": "[Objetivos por alinhar]",
+    "investimento_estimado": "Ancoragem por ROI"
+  }
+}

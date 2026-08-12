@@ -26,3 +26,4 @@ build/
 # Logs e rascunhos temporários
 *.log
 scratch/
+*.zip

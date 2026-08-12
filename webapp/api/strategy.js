@@ -42,7 +42,8 @@ Você transforma: Problema ➔ Estratégia ➔ Solução ➔ Escopo ➔ Proposta
 Abaixo está o relatório JSON do ZDE recebido na entrada do sistema:
 ${JSON.stringify(zdeInput, null, 2)}
 
-Sua tarefa é gerar uma estratégia comercial e de escopo de alto padrão, devolvendo uma resposta EXCLUSIVAMENTE EM JSON VÁLIDO (sem formatação markdown de crases ou texto externo), obedecendo rigorosamente a este esquema:
+Sua tarefa é gerar uma estratégia comercial e de escopo de alto padrão, devolvendo uma resposta EXCLUSIVAMENTE EM JSON VÁLIDO (sem formatação markdown de crases ou texto externo), obedecendo rigorosamente a este esquema estrutural.
+MUITO IMPORTANTE: Os valores inseridos neste JSON (como "92% de Alavancagem", etc.) são APENAS UM EXEMPLO FICTÍCIO. VOCÊ DEVE GERAR SEUS PRÓPRIOS VALORES REAIS baseando-se EXCLUSIVAMENTE nos dados recebidos. Se os dados de entrada estiverem vazios, retorne índices zerados e indique falta de informações.
 
 {
   "cliente": "Nome da empresa identificada no diagnóstico",

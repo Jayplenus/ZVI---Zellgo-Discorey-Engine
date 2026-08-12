@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "generator": "Zellgo Discovery Engine (ZDE v1.1)",
+    "origin_url": "https://zellgo.com.br/zvi",
+    "timestamp": "2026-08-04T20:20:42.043Z"
+  },
+  "bloco_A_Empresa": {
+    "nome": "[Não Preenchido / Em Aberto]",
+    "segmento": "[Não Preenchido / Em Aberto]",
+    "core_business": "[Não Preenchido / Em Aberto]"
+  },
+  "bloco_B_Mercado": {
+    "concorrentes": "[Não Preenchido]",
+    "posicionamento": "Intermediário / Competitivo"
+  },
+  "bloco_C_Publico": {
+    "persona": "[Não Preenchido]",
+    "dor_principal": "[Não Preenchido]"
+  },
+  "bloco_D_Marca": {
+    "diferencial_exclusivo": "[Não Preenchido]",
+    "status_identidade_visual": "Básico / Funcional"
+  },
+  "bloco_E_Tracao": {
+    "origem_clientes": "Indicações / Boca a boca predominante",
+    "canais_ativos": "[Não Preenchido]"
+  },
+  "bloco_F_Tecnologia": {
+    "site_url": "Não informado",
+    "ferramentas_mkt": "Não informado",
+    "gestao_erp": "Queremos que a Zellgo desenvolva nosso ERP"
+  },
+  "bloco_G_Operacao": {
+    "gargalo_operacional": "[Sem relato de gargalo]",
+    "tipo_atendimento": "Não especificado"
+  },
+  "bloco_H_Objetivos": {
+    "meta_90_dias": "[Objetivo a alinhar em consultoria]",
+    "investimento_esperado": "À definir (Ancoragem por ROI)"
+  }
+}

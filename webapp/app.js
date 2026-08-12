@@ -9,6 +9,7 @@ let radarChartRendered = false;
 let currentRadarData = null; 
 let globalZdeJson = null; // Armazena a saída JSON do Motor 1 (ZDE) para transmissão ao Motor 2 (ZSE)
 let globalZseJson = null; // Armazena a saída JSON do Motor 2 (ZSE) para o Motor de Produção (ZPE)
+let globalZpeJson = null; // Armazena a saída JSON do Motor 3 (ZPE) para exportação
 
 document.addEventListener('DOMContentLoaded', () => {
   updateNavState();
@@ -487,6 +488,34 @@ function showToast(title, desc) {
 }
 
 // ==========================================================================
+// FUNÇÃO DE EXPORTAÇÃO DOS 3 JSONS (ZDE, ZSE, ZPE)
+// ==========================================================================
+function exportAllJson() {
+  const dataToExport = {
+    "1_ZDE_Diagnostico": globalZdeJson || { status: "Não gerado ou Vazio" },
+    "2_ZSE_Estrategia": globalZseJson || { status: "Não gerado ou Vazio" },
+    "3_ZPE_Producao": globalZpeJson || { status: "Não gerado ou Vazio" }
+  };
+
+  const jsonString = JSON.stringify(dataToExport, null, 2);
+  const blob = new Blob([jsonString], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement('a');
+  a.href = url;
+  const clientName = (globalZdeJson && globalZdeJson.cliente) ? globalZdeJson.cliente.replace(/[^a-z0-9]/gi, '_').toLowerCase() : 'cliente';
+  a.download = `zvi_export_${clientName}.json`;
+
+  document.body.appendChild(a);
+  a.click();
+
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  showToast('💾 Exportação Concluída', 'O arquivo contendo os 3 JSONs (Diagnóstico, Estratégia e Produção) foi baixado.');
+}
+
+// ==========================================================================
 // MOTOR 2: ZSE v1.0 — ZELLGO STRATEGY ENGINE (O QUE A ZELLGO DEVE FAZER?)
 // ==========================================================================
 async function triggerStrategyEngine() {
@@ -737,6 +766,7 @@ function copyTextToClipboard(containerId, successMsg) {
 
 // Atualização Dinâmica com Resposta AI Real (Gemini) no Motor ZPE v1.0
 function updateProductionWithAi(zpeData) {
+  globalZpeJson = zpeData;
   const clientEl = document.getElementById('zpeClientName');
   const segEl = document.getElementById('zpeSegment');
   if (clientEl) clientEl.textContent = `${zpeData.cliente || "Empresa Analisada"} (Bibliotecas de Execução)`;

@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "engine": "ZDE v1.1 (Zellgo Discovery Engine)",
+    "source_domain": "https://zellgo.com.br/zvi",
+    "timestamp": "2026-08-04T23:03:50.125Z"
+  },
+  "client_identity": {
+    "nome": "Rio zEn",
+    "segmento": "Sush",
+    "core_business": "Culinaria japonesa completa e premium"
+  },
+  "market": {
+    "concorrentes": "sushi Rao, Mariah, Beishu, Mais sushi",
+    "posicionamento": "Intermediário / Competitivo"
+  },
+  "target_audience": {
+    "persona": "16-60 anos , predominante mulher, nível econômico B e C",
+    "dor_principal": "O cliente deseja qualidade, mas não quer pagar o valor."
+  },
+  "branding": {
+    "diferencial_exclusivo": "Qualidade premium dos ingredientes e acolhimento, aconchego.",
+    "status_marca": "Profissional e High-End"
+  },
+  "traction": {
+    "origem_clientes": "Indicação e Boca a Boca predominantemente",
+    "canais_ativos": "Instagram, whatsapp (pouco), chamada fone (pouco)"
+  },
+  "technology": {
+    "site_url": "não tem,",
+    "stack_tools": "Whatsapp business.",
+    "infra_erp": "Não temos sistema complexo"
+  },
+  "operations": {
+    "gargalos_operacionais": "Desafio abrir o delivery",
+    "atendimento": "100% app e WhatsApp"
+  },
+  "objectives": {
+    "meta_90_dias": "Consolidar as vendas por delivery em franca expansão.",
+    "investimento_estimado": "Ancoragem por ROI"
+  }
+}
