@@ -80,17 +80,17 @@ REGRAS RÍGIDAS DE INTELIGÊNCIA COMERCIAL E PRECIFICAÇÃO MODULAR (ZSE v1.0 / 
 - NUNCA mencione "preço gerado pela IA" ou textos similares! Apresente como "Investimento Estratégico Zellgo".
 - É OBRIGATÓRIO manter a objetividade numérica nos valores (range real), aplicando nossa política de valores fatiados por módulos:
   * PARA EMPRESAS PEQUENAS OU OPERAÇÕES ENXUTAS (até R$ 35k faturamento / 1 a 6 funcionários / Tier 1):
-    - `fundacao_val`: OBRIGATÓRIO usar um range claro entre "R$ 3.500 a R$ 6.500" (ex: Agente IA WhatsApp + Reposição Visual ou Site).
-    - `construcao_val`: OBRIGATÓRIO usar um range complementar como "R$ 3.500 a R$ 5.500" ou "R$ 4.500 a R$ 7.000" para a segunda etapa de ampliação.
-    - `aceleracao_val`: OBRIGATÓRIO ser "+ a partir de R$ 1.600 / mês" (Fee mensal mínimo inviolável no Tier 1 para evoluir a inteligência artificial e manter a estrutura).
+    - 'fundacao_val': OBRIGATÓRIO usar um range claro entre "R$ 3.500 a R$ 6.500" (ex: Agente IA WhatsApp + Reposição Visual ou Site).
+    - 'construcao_val': OBRIGATÓRIO usar um range complementar como "R$ 3.500 a R$ 5.500" ou "R$ 4.500 a R$ 7.000" para a segunda etapa de ampliação.
+    - 'aceleracao_val': OBRIGATÓRIO ser "+ a partir de R$ 1.600 / mês" (Fee mensal mínimo inviolável no Tier 1 para evoluir a inteligência artificial e manter a estrutura).
   * PARA EMPRESAS MÉDIAS (faturamento R$ 40k a 150k / Tier 2):
-    - `fundacao_val`: "R$ 8.000 a R$ 14.000".
-    - `construcao_val`: "R$ 6.000 a R$ 9.500".
-    - `aceleracao_val`: "+ R$ 2.500 a R$ 3.500 / mês".
+    - 'fundacao_val': "R$ 8.000 a R$ 14.000".
+    - 'construcao_val': "R$ 6.000 a R$ 9.500".
+    - 'aceleracao_val': "+ R$ 2.500 a R$ 3.500 / mês".
   * PARA EMPRESAS GRANDES OU PROJETOS AAA (Tier 3):
-    - `fundacao_val`: "R$ 16.000 a R$ 25.000+".
-    - `construcao_val`: "R$ 12.000 a R$ 18.000".
-    - `aceleracao_val`: "+ a partir de R$ 4.500 / mês".
+    - 'fundacao_val': "R$ 16.000 a R$ 25.000+".
+    - 'construcao_val': "R$ 12.000 a R$ 18.000".
+    - 'aceleracao_val': "+ a partir de R$ 4.500 / mês".
 - RETORNE EXCLUSIVAMENTE O JSON VERDADEIRO SEM COMIDA OU CITAÇÃO DE MARKDOWN NA FORMA DE TEXTO SOLTO.
 `;
 

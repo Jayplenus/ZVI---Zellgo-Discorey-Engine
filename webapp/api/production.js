@@ -190,7 +190,7 @@ REGRAS SOBERANAS DO MOTOR ZPE (ZPE v1.1 - FIDELIDADE DE PRODUÇÃO):
     try {
       parsedProduction = JSON.parse(cleanJsonText);
     } catch (parseError) {
-      throw new Error(\`Falha ao converter resposta da IA para JSON. Resposta bruta: \${rawAiText.substring(0, 200)}... Erro técnico: \${parseError.message}\`);
+      throw new Error(`Falha ao converter resposta da IA para JSON. Resposta bruta: ${rawAiText.substring(0, 200)}... Erro técnico: ${parseError.message}`);
     }
 
     return res.status(200).json({

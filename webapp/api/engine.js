@@ -166,8 +166,8 @@ REGRAS RÍGIDAS DE PRECIFICAÇÃO OBJETIVA E MODULAR (ZDE v2.3):
     try {
       parsedDiagnosis = JSON.parse(cleanJsonText);
     } catch (parseError) {
-      console.error(\`[FALHA DE PARSING ZDE] Status: 500 | Erro: \${parseError.message} | Resposta bruta (200 chars): \${rawAiText.substring(0, 200)}\`);
-      throw new Error(\`Falha na extração do JSON. O motor não pôde interpretar a resposta da IA.\`);
+      console.error(`[FALHA DE PARSING ZDE] Status: 500 | Erro: ${parseError.message} | Resposta bruta (200 chars): ${rawAiText.substring(0, 200)}`);
+      throw new Error(`Falha na extração do JSON. O motor não pôde interpretar a resposta da IA.`);
     }
 
     return res.status(200).json({
