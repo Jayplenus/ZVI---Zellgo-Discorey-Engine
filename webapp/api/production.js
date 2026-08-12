@@ -138,7 +138,7 @@ REGRAS SOBERANAS DO MOTOR ZPE (ZPE v1.1 - FIDELIDADE DE PRODUÇÃO):
 3. RETORNE APENAS O JSON VERDADEIRO SEM FORMATAÇÕES DE MARKDOWN EXTERNAS.
 `;
 
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`;
 
     const apiResponse = await fetch(geminiUrl, {
       method: 'POST',
