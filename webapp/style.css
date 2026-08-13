@@ -1322,6 +1322,7 @@ textarea.form-control {
 }
 
 .auth-logo { margin-bottom: 1.5rem; }
+.auth-logo svg { width: 100%; height: auto; max-width: 220px; display: block; margin: 0 auto; }
 .auth-title { color: white; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
 .auth-subtitle { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; }
 
