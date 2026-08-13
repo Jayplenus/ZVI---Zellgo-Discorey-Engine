@@ -116,6 +116,11 @@ async function sendToZellgoEngine() {
       source_domain: "https://zellgo.com.br/zvi",
       timestamp: new Date().toISOString()
     },
+    empresa: {
+      porte: document.getElementById('emp_porte')?.value || "",
+      atuacao: document.getElementById('emp_atuacao')?.value || "",
+      complexidade_operacional: document.getElementById('emp_complexidade')?.value || ""
+    },
     client_identity: {
       nome: document.getElementById('emp_nome').value.trim() || "Empresa em Análise",
       segmento: document.getElementById('emp_segmento').value.trim() || "Operações Especializadas",

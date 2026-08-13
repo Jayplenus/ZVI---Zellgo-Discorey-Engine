@@ -132,29 +132,23 @@
       </div>
       <div class="brand-text">
         <span class="brand-title">Zellgo <span style="font-weight:300;">Visual Intelligence</span></span>
-        <span class="brand-subtitle">Operating System • ZDE & ZSE v1.0</span>
+        <span class="brand-subtitle">Operating System</span>
       </div>
     </div>
     
     <!-- COMANDO CENTRAL DE ABAS: BRIEFING -> MOTOR 1 (ZDE) -> MOTOR 2 (ZSE) -> MOTOR 3 (ZPE) -->
     <div class="view-tabs" style="display:flex; flex-wrap:wrap; gap:0.5rem;">
-      <button class="tab-btn active" id="btnTabBriefing" onclick="switchTab('briefing')" title="Módulo de Briefing">
-        <span class="tab-icon">📝</span> <span class="tab-label">1. Briefing Modular</span>
+      <button class="tab-btn active" id="btnTabBriefing" onclick="switchTab('briefing')" title="Briefing">
+        <span class="tab-label">Briefing</span>
       </button>
-      <button class="tab-btn" id="btnTabDashboard" onclick="switchTab('dashboard')" title="Diagnóstico ZDE">
-        <span class="tab-icon">🧠</span> <span class="tab-label">2. Diagnóstico ZDE</span>
+      <button class="tab-btn" id="btnTabDashboard" onclick="switchTab('dashboard')" title="Diagnóstico">
+        <span class="tab-label">Diagnóstico</span>
       </button>
-      <button class="tab-btn" id="btnTabStrategy" onclick="switchTab('strategy')" title="Estratégia & Proposta ZSE">
-        <span class="tab-icon">⚖️</span> <span class="tab-label">3. Estratégia (ZSE v1.0)</span>
+      <button class="tab-btn" id="btnTabStrategy" onclick="switchTab('strategy')" title="Estratégia">
+        <span class="tab-label">Estratégia</span>
       </button>
-      <button class="tab-btn" id="btnTabProduction" onclick="switchTab('production')" title="Fábrica de Execução ZPE">
-        <span class="tab-icon">🔨</span> <span class="tab-label">4. Produção (ZPE v1.0)</span>
-      </button>
-      <button class="tab-btn" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.4);" onclick="exportAllJson()" title="Baixar todos os JSONs gerados em um único arquivo">
-        <span class="tab-icon">💾</span> <span class="tab-label">Exportar JSON</span>
-      </button>
-      <button class="tab-btn" id="btn-logout" style="background: rgba(245, 72, 127, 0.15); color: #f5487f; border: 1px solid rgba(245, 72, 127, 0.4); margin-left: 1rem;" title="Sair do Sistema">
-        <span class="tab-icon">🚪</span> <span class="tab-label">Sair</span>
+      <button class="tab-btn" id="btnTabProduction" onclick="switchTab('production')" title="Produção">
+        <span class="tab-label">Produção</span>
       </button>
     </div>
   </header>
@@ -164,7 +158,7 @@
 
     <!-- HERO BANNER -->
     <section class="hero-banner">
-      <span class="hero-tag">⚡ Zellgo Visual Intelligence OS • Motores ZDE & ZSE Ativos</span>
+      <span class="hero-tag">⚡ ZELLGO VISUAL INTELLIGENCE OS •</span>
       <h1 class="hero-title">
         <span class="title-white">DIAGNÓSTICO DE ALTA PRECISÃO E ESTRATÉGIA</span>
       </h1>
@@ -205,6 +199,38 @@
               <div class="form-group">
                 <label class="form-label" for="emp_nome">Nome da Empresa ou Marca <span class="form-sublabel">*(Obrigatório)*</span></label>
                 <input type="text" id="emp_nome" class="form-control" placeholder="Ex: GF Riototal / Rio Zen Sushi / Zellgo Tech / Studio Alpha">
+              </div>
+              <div class="form-group" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 140px;">
+                  <label class="form-label" for="emp_porte">Porte da empresa</label>
+                  <select id="emp_porte" class="form-control" style="appearance: auto;">
+                    <option value="">Selecione...</option>
+                    <option value="Pequena">Pequena</option>
+                    <option value="Média">Média</option>
+                    <option value="Grande">Grande</option>
+                    <option value="Enterprise">Enterprise</option>
+                  </select>
+                </div>
+                <div style="flex: 1; min-width: 140px;">
+                  <label class="form-label" for="emp_atuacao">Atuação de mercado</label>
+                  <select id="emp_atuacao" class="form-control" style="appearance: auto;">
+                    <option value="">Selecione...</option>
+                    <option value="Local">Local</option>
+                    <option value="Regional">Regional</option>
+                    <option value="Nacional">Nacional</option>
+                    <option value="Internacional">Internacional</option>
+                  </select>
+                </div>
+                <div style="flex: 1; min-width: 140px;">
+                  <label class="form-label" for="emp_complexidade">Complexidade operac.</label>
+                  <select id="emp_complexidade" class="form-control" style="appearance: auto;">
+                    <option value="">Selecione...</option>
+                    <option value="Enxuta">Enxuta</option>
+                    <option value="Estruturada">Estruturada</option>
+                    <option value="Alta">Alta</option>
+                    <option value="Complexa">Complexa</option>
+                  </select>
+                </div>
               </div>
               <div class="form-group">
                 <label class="form-label" for="emp_segmento">Segmento de Atuação</label>
