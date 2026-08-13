@@ -76,6 +76,18 @@ function showLogin() {
   if (appContent) appContent.style.display = 'none';
 }
 
+function updateUserName(session) {
+  if (!session || !session.user) return;
+  const el = document.getElementById('user-display-name');
+  if (!el) return;
+  const meta = session.user.user_metadata || {};
+  let name = meta.full_name || meta.name || session.user.email.split('@')[0];
+  if (!name) return;
+  name = name.charAt(0).toUpperCase() + name.slice(1);
+  const firstName = name.split(' ')[0];
+  el.textContent = firstName;
+}
+
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
   checkSession();
@@ -84,6 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
   supabaseClient.auth.onAuthStateChange((event, session) => {
     if (event === 'SIGNED_OUT' || !session) {
       showLogin();
+    } else if (session) {
+      updateUserName(session);
     }
   });
 });
