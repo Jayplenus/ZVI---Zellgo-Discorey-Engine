@@ -1,9 +1,9 @@
 // Configurações do Supabase (Substitua pelas suas chaves do painel Project Settings -> API)
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://grlhcovgtyvteylwflws.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdybGhjb3ZndHl2dGV5bHdmbHdzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY2MjIxMzQsImV4cCI6MjEwMjE5ODEzNH0.cADNmBZWfHOnM2sxhRpc6d5CDg5PJ3hdjb4shqYjqwU';
 
 // Inicializa o cliente do Supabase
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Elementos da UI
 const authContainer = document.getElementById('auth-container');
@@ -14,7 +14,7 @@ const btnLogout = document.getElementById('btn-logout');
 
 // Verifica sessão ativa ao carregar a página
 async function checkSession() {
-  const { data: { session }, error } = await supabase.auth.getSession();
+  const { data: { session }, error } = await supabaseClient.auth.getSession();
   
   if (session) {
     showApp();
@@ -36,7 +36,7 @@ if (loginForm) {
     btnSubmit.innerHTML = 'Autenticando...';
     loginError.style.display = 'none';
 
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
       email: email,
       password: password,
     });
@@ -60,7 +60,7 @@ if (loginForm) {
 // Manipula o logout
 if (btnLogout) {
   btnLogout.addEventListener('click', async () => {
-    await supabase.auth.signOut();
+    await supabaseClient.auth.signOut();
     showLogin();
   });
 }
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
   checkSession();
   
   // Ouve mudanças de estado de autenticação (ex: token expirou)
-  supabase.auth.onAuthStateChange((event, session) => {
+  supabaseClient.auth.onAuthStateChange((event, session) => {
     if (event === 'SIGNED_OUT' || !session) {
       showLogin();
     }

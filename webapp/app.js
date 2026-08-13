@@ -159,7 +159,7 @@ async function sendToZellgoEngine() {
   }
 
   try {
-    const { data: { session } } = await supabase.auth.getSession();
+    const { data: { session } } = await supabaseClient.auth.getSession();
     const token = session?.access_token || '';
 
     const res = await fetch('/api/engine', {
@@ -553,7 +553,7 @@ async function triggerStrategyEngine() {
   }
 
   try {
-    const { data: { session } } = await supabase.auth.getSession();
+    const { data: { session } } = await supabaseClient.auth.getSession();
     const token = session?.access_token || '';
 
     const res = await fetch('/api/strategy', {
@@ -712,7 +712,7 @@ async function triggerProductionEngine() {
       diagnostico_base_zde: globalZdeJson || {}
     };
 
-    const { data: { session } } = await supabase.auth.getSession();
+    const { data: { session } } = await supabaseClient.auth.getSession();
     const token = session?.access_token || '';
 
     const res = await fetch('/api/production', {
